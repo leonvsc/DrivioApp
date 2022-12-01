@@ -7,4 +7,9 @@
     <string name="download">Download</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_login_fragment">Hello Login Fragment</string>
+    <string name="login_button">Login Button</string>
+    <string name="register_button">Register Button</string>
+    <string name="hello_login_form">Hello Login Form</string>
+    <string name="hello_register_form">Hello Register Form</string>
 </resources>
