@@ -7,20 +7,20 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import nl.avans.drivioapp.service.DrivioApi
 
-private const val TAG = "AdvertismentViewModel"
+private const val TAG = "AdvertisementViewModel"
 
 class AdvertisementViewModel : ViewModel() {
-    private val _advertismentResponse: MutableLiveData<String> = MutableLiveData()
+    private val _advertisementResponse: MutableLiveData<String> = MutableLiveData()
     val advertisementResponse: LiveData<String>
-        get() = _advertismentResponse
+        get() = _advertisementResponse
 
     init {
         getAdvertisements()
     }
 
-    private fun getAdvertisements() {
+    fun getAdvertisements() {
         viewModelScope.launch {
-            _advertismentResponse.value = DrivioApi.retrofitService.getAdvertisements()
+            _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisements()
         }
     }
 }
