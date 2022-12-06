@@ -30,7 +30,15 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
         val advertisementViewModel: AdvertisementViewModel by viewModels()
         advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            binding.result.text = advertisementViewModel.advertisementResponse.value
+            val obj = JSONArray(advertisementViewModel.advertisementResponse.value)
+            val advertisement: JSONArray = obj.getJSONArray(0)
+            val advertisementTitle = advertisement.getString(0)
+            val advertisementDescription = advertisement.getString(0)
+
+            binding.tvTitle.text = advertisementTitle
+            binding.tvDescription.text = advertisementDescription
+
+//            binding.result.text = advertisementViewModel.advertisementResponse.value
         }
 
         binding.getBtn.setOnClickListener {
