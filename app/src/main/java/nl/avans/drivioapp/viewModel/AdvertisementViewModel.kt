@@ -5,13 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.service.DrivioApi
+import org.json.JSONArray
 
 private const val TAG = "AdvertisementViewModel"
 
 class AdvertisementViewModel : ViewModel() {
-    private val _advertisementResponse: MutableLiveData<String> = MutableLiveData()
-    val advertisementResponse: LiveData<String>
+    private val _advertisementResponse: MutableLiveData<List<Advertisement>> = MutableLiveData()
+    val advertisementResponse: LiveData<List<Advertisement>>
         get() = _advertisementResponse
 
     init {

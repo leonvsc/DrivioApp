@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
-import org.json.JSONArray
-import org.json.JSONObject
 
 class DiscoverFragment : Fragment(R.layout.fragment_discover) {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,15 +28,27 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
         val advertisementViewModel: AdvertisementViewModel by viewModels()
         advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = JSONArray(advertisementViewModel.advertisementResponse.value)
-            val advertisement: JSONArray = obj.getJSONArray(0)
-            val advertisementTitle = advertisement.getString(0)
-            val advertisementDescription = advertisement.getString(0)
+            val obj = advertisementViewModel.advertisementResponse.value
+            val recyclerView = binding.recyclerView
+            recyclerView.adapter = AdvertisementAdapter(this, obj)
 
-            binding.tvTitle.text = advertisementTitle
-            binding.tvDescription.text = advertisementDescription
+////TODO: Show everything in a recyclerview. At this moment the for loop override every textview. It needs to add multiple items of advertisement.
+//
+//            for (i in 0 until obj.length()) {
+//                val advertisement: JSONObject = obj.getJSONObject(i)
+//                val advertisementTitle = advertisement.getString("title")
+//                val advertisementDescription = advertisement.getString("description")
+//                val advertisementPrice = advertisement.getString("price")
+//                val advertisementStartDate = advertisement.getString("startDate")
+//                val advertisementEndDate = advertisement.getString("endDate")
+//
+//                binding.tvTitle.text = advertisementTitle
+//                binding.tvDescription.text = advertisementDescription
+//                binding.tvPrice.text = advertisementPrice
+//                binding.tvStartDate.text = advertisementStartDate
+//                binding.tvEndDate.text = advertisementEndDate
+//            }
 
-//            binding.result.text = advertisementViewModel.advertisementResponse.value
         }
 
         binding.getBtn.setOnClickListener {
