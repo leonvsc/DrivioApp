@@ -12,7 +12,12 @@ import nl.avans.drivioapp.model.Advertisement
 class AdvertisementAdapter(private val context: DiscoverFragment, private val dataset: List<Advertisement>) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
     class AdvertisementViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.tvTitle)
+        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
+        val tvDescription: TextView = view.findViewById(R.id.tvDescription)
+        val tvPrice: TextView = view.findViewById(R.id.tvPrice)
+        val tvStartDate: TextView = view.findViewById(R.id.tvStartDate)
+        val tvEndDate: TextView = view.findViewById(R.id.tvEndDate)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
@@ -24,7 +29,12 @@ class AdvertisementAdapter(private val context: DiscoverFragment, private val da
 
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {
         val item = dataset[position]
-        holder.textView.text = context.resources.getString(item.advertisementId)
+        holder.tvTitle.text = item.title
+        holder.tvDescription.text = item.description
+        holder.tvPrice.text = item.price.toString()
+        holder.tvStartDate.text = item.startDate
+        holder.tvEndDate.text = item.endDate
+
     }
 
     override fun getItemCount() = dataset.size

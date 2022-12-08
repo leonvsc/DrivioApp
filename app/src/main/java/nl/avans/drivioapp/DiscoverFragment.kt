@@ -28,7 +28,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
         val advertisementViewModel: AdvertisementViewModel by viewModels()
         advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.advertisementResponse.value
+            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
             recyclerView.adapter = AdvertisementAdapter(this, obj)
 
