@@ -5,12 +5,11 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import nl.avans.drivioapp.model.Advertisement
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
-interface DrivioApiService {
+interface AdvertisementService {
     @GET("advertisement")
-    suspend fun getAdvertisements(): List<Advertisement>
+    suspend fun getAdvertisements(): List<Advertisement>;
 }
 
 private val BASE_URL = "https://drivio.nl/api/v1/"
@@ -26,7 +25,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 object DrivioApi {
-    val retrofitService: DrivioApiService by lazy {
-        retrofit.create(DrivioApiService::class.java)
+    val retrofitService: AdvertisementService by lazy {
+        retrofit.create(AdvertisementService::class.java)
     }
 }

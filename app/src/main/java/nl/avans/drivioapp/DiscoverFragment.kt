@@ -31,24 +31,6 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
             val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
             recyclerView.adapter = AdvertisementAdapter(this, obj)
-
-////TODO: Show everything in a recyclerview. At this moment the for loop override every textview. It needs to add multiple items of advertisement.
-//
-//            for (i in 0 until obj.length()) {
-//                val advertisement: JSONObject = obj.getJSONObject(i)
-//                val advertisementTitle = advertisement.getString("title")
-//                val advertisementDescription = advertisement.getString("description")
-//                val advertisementPrice = advertisement.getString("price")
-//                val advertisementStartDate = advertisement.getString("startDate")
-//                val advertisementEndDate = advertisement.getString("endDate")
-//
-//                binding.tvTitle.text = advertisementTitle
-//                binding.tvDescription.text = advertisementDescription
-//                binding.tvPrice.text = advertisementPrice
-//                binding.tvStartDate.text = advertisementStartDate
-//                binding.tvEndDate.text = advertisementEndDate
-//            }
-
         }
 
         binding.getBtn.setOnClickListener {

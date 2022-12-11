@@ -24,4 +24,11 @@
         android:icon="@drawable/person_fill0_wght400_grad0_opsz48"
         android:title="Profile"
         />
+
+    <item
+        android:id="@+id/addCar"
+        android:enabled="true"
+        android:icon="@drawable/search_fill0_wght400_grad0_opsz48"
+        android:title="AddCar"
+        />
 </menu>

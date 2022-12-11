@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DrivioApp</string>
+    <string name="add_car">Add car</string>
 </resources>

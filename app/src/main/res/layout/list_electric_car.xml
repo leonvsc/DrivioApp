@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCarId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvFuelType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvBuildYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvNumberPlate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="16dp"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+        android:id="@+id/tvCarType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:textSize="16sp"
+
+        />
+
+        <TextView
+        android:id="@+id/tvGearbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="16dp"
+        android:textSize="16sp"
+
+        />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
