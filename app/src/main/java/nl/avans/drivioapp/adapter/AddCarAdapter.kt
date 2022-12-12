@@ -7,27 +7,28 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.AddCarFragment
 import nl.avans.drivioapp.R
+import nl.avans.drivioapp.databinding.FragmentAddCarBinding
+import nl.avans.drivioapp.databinding.ListElectricCarBinding
 import nl.avans.drivioapp.model.AddCar
 
 class AddCarAdapter(private val context: AddCarFragment, private val dataset: List<AddCar>) : RecyclerView.Adapter<AddCarAdapter.AddCarViewHolder>() {
 
-    class AddCarViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val tvCarId: TextView = view.findViewById(R.id.tvCarId)
-        val tvBrand: TextView = view.findViewById(R.id.tvBrand)
-        val tvModel: TextView = view.findViewById(R.id.tvModel)
-        val tvFuelType: TextView = view.findViewById(R.id.tvFuelType)
-        val tvBuildYear: TextView = view.findViewById(R.id.tvBuildYear)
-        val tvNumberPlate: TextView = view.findViewById(R.id.tvNumberPlate)
-        val tvCarType: TextView = view.findViewById(R.id.tvCarType)
-        val tvGearbox: TextView = view.findViewById(R.id.tvGearbox)
+    class AddCarViewHolder(val binding: ListElectricCarBinding) : RecyclerView.ViewHolder(binding.root) {
+        val tvCarId: TextView = binding.tvCarId
+        val tvBrand: TextView = binding.tvBrand
+        val tvModel: TextView = binding.tvModel
+        val tvFuelType: TextView = binding.tvFuelType
+        val tvBuildYear: TextView = binding.tvBuildYear
+        val tvNumberPlate: TextView = binding.tvNumberPlate
+        val tvCarType: TextView = binding.tvCarType
+        val tvGearbox: TextView = binding.tvGearbox
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddCarViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_advertisement, parent, false)
+        val binding = ListElectricCarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return AddCarViewHolder(adapterLayout)
+        return AddCarViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AddCarViewHolder, position: Int) {
