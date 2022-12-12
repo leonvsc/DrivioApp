@@ -11,9 +11,14 @@ import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
-class AdvertisementAdapter(private val context: DiscoverFragment, private val dataset: List<Advertisement>) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
+class AdvertisementAdapter(
+    private val context: DiscoverFragment,
+    private val dataset: List<Advertisement>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
-    class AdvertisementViewHolder(val binding: ListAdvertisementBinding) : RecyclerView.ViewHolder(binding.root), OnClickListener {
+    inner class AdvertisementViewHolder(private val binding: ListAdvertisementBinding) :
+        RecyclerView.ViewHolder(binding.root), OnClickListener {
         val tvTitle: TextView = binding.tvTitle
         val tvDescription: TextView = binding.tvDescription
         val tvPrice: TextView = binding.tvPrice
@@ -25,13 +30,17 @@ class AdvertisementAdapter(private val context: DiscoverFragment, private val da
         }
 
         override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
-        val binding = ListAdvertisementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListAdvertisementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return AdvertisementViewHolder(binding)
     }
@@ -47,5 +56,9 @@ class AdvertisementAdapter(private val context: DiscoverFragment, private val da
     }
 
     override fun getItemCount() = dataset.size
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
 }

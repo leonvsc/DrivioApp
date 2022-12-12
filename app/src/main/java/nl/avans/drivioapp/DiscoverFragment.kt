@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover) {
+class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdapter.OnItemClickListener {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
 
@@ -30,12 +31,16 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
         advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
             val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, obj)
+            recyclerView.adapter = AdvertisementAdapter(this, obj, this)
         }
 
         binding.getBtn.setOnClickListener {
             advertisementViewModel.getAdvertisements()
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
