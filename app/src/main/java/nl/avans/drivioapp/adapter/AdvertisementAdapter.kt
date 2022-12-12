@@ -7,24 +7,24 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.DiscoverFragment
 import nl.avans.drivioapp.R
+import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
 class AdvertisementAdapter(private val context: DiscoverFragment, private val dataset: List<Advertisement>) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
-    class AdvertisementViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
-        val tvDescription: TextView = view.findViewById(R.id.tvDescription)
-        val tvPrice: TextView = view.findViewById(R.id.tvPrice)
-        val tvStartDate: TextView = view.findViewById(R.id.tvStartDate)
-        val tvEndDate: TextView = view.findViewById(R.id.tvEndDate)
+    class AdvertisementViewHolder(val binding: ListAdvertisementBinding) : RecyclerView.ViewHolder(binding.root) {
+        val tvTitle: TextView = binding.tvTitle
+        val tvDescription: TextView = binding.tvDescription
+        val tvPrice: TextView = binding.tvPrice
+        val tvStartDate: TextView = binding.tvStartDate
+        val tvEndDate: TextView = binding.tvEndDate
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_advertisement, parent, false)
+        val binding = ListAdvertisementBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return AdvertisementViewHolder(adapterLayout)
+        return AdvertisementViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {
