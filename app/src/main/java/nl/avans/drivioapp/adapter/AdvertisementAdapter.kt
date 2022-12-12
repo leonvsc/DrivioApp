@@ -2,6 +2,7 @@ package nl.avans.drivioapp.adapter
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,12 +13,20 @@ import nl.avans.drivioapp.model.Advertisement
 
 class AdvertisementAdapter(private val context: DiscoverFragment, private val dataset: List<Advertisement>) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
-    class AdvertisementViewHolder(val binding: ListAdvertisementBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AdvertisementViewHolder(val binding: ListAdvertisementBinding) : RecyclerView.ViewHolder(binding.root), OnClickListener {
         val tvTitle: TextView = binding.tvTitle
         val tvDescription: TextView = binding.tvDescription
         val tvPrice: TextView = binding.tvPrice
         val tvStartDate: TextView = binding.tvStartDate
         val tvEndDate: TextView = binding.tvEndDate
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            TODO("Not yet implemented")
+        }
 
     }
 
