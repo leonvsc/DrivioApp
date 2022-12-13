@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
@@ -40,12 +41,19 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
     }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
+        replaceFragment(AdvertisementDetailsFragment())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 
 }
