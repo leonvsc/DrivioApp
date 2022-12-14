@@ -25,4 +25,12 @@ class AdvertisementViewModel : ViewModel() {
             _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisements()
         }
     }
+
+
+    // TODO: Need to be tested.
+    fun getAdvertisementById(advertisementId: Int) {
+        viewModelScope.launch {
+            _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisementById(advertisementId)
+        }
+    }
 }
