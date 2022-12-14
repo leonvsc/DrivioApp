@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.viewModels
+import androidx.core.os.bundleOf
+import androidx.fragment.app.*
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
@@ -41,6 +39,9 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
     }
 
     override fun onItemClick(position: Int) {
+
+        setFragmentResult("requestKey", bundleOf("bundleKey" to position))
+
 //        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
         replaceFragment(AdvertisementDetailsFragment())
     }
