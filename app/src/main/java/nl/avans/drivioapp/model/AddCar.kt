@@ -3,43 +3,47 @@ package nl.avans.drivioapp.model
 import com.squareup.moshi.Json
 
 data class AddCar(
-    @Json(name = "fastChargeSpeed")
+    @Json(name="fastChargeSpeed")
     val fastChargeSpeed: Int,
 
-    @Json(name = "carRange")
+    @Json(name="carRange")
     val carRange: Int,
 
-    @Json(name = "chargeConnection")
+    @Json(name="chargeConnection")
     val chargeConnection: String,
 
-    @Json(name = "buildYear")
+    @Json(name="buildYear")
     val buildYear: Int,
 
-    @Json(name = "numberPlate")
+    @Json(name="numberPlate")
     val numberPlate: String,
 
-    @Json(name = "carId")
-    val carId: Int,
-
-    @Json(name = "chargeSpeed")
+    @Json(name="chargeSpeed")
     val chargeSpeed: Int,
 
-    @Json(name = "carType")
+    @Json(name="carType")
     val carType: String,
 
-    @Json(name = "fuelType")
+    @Json(name="fuelType")
     val fuelType: String,
 
-    @Json(name = "model")
+    @Json(name="model")
     val model: String,
 
-    @Json(name = "whPerKm")
-    val whPerKm: Int,
+    @Json(name="whPerKm")
+    val whPerKm: Any,
 
-    @Json(name = "gearBox")
+    @Json(name="gearBox")
     val gearBox: String,
 
-    @Json(name = "brand")
+    @Json(name="brand")
     val brand: String,
 
-    )
+    @Json(name="user")
+    val user: User
+)
+data class User(
+
+    @Json(name="userId")
+    val userId: Int? = null
+)

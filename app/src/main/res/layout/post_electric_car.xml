@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etFastChargeSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Fast Charge Speed"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etCarRange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Range"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etChargeConnection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Charge Connection"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etBuildYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Build year"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etNumberPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Numberplate"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etChargeSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Charge Speed"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etCarType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Car Type"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etFuelType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Fuel Type"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Model"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etWhPerKm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Wh per km (int)"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etGearBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Input"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Brand"
+        android:inputType="text"/>
+    </LinearLayout>
