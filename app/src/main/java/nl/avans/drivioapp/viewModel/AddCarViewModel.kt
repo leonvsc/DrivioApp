@@ -24,4 +24,11 @@ class AddCarViewModel : ViewModel() {
             _addCarResponse.value = AddCarAPI.retrofitService.getCars();
         }
     }
+
+    fun postElectricCars(addCar: AddCar) {
+        viewModelScope.launch {
+            AddCarAPI.retrofitService.postElectricCar(addCar);
+            _addCarResponse.value = AddCarAPI.retrofitService.getCars();
+        }
+    }
 }

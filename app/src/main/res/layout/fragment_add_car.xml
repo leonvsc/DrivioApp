@@ -21,13 +21,25 @@
             app:layoutManager="LinearLayoutManager" />
 
         <Button
-            android:id="@+id/get_btn"
+            android:id="@+id/get_cars_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Get"
 
             app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.264"
+            app:layout_constraintStart_toStartOf="@+id/recycler_view" />
+
+        <Button
+            android:id="@+id/post_cars_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.69"
             app:layout_constraintStart_toStartOf="@+id/recycler_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
