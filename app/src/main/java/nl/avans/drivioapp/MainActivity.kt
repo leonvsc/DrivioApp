@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.bookings -> replaceFragment(BookingsFragment())
                 R.id.messages -> replaceFragment(MessagesFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
-                R.id.addCar -> replaceFragment(AddCarFragment())
 
                 else -> {
 
