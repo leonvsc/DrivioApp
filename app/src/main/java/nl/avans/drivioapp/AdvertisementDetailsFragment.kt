@@ -27,6 +27,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val textView: TextView = binding.tvResult
 
         textView.text = result.toString()
+
     }
 
         return view;

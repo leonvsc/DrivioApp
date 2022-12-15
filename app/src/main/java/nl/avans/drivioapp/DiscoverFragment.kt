@@ -40,7 +40,14 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
 
     override fun onItemClick(position: Int) {
 
-        setFragmentResult("requestKey", bundleOf("bundleKey" to position))
+        val advertisementViewModel: AdvertisementViewModel by viewModels()
+        advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
+            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
+            setFragmentResult("requestKey", bundleOf("bundleKey" to obj[position].advertisementId))
+
+        }
+
+//        setFragmentResult("requestKey", bundleOf("bundleKey" to position))
 
 //        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
         replaceFragment(AdvertisementDetailsFragment())
