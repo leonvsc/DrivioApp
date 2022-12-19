@@ -12,9 +12,14 @@ import org.json.JSONArray
 private const val TAG = "AdvertisementViewModel"
 
 class AdvertisementViewModel : ViewModel() {
-    private val _advertisementResponse: MutableLiveData<List<Advertisement>> = MutableLiveData()
-    val advertisementResponse: LiveData<List<Advertisement>>
-        get() = _advertisementResponse
+    private val _getAdvertisementResponse: MutableLiveData<List<Advertisement>> = MutableLiveData()
+    val getAdvertisementResponse: LiveData<List<Advertisement>>
+        get() = _getAdvertisementResponse
+
+    private val _getAdvertisementByIdResponse: MutableLiveData<List<Advertisement>> = MutableLiveData()
+        val getAdvertisementByIdResponse: LiveData<List<Advertisement>>
+        get() = _getAdvertisementByIdResponse
+
 
     init {
         getAdvertisements()
@@ -22,7 +27,7 @@ class AdvertisementViewModel : ViewModel() {
 
     fun getAdvertisements() {
         viewModelScope.launch {
-            _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisements()
+            _getAdvertisementResponse.value = DrivioApi.retrofitService.getAdvertisements()
         }
     }
 
@@ -30,7 +35,7 @@ class AdvertisementViewModel : ViewModel() {
     // TODO: Need to be tested.
     fun getAdvertisementById(advertisementId: Int) {
         viewModelScope.launch {
-            _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisementById(advertisementId)
+            _getAdvertisementByIdResponse.value = DrivioApi.retrofitService.getAdvertisementById(advertisementId)
         }
     }
 }

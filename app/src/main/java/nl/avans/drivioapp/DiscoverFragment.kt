@@ -13,6 +13,7 @@ import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdapter.OnItemClickListener {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
+    private val advertisementViewModel: AdvertisementViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +27,9 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val advertisementViewModel: AdvertisementViewModel by viewModels()
-        advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
+        // TODO: Opschonen en versimpelen.
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
             recyclerView.adapter = AdvertisementAdapter(this, obj, this)
         }
@@ -40,10 +41,10 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
 
     override fun onItemClick(position: Int) {
 
-        val advertisementViewModel: AdvertisementViewModel by viewModels()
-        advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
-            setFragmentResult("requestKey", bundleOf("bundleKey" to obj[position].advertisementId))
+        // TODO: Opschonen en versimpelen.
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
+            setFragmentResult("requestKey", bundleOf("advertisementId" to obj[position].advertisementId))
 
         }
 

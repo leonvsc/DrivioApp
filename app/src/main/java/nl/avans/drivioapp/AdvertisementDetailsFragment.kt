@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
+import nl.avans.drivioapp.viewModel.AdvertisementViewModel
+import org.w3c.dom.Text
 
 class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_details) {
 
     private var _binding: FragmentAdvertisementDetailsBinding? = null;
     private val binding get() = _binding!!;
+    private val advertisementViewModel: AdvertisementViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +27,19 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val view = binding.root;
 
     setFragmentResultListener("requestKey") { requestKey, bundle ->
-        val result = bundle.getInt("bundleKey")
-        val textView: TextView = binding.tvResult
+        val advertisementId = bundle.getInt("advertisementId")
+        val tvTitle: TextView = binding.tvTitle
+        val tvDescription: TextView = binding.tvDescription
+        val tvPrice: TextView = binding.tvPrice
+        val tvStartDate: TextView = binding.tvStartDate
+        val tvEndDate: TextView = binding.tvEndDate
 
-        textView.text = result.toString()
+        advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
+            val advertisement = advertisementViewModel.getAdvertisementByIdResponse.value
+            val advertisement2 = advertisementViewModel.getAdvertisementById(advertisementId)
+        }
+
+//        textView.text = result.toString()
 
     }
 
