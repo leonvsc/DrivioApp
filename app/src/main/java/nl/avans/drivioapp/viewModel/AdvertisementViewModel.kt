@@ -25,4 +25,11 @@ class AdvertisementViewModel : ViewModel() {
             _advertisementResponse.value = DrivioApi.retrofitService.getAdvertisements()
         }
     }
+
+    fun postAdvertisement(advertisement: Advertisement) {
+        viewModelScope.launch {
+            DrivioApi.retrofitService.postAdvertisement(advertisement)
+//            _advertisementResponse.value = "postAdvertisement: ${advertisement} posted"
+        }
+    }
 }

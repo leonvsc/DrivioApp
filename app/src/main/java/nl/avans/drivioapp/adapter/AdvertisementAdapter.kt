@@ -9,6 +9,8 @@ import nl.avans.drivioapp.DiscoverFragment
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdvertisementAdapter(private val context: DiscoverFragment, private val dataset: List<Advertisement>) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
@@ -28,12 +30,13 @@ class AdvertisementAdapter(private val context: DiscoverFragment, private val da
     }
 
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {
+        val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
         val item = dataset[position]
         holder.tvTitle.text = item.title
         holder.tvDescription.text = item.description
         holder.tvPrice.text = item.price.toString()
-        holder.tvStartDate.text = item.startDate
-        holder.tvEndDate.text = item.endDate
+        holder.tvStartDate.text = sdf.format(item.startDate)
+        holder.tvEndDate.text = sdf.format(item.endDate)
 
     }
 
