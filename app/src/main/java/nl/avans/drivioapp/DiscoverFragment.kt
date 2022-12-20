@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
@@ -27,7 +29,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Opschonen en versimpelen.
+        // TODO: Opschonen en versimpelen met een directe call naar de api: advertisementViewModel.getAdvertisements()
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
@@ -41,16 +43,16 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
 
     override fun onItemClick(position: Int) {
 
-        // TODO: Opschonen en versimpelen.
+        // TODO: Opschonen en versimpelen met een directe call naar de api: advertisementViewModel.getAdvertisementById()
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
-            setFragmentResult("requestKey", bundleOf("advertisementId" to obj[position].advertisementId))
-
+            setFragmentResult("advertisementId", bundleOf("advertisementId" to obj[position].advertisementId))
+            setFragmentResult("title", bundleOf("title" to obj[position].title))
+            setFragmentResult("description", bundleOf("description" to obj[position].description))
+            setFragmentResult("price", bundleOf("price" to obj[position].price))
+            setFragmentResult("startDate", bundleOf("startDate" to obj[position].startDate))
+            setFragmentResult("endDate", bundleOf("endDate" to obj[position].endDate))
         }
-
-//        setFragmentResult("requestKey", bundleOf("bundleKey" to position))
-
-//        Toast.makeText(context, "Advertisement $position", Toast.LENGTH_SHORT).show()
         replaceFragment(AdvertisementDetailsFragment())
     }
 

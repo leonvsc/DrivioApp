@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.DiscoverFragment
-import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 

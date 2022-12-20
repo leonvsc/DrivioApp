@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.service.DrivioApi
-import org.json.JSONArray
 
 private const val TAG = "AdvertisementViewModel"
 
