@@ -1,5 +1,6 @@
 package nl.avans.drivioapp.model
 
+import androidx.annotation.Nullable
 import com.squareup.moshi.Json
 import java.time.LocalDate
 
@@ -13,9 +14,9 @@ data class Advertisement(
     @Json(name = "price")
     val price: Double,
     @Json(name = "startDate")
-    val startDate: LocalDate,
+    val startDate: String,
     @Json(name = "endDate")
-    val endDate: LocalDate,
-    @Json(name="userId")
-    val userId: Int?
+    val endDate: String,
+    @Json(name="user")
+    val user: User?
 )

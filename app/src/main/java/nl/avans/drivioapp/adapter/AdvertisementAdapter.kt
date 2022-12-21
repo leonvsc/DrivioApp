@@ -35,8 +35,8 @@ class AdvertisementAdapter(private val context: DiscoverFragment, private val da
         holder.tvTitle.text = item.title
         holder.tvDescription.text = item.description
         holder.tvPrice.text = item.price.toString()
-        holder.tvStartDate.text = sdf.format(item.startDate)
-        holder.tvEndDate.text = sdf.format(item.endDate)
+        holder.tvStartDate.text = item.startDate
+        holder.tvEndDate.text = item.endDate
 
     }
 

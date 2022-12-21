@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -19,8 +20,8 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
     private var _binding: FragmentCreateAdvertisementBinding? = null;
     private val binding get() = _binding!!;
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
-    private lateinit var startDate: LocalDate
-    private lateinit var endDate: LocalDate
+    private lateinit var startDate: String
+    private lateinit var endDate: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +45,11 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
         }
 
         dateRangePicker.addOnPositiveButtonClickListener {
-            val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-            val formattedStartDate = sdf.format(it.first)
-            val formattedEndDate = sdf.format(it.second)
-            startDate = LocalDate.parse(formattedStartDate)
-            endDate = LocalDate.parse(formattedEndDate)
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            startDate = sdf.format(it.first)
+            endDate = sdf.format(it.second)
+//            startDate = LocalDate.parse(formattedStartDate)
+//            endDate = LocalDate.parse(formattedEndDate)
 //            val startDate = sdf.format(it.first)
 //            val endDate = sdf.format(it.second)
 
@@ -71,11 +72,20 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 price,
                 startDate,
                 endDate,
-                29
+                User(29)
             )
 
             advertisementViewModel.postAdvertisement(advertisement)
+
+            // TODO: Navigate to something when the post request was successful
+//            replaceFragment(AdvertisementProfileFragment())
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 
 }
