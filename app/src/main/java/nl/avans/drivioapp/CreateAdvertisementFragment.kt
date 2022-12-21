@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -34,6 +35,11 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val advertisementViewModel: AdvertisementViewModel by viewModels()
+        advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Advertisement created with response: ${advertisementViewModel.postAdvertisementResponse.value}", Toast.LENGTH_SHORT).show()
+        }
 
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
@@ -75,7 +81,8 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 User(29)
             )
 
-            advertisementViewModel.postAdvertisement(advertisement)
+            advertisementViewModel.postAdvertisementWithResponse(advertisement)
+
 
             // TODO: Navigate to something when the post request was successful
 //            replaceFragment(AdvertisementProfileFragment())
