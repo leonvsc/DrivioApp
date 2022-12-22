@@ -3,6 +3,7 @@ package nl.avans.drivioapp.service
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import nl.avans.drivioapp.model.Advertisement
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -18,7 +19,7 @@ interface DrivioApiService {
             value = "advertisementId",
             encoded = false
         ) advertisementId: Int
-    ): List<Advertisement>
+    ): Response<Advertisement>
 }
 
 private val BASE_URL = "https://drivio.nl/api/v1/"

@@ -10,12 +10,15 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
+import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdapter.OnItemClickListener {
+class DiscoverFragment : Fragment(R.layout.fragment_discover),
+    AdvertisementAdapter.OnItemClickListener {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
+    private lateinit var advertisement: List<Advertisement>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,12 +31,10 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // TODO: Opschonen en versimpelen met een directe call naar de api: advertisementViewModel.getAdvertisements()
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
+            advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, obj, this)
+            recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
         }
 
         binding.getBtn.setOnClickListener {
@@ -42,16 +43,11 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
     }
 
     override fun onItemClick(position: Int) {
-
-        // TODO: Opschonen en versimpelen met een directe call naar de api: advertisementViewModel.getAdvertisementById()
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.getAdvertisementResponse.value ?: listOf()
-            setFragmentResult("advertisementId", bundleOf("advertisementId" to obj[position].advertisementId))
-            setFragmentResult("title", bundleOf("title" to obj[position].title))
-            setFragmentResult("description", bundleOf("description" to obj[position].description))
-            setFragmentResult("price", bundleOf("price" to obj[position].price))
-            setFragmentResult("startDate", bundleOf("startDate" to obj[position].startDate))
-            setFragmentResult("endDate", bundleOf("endDate" to obj[position].endDate))
+            setFragmentResult(
+                "advertisementId",
+                bundleOf("advertisementId" to advertisement[position].advertisementId)
+            )
         }
         replaceFragment(AdvertisementDetailsFragment())
     }

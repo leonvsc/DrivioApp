@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
+import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
 class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_details) {
 
     private var _binding: FragmentAdvertisementDetailsBinding? = null;
     private val binding get() = _binding!!;
+    private val advertisementViewModel: AdvertisementViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +26,6 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         return view;
     }
 
-    // TODO: Mooier maken door met het advertisementId een getById Api call uit te voeren.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,29 +35,19 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val tvStartDate: TextView = binding.tvStartDate
         val tvEndDate: TextView = binding.tvEndDate
 
-        setFragmentResultListener("title") { requestKey, bundle ->
-            val title = bundle.getString("title")
-            tvTitle.text = title
+        setFragmentResultListener("advertisementId") { requestKey, bundle ->
+            val advertisementId = bundle.getInt("advertisementId")
+            advertisementViewModel.getAdvertisementById(advertisementId)
         }
 
-        setFragmentResultListener("description") { requestKey, bundle ->
-            val description = bundle.getString("description")
-            tvDescription.text = description
-        }
+        advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
+            val advertisement = advertisementViewModel.getAdvertisementByIdResponse.value
 
-        setFragmentResultListener("price") { requestKey, bundle ->
-            val price = bundle.getDouble("price")
-            tvPrice.text = price.toString()
-        }
-
-        setFragmentResultListener("startDate") { requestKey, bundle ->
-            val startDate = bundle.getString("startDate")
-            tvStartDate.text = startDate
-        }
-
-        setFragmentResultListener("endDate") { requestKey, bundle ->
-            val endDate = bundle.getString("endDate")
-            tvEndDate.text = endDate
+            tvTitle.text = advertisement?.body()?.title.toString()
+            tvDescription.text = advertisement?.body()?.description.toString()
+            tvPrice.text = advertisement?.body()?.price.toString()
+            tvStartDate.text = advertisement?.body()?.startDate.toString()
+            tvEndDate.text = advertisement?.body()?.endDate.toString()
         }
     }
 }
