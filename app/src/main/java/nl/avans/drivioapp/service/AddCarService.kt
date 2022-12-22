@@ -14,6 +14,10 @@ interface AddCarService {
 //    suspend fun getAdvertisements(): List<Advertisement>
     suspend fun getCars(): List<AddCar>;
 
+//    @GET("electriccar/93")
+////    suspend fun getAdvertisements(): List<Advertisement>
+//    suspend fun getCarById(@Path("id") carId: Int): List<AddCar>;
+
     @DELETE("electriccar/{id}")
     suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ResponseBody>
 

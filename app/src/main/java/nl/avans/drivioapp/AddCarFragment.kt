@@ -1,5 +1,6 @@
 package nl.avans.drivioapp
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
-import nl.avans.drivioapp.adapter.AddCarAdapter
 import nl.avans.drivioapp.databinding.FragmentAddCarBinding
 import nl.avans.drivioapp.databinding.PostElectricCarBinding
 import nl.avans.drivioapp.model.AddCar
@@ -16,75 +15,75 @@ import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AddCarViewModel
 
 
-class AddCarFragment : Fragment(R.layout.post_electric_car) {
-//    private var _binding: FragmentAddCarBinding? = null;
-//    private var _bind: PostElectricCarBinding? = null;
-//    private val binding get() = _binding!!;
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        _binding = FragmentAddCarBinding.inflate(inflater, container, false);
-//        _bind = PostElectricCarBinding.inflate(inflater, container, false)
-//        val view = binding.root;
-//        return view;
-//    }
+class AddCarFragment : Fragment(R.layout.fragment_add_car) {
+    private val addCarViewModel: AddCarViewModel by viewModels();
+    private var _binding: FragmentAddCarBinding? = null;
+    private var _bind: PostElectricCarBinding? = null;
+    private val binding get() = _binding!!;
 
-//    fun loadAffirmations(): List<Affirmation> {
-//        return listOf<Affirmation>(
-//            Affirmation(R.string.affirmation1),
-//            Affirmation(R.string.affirmation2),
-//            Affirmation(R.string.affirmation3),
-//            Affirmation(R.string.affirmation4),
-//            Affirmation(R.string.affirmation5),
-//            Affirmation(R.string.affirmation6),
-//            Affirmation(R.string.affirmation7),
-//            Affirmation(R.string.affirmation8),
-//            Affirmation(R.string.affirmation9),
-//            Affirmation(R.string.affirmation10)
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentAddCarBinding.inflate(inflater, container, false);
+        _bind = PostElectricCarBinding.inflate(inflater, container, false)
+        val view = binding.root;
+        return view;
+    }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        val addCarViewModel: AddCarViewModel by viewModels();
-//        addCarViewModel.addCarResponse.observe(viewLifecycleOwner) {
-//
-//            val recyclerView = binding.recyclerView;
-//            val obj = AddCarAdapter(this,);
-//            recyclerView.adapter = AddCarAdapter(this);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState);
+        val testing: String = "Test"
+        binding.etCarRange.setText(testing);
+
+
+//        val myTextBox = findViewById(R.id.editBox) as EditText
+//        myTextBox.setText("My Product Description")
+
+
+//        binding.getCarsBtn.setOnClickListener {
+//            addCarViewModel.getCars();
 //        }
-//
-////        binding.getCarsBtn.setOnClickListener {
-////            addCarViewModel.getCars();
-////        }
-//
-////        val etCarType = _bind?.etCarType?.text
-//
-//        binding.postCarsBtn.setOnClickListener {
-//            val addCar = AddCar(
-//                2,
-//                2,
-//                "Thing",
-//                20044,
-//                "hello",
-//                5,
-//                "Car",
-//                "Electric",
-//                "Car",
-//                10,
-//                "Manuel",
-//                "Opel",
-//                User(23)
-//            )
-//            addCarViewModel.postElectricCars(addCar);
-//        }
-////    }
-////
-////    override fun onDestroyView() {
-////        super.onDestroyView();
-////        _binding = null;
-////    }
+
+//        val etCarType = _bind?.etCarType?.text
+
+        binding.postCarsBtn.setOnClickListener {
+
+            val fastChargeSpeed = binding.etFastChargeSpeed.text.toString().toInt()
+            val carRange = binding.etCarRange.text.toString().toInt()
+            val chargeConnection = binding.etChargeConnection.text.toString()
+            val buildYear = binding.etBuildYear.text.toString().toInt()
+            val numberPlate = binding.etNumberPlate.text.toString()
+            val chargeSpeed = binding.etChargeSpeed.text.toString().toInt()
+            val carType = binding.etCarType.text.toString()
+            val fuelType = binding.etFuelType.text.toString()
+            val model = binding.etModel.text.toString()
+            val whPerKm = binding.etWhPerKm.text.toString().toInt()
+            val gearBox = binding.etGearBox.text.toString()
+            val brand = binding.etBrand.text.toString()
+
+            val addCar = AddCar(
+                fastChargeSpeed,
+                carRange,
+                chargeConnection,
+                buildYear,
+                numberPlate,
+                chargeSpeed,
+                carType,
+                fuelType,
+                model,
+                whPerKm,
+                gearBox,
+                brand,
+                User(23)
+            )
+            addCarViewModel.postElectricCars(addCar);
+        }
 //    }
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView();
+//        _binding = null;
+//    }
+    }
 }
