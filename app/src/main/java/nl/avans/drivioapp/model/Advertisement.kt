@@ -1,8 +1,6 @@
 package nl.avans.drivioapp.model
 
 import com.squareup.moshi.Json
-import java.time.LocalDate
-import java.util.*
 
 data class Advertisement(
     @Json(name = "advertisementId")

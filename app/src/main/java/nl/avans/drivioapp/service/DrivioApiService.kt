@@ -3,14 +3,23 @@ package nl.avans.drivioapp.service
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import nl.avans.drivioapp.model.Advertisement
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface DrivioApiService {
     @GET("advertisement")
     suspend fun getAdvertisements(): List<Advertisement>
+
+    @GET("advertisement/{advertisementId}")
+    suspend fun getAdvertisementById(
+        @Path(
+            value = "advertisementId",
+            encoded = false
+        ) advertisementId: Int
+    ): Response<Advertisement>
 }
 
 private val BASE_URL = "https://drivio.nl/api/v1/"
