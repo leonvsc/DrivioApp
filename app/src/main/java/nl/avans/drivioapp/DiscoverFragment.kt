@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
+import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover) {
+class DiscoverFragment : Fragment(R.layout.fragment_discover),
+    AdvertisementAdapter.OnItemClickListener {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
+    private val advertisementViewModel: AdvertisementViewModel by viewModels()
+    private lateinit var advertisement: List<Advertisement>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,12 +31,10 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val advertisementViewModel: AdvertisementViewModel by viewModels()
-        advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, obj)
+            recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
         }
 
         val swipeRefreshLayout = binding.root
@@ -40,9 +44,25 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
         }
     }
 
+    override fun onItemClick(position: Int) {
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            setFragmentResult(
+                "advertisementId",
+                bundleOf("advertisementId" to advertisement[position].advertisementId)
+            )
+        }
+        replaceFragment(AdvertisementDetailsFragment())
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 
 }
