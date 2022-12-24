@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.service.DrivioApi
 import org.json.JSONArray
+import retrofit2.Response
 
 private const val TAG = "AdvertisementViewModel"
 
@@ -16,8 +17,8 @@ class AdvertisementViewModel : ViewModel() {
     val advertisementResponse: LiveData<List<Advertisement>>
         get() = _advertisementResponse
 
-    private val _postAdvertisementResponse: MutableLiveData<String> = MutableLiveData()
-    val postAdvertisementResponse: LiveData<String>
+    private val _postAdvertisementResponse: MutableLiveData<Response<Advertisement>> = MutableLiveData()
+    val postAdvertisementResponse: LiveData<Response<Advertisement>>
         get() = _postAdvertisementResponse
 
     init {
@@ -30,17 +31,9 @@ class AdvertisementViewModel : ViewModel() {
         }
     }
 
-    fun postAdvertisement(advertisement: Advertisement) {
-        viewModelScope.launch {
-            DrivioApi.retrofitService.postAdvertisement(advertisement)
-//            _advertisementResponse.value = "postAdvertisement: ${advertisement} posted"
-        }
-    }
-
     fun postAdvertisementWithResponse(advertisement: Advertisement) {
         viewModelScope.launch {
-            val postResponse = DrivioApi.retrofitService.postAdvertisementWithResponse(advertisement)
-            _postAdvertisementResponse.value = "Response code: ${postResponse.code()}"
+            _postAdvertisementResponse.value = DrivioApi.retrofitService.postAdvertisementWithResponse(advertisement)
         }
     }
 }

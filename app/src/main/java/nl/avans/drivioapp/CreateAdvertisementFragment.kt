@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
@@ -36,14 +37,9 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val advertisementViewModel: AdvertisementViewModel by viewModels()
-        advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Advertisement created with response: ${advertisementViewModel.postAdvertisementResponse.value}", Toast.LENGTH_SHORT).show()
-        }
-
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
-                .setTitleText("Select date")
+                .setTitleText("Select dates")
                 .build()
 
         binding.btnSelectDate.setOnClickListener {
@@ -54,10 +50,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             startDate = sdf.format(it.first)
             endDate = sdf.format(it.second)
-//            startDate = LocalDate.parse(formattedStartDate)
-//            endDate = LocalDate.parse(formattedEndDate)
-//            val startDate = sdf.format(it.first)
-//            val endDate = sdf.format(it.second)
 
             // TODO: Fix Resource string
             binding.tvStartDate.text = "Startdate: $startDate"
@@ -80,19 +72,16 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 endDate,
                 User(29)
             )
-
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
 
 
             // TODO: Navigate to something when the post request was successful
-//            replaceFragment(AdvertisementProfileFragment())
+
+//            advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
+//                val response = advertisementViewModel.postAdvertisementResponse.value
+//                binding.tvResult.text = response?.body().toString()
+//            }
+
         }
     }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.flFragment, fragment)
-        fragmentTransaction?.commit()
-    }
-
 }
