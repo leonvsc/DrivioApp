@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
+import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover) {
+class DiscoverFragment : Fragment(R.layout.fragment_discover),
+    AdvertisementAdapter.OnItemClickListener {
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
+    private val advertisementViewModel: AdvertisementViewModel by viewModels()
+    private lateinit var advertisement: List<Advertisement>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,40 +31,38 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val advertisementViewModel: AdvertisementViewModel by viewModels()
-        advertisementViewModel.advertisementResponse.observe(viewLifecycleOwner) {
-            val obj = advertisementViewModel.advertisementResponse.value ?: listOf()
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, obj)
-
-////TODO: Show everything in a recyclerview. At this moment the for loop override every textview. It needs to add multiple items of advertisement.
-//
-//            for (i in 0 until obj.length()) {
-//                val advertisement: JSONObject = obj.getJSONObject(i)
-//                val advertisementTitle = advertisement.getString("title")
-//                val advertisementDescription = advertisement.getString("description")
-//                val advertisementPrice = advertisement.getString("price")
-//                val advertisementStartDate = advertisement.getString("startDate")
-//                val advertisementEndDate = advertisement.getString("endDate")
-//
-//                binding.tvTitle.text = advertisementTitle
-//                binding.tvDescription.text = advertisementDescription
-//                binding.tvPrice.text = advertisementPrice
-//                binding.tvStartDate.text = advertisementStartDate
-//                binding.tvEndDate.text = advertisementEndDate
-//            }
-
+            recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
         }
 
-        binding.getBtn.setOnClickListener {
+        val swipeRefreshLayout = binding.root
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
             advertisementViewModel.getAdvertisements()
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            setFragmentResult(
+                "advertisementId",
+                bundleOf("advertisementId" to advertisement[position].advertisementId)
+            )
+        }
+        replaceFragment(AdvertisementDetailsFragment())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 
 }

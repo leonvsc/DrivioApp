@@ -2,7 +2,6 @@ package nl.avans.drivioapp.model
 
 import androidx.annotation.Nullable
 import com.squareup.moshi.Json
-import java.time.LocalDate
 
 data class Advertisement(
     @Json(name = "advertisementId")
