@@ -37,7 +37,9 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
             recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
         }
 
-        binding.getBtn.setOnClickListener {
+        val swipeRefreshLayout = binding.root
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
             advertisementViewModel.getAdvertisements()
         }
     }
