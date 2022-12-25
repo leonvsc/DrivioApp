@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover),
-    AdvertisementAdapter.OnItemClickListener {
+class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdapter.OnItemClickListener {
+
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
@@ -31,6 +32,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
@@ -51,7 +53,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
                 bundleOf("advertisementId" to advertisement[position].advertisementId)
             )
         }
-        replaceFragment(AdvertisementDetailsFragment())
+//        replaceFragment(AdvertisementDetailsFragment())
     }
 
     override fun onDestroyView() {
@@ -59,10 +61,11 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
         _binding = null
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.flFragment, fragment)
-        fragmentTransaction?.commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+//        fragmentTransaction?.replace(R.id.flFragment, fragment)
+//        fragmentTransaction?.commit()
+//    }
 
 }
+

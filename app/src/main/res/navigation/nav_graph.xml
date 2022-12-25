@@ -3,28 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/discoverFragment2">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="nl.avans.drivioapp.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/discoverFragment2"
+        android:name="nl.avans.drivioapp.view.DiscoverFragment"
+        android:label="Discover"
+        tools:layout="@layout/fragment_discover">
         <action
-            android:id="@+id/action_loginFragment_to_loginForm"
-            app:destination="@id/loginForm" />
-        <action
-            android:id="@+id/action_loginFragment_to_registerForm"
-            app:destination="@id/registerForm" />
+            android:id="@+id/action_discoverFragment2_to_bookingsFragment2"
+            app:destination="@id/bookingsFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/loginForm"
-        android:name="nl.avans.drivioapp.LoginForm"
-        android:label="fragment_login_form"
-        tools:layout="@layout/fragment_login_form" />
+        android:id="@+id/bookingsFragment2"
+        android:name="nl.avans.drivioapp.view.BookingsFragment"
+        android:label="Bookings"
+        tools:layout="@layout/fragment_bookings">
+        <action
+            android:id="@+id/action_bookingsFragment2_to_messagesFragment2"
+            app:destination="@id/messagesFragment2" />
+    </fragment>
     <fragment
-        android:id="@+id/registerForm"
-        android:name="nl.avans.drivioapp.RegisterForm"
-        android:label="fragment_register_form"
-        tools:layout="@layout/fragment_register_form" />
+        android:id="@+id/messagesFragment2"
+        android:name="nl.avans.drivioapp.view.MessagesFragment"
+        android:label="Messages"
+        tools:layout="@layout/fragment_messages">
+        <action
+            android:id="@+id/action_messagesFragment2_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="nl.avans.drivioapp.view.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="nl.avans.drivioapp.view.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_discoverFragment2"
+            app:destination="@id/discoverFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="nl.avans.drivioapp.view.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
