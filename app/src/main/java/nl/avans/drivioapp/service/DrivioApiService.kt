@@ -24,7 +24,7 @@ interface DrivioApiService {
     ): Response<Advertisement>
 
     @POST(value = "advertisement")
-    suspend fun postAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Advertisement>
+    suspend fun postAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Unit>
 
 }
 

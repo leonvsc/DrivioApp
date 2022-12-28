@@ -77,11 +77,16 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
 
             // TODO: Navigate to something when the post request was successful
 
-//            advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
-//                val response = advertisementViewModel.postAdvertisementResponse.value
-//                binding.tvResult.text = response?.body().toString()
-//            }
+            advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
+                val response = advertisementViewModel.postAdvertisementResponse.value
 
+                if (response?.code() == 200) {
+                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
     }
 }

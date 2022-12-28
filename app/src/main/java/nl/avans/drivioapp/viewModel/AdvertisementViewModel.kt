@@ -21,8 +21,8 @@ class AdvertisementViewModel : ViewModel() {
         get() = _getAdvertisementByIdResponse
 
 
-    private val _postAdvertisementResponse: MutableLiveData<Response<Advertisement>> = MutableLiveData()
-    val postAdvertisementResponse: LiveData<Response<Advertisement>>
+    private val _postAdvertisementResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val postAdvertisementResponse: LiveData<Response<Unit>>
         get() = _postAdvertisementResponse
 
     init {
