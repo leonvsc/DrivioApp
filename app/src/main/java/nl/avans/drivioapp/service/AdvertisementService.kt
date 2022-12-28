@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface DrivioApiService {
+interface AdvertisementService {
     @GET("advertisement")
     suspend fun getAdvertisements(): List<Advertisement>
 
@@ -21,21 +21,21 @@ interface DrivioApiService {
         ) advertisementId: Int
     ): Response<Advertisement>
 }
+//
+//private val BASE_URL = "https://drivio.nl/api/v1/"
+//
+//private val moshi = Moshi.Builder()
+//    .add(KotlinJsonAdapterFactory())
+//    .build()
+//
+//private val retrofit = Retrofit.Builder()
+////    .addConverterFactory(ScalarsConverterFactory.create())
+//    .addConverterFactory(MoshiConverterFactory.create(moshi))
+//    .baseUrl(BASE_URL)
+//    .build()
 
-private val BASE_URL = "https://drivio.nl/api/v1/"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-//    .addConverterFactory(ScalarsConverterFactory.create())
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
-
-object DrivioApi {
-    val retrofitService: DrivioApiService by lazy {
-        retrofit.create(DrivioApiService::class.java)
-    }
-}
+//object DrivioApi {
+//    val retrofitService: AdvertisementService by lazy {
+//        retrofit.create(AdvertisementService::class.java)
+//    }
+//}
