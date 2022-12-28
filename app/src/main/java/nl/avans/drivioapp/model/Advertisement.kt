@@ -4,15 +4,17 @@ import com.squareup.moshi.Json
 
 data class Advertisement(
     @Json(name = "advertisementId")
-    val advertisementId: Int,
+    val advertisementId: Int?,
     @Json(name = "title")
-    val title: String,
+    val title: String?,
     @Json(name = "description")
-    val description: String,
+    val description: String?,
     @Json(name = "price")
-    val price: Double,
+    val price: Double?,
     @Json(name = "startDate")
-    val startDate: String,
+    val startDate: String?,
     @Json(name = "endDate")
-    val endDate: String
-)
+    val endDate: String?
+) {
+    constructor(advertisementId: Int?) : this(advertisementId, null, null, null, null, null)
+}
