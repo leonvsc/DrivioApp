@@ -6,28 +6,42 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.MyCarsFragment
-import nl.avans.drivioapp.R
+import nl.avans.drivioapp.databinding.ListElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
 
 
-class MyCarsAdapter(private val context: MyCarsFragment, private val dataset: List<ElectricCar>) : RecyclerView.Adapter<MyCarsAdapter.MyCarViewHolder>() {
+class MyCarsAdapter(
+    private val context: MyCarsFragment,
+    private val dataset: List<ElectricCar>,
+    private val listener: OnItemClickListener
+    ) : RecyclerView.Adapter<MyCarsAdapter.MyCarViewHolder>() {
 
-    class MyCarViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val tvBrand: TextView = view.findViewById(R.id.tvBrand)
-        val tvModel: TextView = view.findViewById(R.id.tvModel)
-        val tvFuelType: TextView = view.findViewById(R.id.tvFuelType)
-        val tvBuildYear: TextView = view.findViewById(R.id.tvBuildYear)
-        val tvNumberPlate: TextView = view.findViewById(R.id.tvNumberPlate)
-        val tvCarType: TextView = view.findViewById(R.id.tvNumberPlate)
-        val tvGearbox: TextView = view.findViewById(R.id.tvGearbox)
+    inner class MyCarViewHolder(private val binding: ListElectricCarBinding) :
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        val tvBrand: TextView = binding.tvBrand
+        val tvModel: TextView = binding.tvModel
+        val tvFuelType: TextView = binding.tvFuelType
+        val tvBuildYear: TextView = binding.tvBuildYear
+        val tvNumberPlate: TextView = binding.tvNumberPlate
+        val tvCarType: TextView = binding.tvNumberPlate
+        val tvGearbox: TextView = binding.tvGearbox
 
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCarViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_electric_car, parent, false)
+        val binding = ListElectricCarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MyCarViewHolder(adapterLayout)
+        return MyCarViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyCarViewHolder, position: Int) {
@@ -42,5 +56,9 @@ class MyCarsAdapter(private val context: MyCarsFragment, private val dataset: Li
     }
 
     override fun getItemCount() = dataset.size
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
 }

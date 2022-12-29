@@ -36,11 +36,11 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars) {
             recyclerView.adapter = MyCarsAdapter(this, myCar, this)
         }
 
-        val swipeRefreshLayout = binding.root
-        swipeRefreshLayout.setOnRefreshListener {
-            swipeRefreshLayout.isRefreshing = false
-            myCarsViewModel.getElectricCars()
-        }
+//        val swipeRefreshLayout = binding.root
+//        swipeRefreshLayout.setOnRefreshListener {
+//            swipeRefreshLayout.isRefreshing = false
+//            myCarsViewModel.getElectricCars()
+//        }
     }
 
     override fun onItemClick(position: Int) {
