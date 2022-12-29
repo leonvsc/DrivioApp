@@ -1,6 +1,5 @@
 package nl.avans.drivioapp.model
 
-import androidx.annotation.Nullable
 import com.squareup.moshi.Json
 
 data class Advertisement(
@@ -15,11 +14,10 @@ data class Advertisement(
     @Json(name = "startDate")
     val startDate: String?,
     @Json(name = "endDate")
-    val endDate: String,
+    val endDate: String?,
     @Json(name="user")
     val user: User?
 )
-    val endDate: String?
-) {
-    constructor(advertisementId: Int?) : this(advertisementId, null, null, null, null, null)
+{
+    constructor(advertisementId: Int?) : this(advertisementId, null, null, null, null, null, null)
 }
