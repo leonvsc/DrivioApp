@@ -47,9 +47,9 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
         }
 
         dateRangePicker.addOnPositiveButtonClickListener {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            startDate = sdf.format(it.first)
-            endDate = sdf.format(it.second)
+            val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            startDate = dateFormatter.format(it.first)
+            endDate = dateFormatter.format(it.second)
 
             // TODO: Fix Resource string
             binding.tvStartDate.text = "Startdate: $startDate"

@@ -47,7 +47,6 @@ class AdvertisementAdapter(
     }
 
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {
-        val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
         val item = dataset[position]
         holder.tvTitle.text = item.title
         holder.tvDescription.text = item.description
