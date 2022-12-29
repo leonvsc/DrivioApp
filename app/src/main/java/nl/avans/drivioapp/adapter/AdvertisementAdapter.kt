@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.DiscoverFragment
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdvertisementAdapter(
     private val context: DiscoverFragment,

@@ -23,6 +23,10 @@ class AdvertisementViewModel : ViewModel() {
         get() = _getAdvertisementByIdResponse
 
 
+    private val _postAdvertisementResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val postAdvertisementResponse: LiveData<Response<Unit>>
+        get() = _postAdvertisementResponse
+
     init {
         getAdvertisements()
     }
@@ -37,6 +41,12 @@ class AdvertisementViewModel : ViewModel() {
     fun getAdvertisementById(advertisementId: Int) {
         viewModelScope.launch {
             _getAdvertisementByIdResponse.value = advertisementRepository.getAdvertisementById(advertisementId)
+        }
+    }
+
+    fun postAdvertisementWithResponse(advertisement: Advertisement) {
+        viewModelScope.launch {
+            _postAdvertisementResponse.value = DrivioApi.retrofitService.postAdvertisementWithResponse(advertisement)
         }
     }
 }
