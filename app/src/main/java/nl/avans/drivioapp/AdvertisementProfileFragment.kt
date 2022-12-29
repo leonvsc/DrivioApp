@@ -39,7 +39,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
             recyclerView.adapter = AdvertisementAdapter(advertisementByUser, this)
         }
 
-        val swipeRefreshLayout = binding.root
+        val swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             advertisementViewModel.getAdvertisements()
