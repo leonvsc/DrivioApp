@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(DiscoverFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.discover -> replaceFragment(DiscoverFragment())
                 R.id.bookings -> replaceFragment(BookingsFragment())
                 R.id.messages -> replaceFragment(MessagesFragment())

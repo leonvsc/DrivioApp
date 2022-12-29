@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.repository.AdvertisementRepository
-import nl.avans.drivioapp.service.DrivioApi
 import retrofit2.Response
 
 private const val TAG = "AdvertisementViewModel"
@@ -18,8 +17,9 @@ class AdvertisementViewModel : ViewModel() {
     val getAdvertisementResponse: LiveData<List<Advertisement>>
         get() = _getAdvertisementResponse
 
-    private val _getAdvertisementByIdResponse: MutableLiveData<Response<Advertisement>> = MutableLiveData()
-        val getAdvertisementByIdResponse: LiveData<Response<Advertisement>>
+    private val _getAdvertisementByIdResponse: MutableLiveData<Response<Advertisement>> =
+        MutableLiveData()
+    val getAdvertisementByIdResponse: LiveData<Response<Advertisement>>
         get() = _getAdvertisementByIdResponse
 
 
@@ -40,13 +40,15 @@ class AdvertisementViewModel : ViewModel() {
 
     fun getAdvertisementById(advertisementId: Int) {
         viewModelScope.launch {
-            _getAdvertisementByIdResponse.value = advertisementRepository.getAdvertisementById(advertisementId)
+            _getAdvertisementByIdResponse.value =
+                advertisementRepository.getAdvertisementById(advertisementId)
         }
     }
 
     fun postAdvertisementWithResponse(advertisement: Advertisement) {
         viewModelScope.launch {
-            _postAdvertisementResponse.value = DrivioApi.retrofitService.postAdvertisementWithResponse(advertisement)
+            _postAdvertisementResponse.value =
+                advertisementRepository.postAdvertisementWithResponse(advertisement)
         }
     }
 }

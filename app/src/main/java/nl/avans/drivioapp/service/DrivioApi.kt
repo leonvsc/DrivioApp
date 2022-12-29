@@ -21,4 +21,8 @@ object DrivioApi {
     val advertisementService: AdvertisementService by lazy {
         retrofit.create(AdvertisementService::class.java)
     }
+
+    val reservationService: ReservationService by lazy {
+        retrofit.create(ReservationService::class.java)
+    }
 }

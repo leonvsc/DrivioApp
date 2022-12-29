@@ -14,4 +14,8 @@ class AdvertisementRepository : AdvertisementService {
     override suspend fun getAdvertisementById(advertisementId: Int): Response<Advertisement> {
         return DrivioApi.advertisementService.getAdvertisementById(advertisementId)
     }
+
+    override suspend fun postAdvertisementWithResponse(advertisement: Advertisement): Response<Unit> {
+        return DrivioApi.advertisementService.postAdvertisementWithResponse(advertisement)
+    }
 }
