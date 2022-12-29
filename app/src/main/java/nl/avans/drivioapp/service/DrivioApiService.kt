@@ -3,6 +3,7 @@ package nl.avans.drivioapp.service
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import nl.avans.drivioapp.model.Advertisement
+import nl.avans.drivioapp.model.Reservation
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,6 +27,8 @@ interface DrivioApiService {
     @POST(value = "advertisement")
     suspend fun postAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Unit>
 
+    @POST("reservation")
+    suspend fun postReservationWithResponse(@Body reservation: Reservation): Response<Unit>
 }
 
 private val BASE_URL = "https://drivio.nl/api/v1/"
