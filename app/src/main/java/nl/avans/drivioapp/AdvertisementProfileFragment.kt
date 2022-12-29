@@ -19,6 +19,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
     private val binding get() = _binding!!;
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
     private lateinit var advertisement: List<Advertisement>
+    private lateinit var advertisementByUser: List<Advertisement>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
         super.onViewCreated(view, savedInstanceState)
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             advertisement = advertisementViewModel.getAdvertisementResponse.value!!
-            val advertisementByUser: List<Advertisement> = advertisement.filter { it.user?.userId == 47 }
+            advertisementByUser = advertisement.filter { it.user?.userId == 47 }
             val recyclerView = binding.recyclerView
             recyclerView.adapter = AdvertisementAdapter(advertisementByUser, this)
         }
@@ -53,7 +54,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             setFragmentResult(
                 "advertisementId",
-                bundleOf("advertisementId" to advertisement[position].advertisementId)
+                bundleOf("advertisementId" to advertisementByUser[position].advertisementId)
             )
 
             // TODO: Show correct details inside detail view.
