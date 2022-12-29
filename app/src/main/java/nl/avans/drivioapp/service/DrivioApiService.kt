@@ -6,7 +6,9 @@ import nl.avans.drivioapp.model.Advertisement
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface DrivioApiService {
@@ -20,6 +22,10 @@ interface DrivioApiService {
             encoded = false
         ) advertisementId: Int
     ): Response<Advertisement>
+
+    @POST(value = "advertisement")
+    suspend fun postAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Unit>
+
 }
 
 private val BASE_URL = "https://drivio.nl/api/v1/"
