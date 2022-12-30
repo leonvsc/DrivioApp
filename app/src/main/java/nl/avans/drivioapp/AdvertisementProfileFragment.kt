@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import nl.avans.drivioapp.databinding.FragmentAdvertisementProfileBinding
-import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 
 class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_profile) {
     private var _binding: FragmentAdvertisementProfileBinding? = null;
