@@ -56,8 +56,6 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
                 "advertisementId",
                 bundleOf("advertisementId" to advertisementByUser[position].advertisementId)
             )
-
-            // TODO: Show correct details inside detail view.
         }
         replaceFragment(AdvertisementDetailsFragment())
     }
