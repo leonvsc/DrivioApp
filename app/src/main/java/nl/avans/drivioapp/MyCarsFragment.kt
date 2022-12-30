@@ -13,7 +13,8 @@ import nl.avans.drivioapp.databinding.FragmentMyCarsBinding
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
 
-class MyCarsFragment : Fragment(R.layout.fragment_my_cars) {
+class MyCarsFragment : Fragment(R.layout.fragment_my_cars),
+    MyCarsAdapter.OnItemClickListener {
     private var _binding: FragmentMyCarsBinding? = null;
     private val binding get() = _binding!!;
     private val myCarsViewModel: MyCarsViewModel by viewModels();
@@ -36,11 +37,11 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars) {
             recyclerView.adapter = MyCarsAdapter(this, myCar, this)
         }
 
-//        val swipeRefreshLayout = binding.root
-//        swipeRefreshLayout.setOnRefreshListener {
-//            swipeRefreshLayout.isRefreshing = false
-//            myCarsViewModel.getElectricCars()
-//        }
+        val swipeRefreshLayout = binding.root
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            myCarsViewModel.getElectricCars()
+        }
     }
 
     override fun onItemClick(position: Int) {

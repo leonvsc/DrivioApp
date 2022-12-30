@@ -36,10 +36,9 @@ class MyCarsViewModel : ViewModel() {
         }
     }
 
-    fun postElectricCar(electricCar: ElectricCar) {
+    fun deleteElectricCar(carId: Int) {
         viewModelScope.launch {
-            AddElectricCarAPI.retrofitService.postElectricCar(electricCar);
-            _electricCarResponse.value = AddElectricCarAPI.retrofitService.getElectricCars();
+            _getElectricCarByIdResponse.value = AddElectricCarAPI.retrofitService.deleteElectricCarResponse(carId)
         }
     }
 }

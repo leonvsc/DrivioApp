@@ -18,7 +18,7 @@ interface ElectricCarService {
     suspend fun getElectricCarById(@Path("id") carId: Int): Response<ElectricCar>;
 
     @DELETE("electriccar/{id}")
-    suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ResponseBody>
+    suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ElectricCar>
 
     @DELETE("electriccar/{id}")
     suspend fun deleteElectricCar(@Path("id") carId: Int)

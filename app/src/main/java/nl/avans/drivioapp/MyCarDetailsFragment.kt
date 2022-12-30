@@ -5,17 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import kotlinx.coroutines.delay
+import nl.avans.drivioapp.adapter.MyCarsAdapter
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
+import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
+import java.util.concurrent.TimeUnit
+import kotlin.properties.Delegates
 
-class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details){
-
+class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
     private var _binding: FragmentMyCarDetailsBinding? = null;
     private val binding get() = _binding!!;
     private val myCarsViewModel: MyCarsViewModel by viewModels()
+    private var carId: Int? = null;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +43,14 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details){
         val tvFuelType: TextView = binding.tvFuelType
 
         setFragmentResultListener("carId") { requestKey, bundle ->
-            val carId = bundle.getInt("carId")
-            myCarsViewModel.getElectricCarById(carId)
+            carId = bundle.getInt("carId")
+            myCarsViewModel.getElectricCarById(carId!!)
+
+            binding.btnDeleteCar.setOnClickListener {
+                myCarsViewModel.deleteElectricCar(carId!!)
+//                TimeUnit.SECONDS.sleep(1)
+//                replaceFragment(MyCarsFragment())
+            }
         }
 
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {
@@ -49,5 +62,25 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details){
             tvModel.text = myCar?.body()?.model.toString()
             tvFuelType.text = myCar?.body()?.fuelType.toString()
         }
+        binding.btnUpdateCar.setOnClickListener{
+            setFragmentResult(
+                "carId",
+                bundleOf("carId" to carId)
+            )
+            replaceFragment(UpdateCarFragment())
+        }
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
+    }
+
 }
