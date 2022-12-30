@@ -31,19 +31,6 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState);
-//        val testing: String = "Test"
-//        binding.etCarRange.setText(testing);
-
-
-//        val myTextBox = findViewById(R.id.editBox) as EditText
-//        myTextBox.setText("My Product Description")
-
-
-//        binding.getCarsBtn.setOnClickListener {
-//            addCarViewModel.getCars();
-//        }
-
-//        val etCarType = _bind?.etCarType?.text
 
         binding.postElectricCarBtn.setOnClickListener {
 

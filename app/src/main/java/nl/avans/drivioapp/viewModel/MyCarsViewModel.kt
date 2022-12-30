@@ -38,7 +38,7 @@ class MyCarsViewModel : ViewModel() {
 
     fun deleteElectricCar(carId: Int) {
         viewModelScope.launch {
-            _getElectricCarByIdResponse.value = AddElectricCarAPI.retrofitService.deleteElectricCarResponse(carId)
+            AddElectricCarAPI.retrofitService.deleteElectricCar(carId)
         }
     }
 }

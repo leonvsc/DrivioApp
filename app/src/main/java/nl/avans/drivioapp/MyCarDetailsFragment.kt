@@ -10,13 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import kotlinx.coroutines.delay
-import nl.avans.drivioapp.adapter.MyCarsAdapter
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
-import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
-import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 
 class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
     private var _binding: FragmentMyCarDetailsBinding? = null;
@@ -46,11 +41,11 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             carId = bundle.getInt("carId")
             myCarsViewModel.getElectricCarById(carId!!)
 
-            binding.btnDeleteCar.setOnClickListener {
-                myCarsViewModel.deleteElectricCar(carId!!)
-//                TimeUnit.SECONDS.sleep(1)
-//                replaceFragment(MyCarsFragment())
-            }
+//            binding.btnDeleteCar.setOnClickListener {
+//                myCarsViewModel.deleteElectricCar(carId!!)
+////                TimeUnit.SECONDS.sleep(1)
+////                replaceFragment(MyCarsFragment())
+//            }
         }
 
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {

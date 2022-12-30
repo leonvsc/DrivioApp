@@ -4,17 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.databinding.FragmentAddHydrogenCarBinding
-import nl.avans.drivioapp.databinding.PostElectricCarBinding
-import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.HydrogenCar
-import nl.avans.drivioapp.model.UserElectricCar
 import nl.avans.drivioapp.model.UserHydrogenCar
-import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import nl.avans.drivioapp.viewModel.AddHydrogenCarViewModel
 
 class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
@@ -35,19 +29,6 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState);
-//        val testing: String = "Test"
-//        binding.etCarRange.setText(testing);
-
-
-//        val myTextBox = findViewById(R.id.editBox) as EditText
-//        myTextBox.setText("My Product Description")
-
-
-//        binding.getCarsBtn.setOnClickListener {
-//            addCarViewModel.getCars();
-//        }
-
-//        val etCarType = _bind?.etCarType?.text
 
         binding.postHydrogenCarBtn.setOnClickListener {
 

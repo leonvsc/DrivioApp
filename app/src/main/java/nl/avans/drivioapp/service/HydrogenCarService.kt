@@ -13,10 +13,6 @@ interface HydrogenCarService {
     @GET("hydrogencar")
     suspend fun getHydrogenCars(): List<HydrogenCar>;
 
-//    @GET("electriccar/93")
-////    suspend fun getAdvertisements(): List<Advertisement>
-//    suspend fun getCarById(@Path("id") carId: Int): List<AddCar>;
-
     @DELETE("hydrogencar/{id}")
     suspend fun deleteHydrogenCarResponse(@Path("id") carId: Int): Response<ResponseBody>
 
@@ -40,7 +36,6 @@ private val moshi = Moshi.Builder()
     .build()
 
 private val retrofit = Retrofit.Builder()
-//    .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()

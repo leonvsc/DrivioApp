@@ -2,7 +2,6 @@ package nl.avans.drivioapp.service
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.FuelCar
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -12,12 +11,7 @@ import retrofit2.http.*
 
 interface FuelCarService {
     @GET("fuelcar")
-//    suspend fun getAdvertisements(): List<Advertisement>
     suspend fun getFuelCars(): List<FuelCar>;
-
-//    @GET("electriccar/93")
-////    suspend fun getAdvertisements(): List<Advertisement>
-//    suspend fun getCarById(@Path("id") carId: Int): List<AddCar>;
 
     @DELETE("fuelcar/{id}")
     suspend fun deleteFuelCarResponse(@Path("id") carId: Int): Response<ResponseBody>
@@ -42,7 +36,6 @@ private val moshi = Moshi.Builder()
     .build()
 
 private val retrofit = Retrofit.Builder()
-//    .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
