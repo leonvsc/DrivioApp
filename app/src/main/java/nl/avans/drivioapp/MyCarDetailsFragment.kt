@@ -64,8 +64,8 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         }
         binding.btnUpdateCar.setOnClickListener{
             setFragmentResult(
-                "carId",
-                bundleOf("carId" to carId)
+                "carDetailsId",
+                bundleOf("carDetailsId" to carId)
             )
             replaceFragment(UpdateCarFragment())
         }
