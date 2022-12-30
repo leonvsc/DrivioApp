@@ -36,22 +36,22 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         super.onViewCreated(view, savedInstanceState)
 
         setFragmentResultListener("carDetailsId") { requestKey, bundle ->
-            carId = bundle.getInt("carDetailsId")
-            myCarsViewModel.getElectricCarById(carId!!)
+            val carId = bundle.getInt("carDetailsId")
+            myCarsViewModel.getElectricCarById(carId)
         }
 
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {
             val myCar = myCarsViewModel.getElectricCarByIdResponse.value
-            binding.etFastChargeSpeed.setText(myCar?.body()?.fastChargeSpeed.toString().toInt())
-            binding.etCarRange.setText(myCar?.body()?.carRange.toString().toInt())
+            binding.etFastChargeSpeed.setText(myCar?.body()?.fastChargeSpeed.toString())
+            binding.etCarRange.setText(myCar?.body()?.carRange.toString())
             binding.etChargeConnection.setText(myCar?.body()?.chargeConnection.toString())
-            binding.etBuildYear.setText(myCar?.body()?.buildYear.toString().toInt())
+            binding.etBuildYear.setText(myCar?.body()?.buildYear.toString())
             binding.etNumberPlate.setText(myCar?.body()?.numberPlate.toString())
-            binding.etChargeSpeed.setText(myCar?.body()?.chargeSpeed.toString().toInt())
+            binding.etChargeSpeed.setText(myCar?.body()?.chargeSpeed.toString())
             binding.etCarType.setText(myCar?.body()?.carType.toString())
             binding.etFuelType.setText(myCar?.body()?.fuelType.toString())
             binding.etModel.setText(myCar?.body()?.model.toString())
-            binding.etWhPerKm.setText(myCar?.body()?.whPerKm.toString().toInt())
+            binding.etWhPerKm.setText(myCar?.body()?.whPerKm.toString())
             binding.etGearBox.setText(myCar?.body()?.gearBox.toString())
             binding.etBrand.setText(myCar?.body()?.brand.toString())
         }
