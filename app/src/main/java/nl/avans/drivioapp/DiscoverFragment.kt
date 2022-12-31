@@ -64,5 +64,4 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
         fragmentTransaction?.replace(R.id.flFragment, fragment)
         fragmentTransaction?.commit()
     }
-
 }

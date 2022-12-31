@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import nl.avans.drivioapp.databinding.FragmentAdvertisementProfileBinding
 import nl.avans.drivioapp.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -22,11 +23,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.buttonAddElectricCar.setOnClickListener{
+            replaceFragment(AddElectricCarFragment())
+        }
+        binding.buttonAddFuelCar.setOnClickListener{
+            replaceFragment(AddFuelCarFragment())
+        }
+        binding.buttonAddHydrogenCar.setOnClickListener{
+            replaceFragment(AddHydrogenCarFragment())
+        }
+        binding.buttonViewMyCars.setOnClickListener{
+            replaceFragment(MyCarsFragment())
+        }
         binding.btnAdvertisement.setOnClickListener {
             replaceFragment(AdvertisementProfileFragment())
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
