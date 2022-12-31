@@ -48,10 +48,37 @@
         app:layout_constraintTop_toBottomOf="@+id/tvStartDate" />
 
     <Button
+        android:id="@+id/ibtnEdit"
+        style="?attr/materialIconButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="invisible"
+        app:icon="@drawable/edit_fill0_wght400_grad0_opsz48"
+        app:iconSize="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/ibtnRemove"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ibtnRemove"
+        style="?attr/materialIconButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="invisible"
+        app:icon="@drawable/delete_fill0_wght400_grad0_opsz48"
+        app:iconSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnReserve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reserve"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
