@@ -34,7 +34,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
+            recyclerView.adapter = AdvertisementAdapter(advertisement, this)
         }
 
         val swipeRefreshLayout = binding.root
@@ -64,5 +64,4 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
         fragmentTransaction?.replace(R.id.flFragment, fragment)
         fragmentTransaction?.commit()
     }
-
 }
