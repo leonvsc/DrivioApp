@@ -43,10 +43,5 @@ data class ElectricCar(
     val brand: String,
 
     @Json(name="user")
-    val userElectricCar: UserElectricCar
-)
-data class UserElectricCar(
-
-    @Json(name="userId")
-    val userId: Int? = null
+    val user: User
 )

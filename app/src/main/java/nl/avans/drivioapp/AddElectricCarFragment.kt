@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
-import nl.avans.drivioapp.databinding.PostElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.UserElectricCar
+import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 
 
@@ -59,7 +58,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 whPerKm,
                 gearBox,
                 brand,
-                UserElectricCar(23)
+                User(23)
             )
             addElectricCarViewModel.postElectricCar(electricCar);
         }

@@ -35,12 +35,5 @@ data class FuelCar(
 	val tankSize: Int,
 
 	@Json(name="user")
-	val userFuelCar: UserFuelCar,
-)
-
-data class UserFuelCar(
-
-	@Json(name="userId")
-	val userId: Int? = null
-
+	val user: User,
 )

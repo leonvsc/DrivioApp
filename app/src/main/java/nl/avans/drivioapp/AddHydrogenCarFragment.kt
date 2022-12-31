@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAddHydrogenCarBinding
 import nl.avans.drivioapp.model.HydrogenCar
-import nl.avans.drivioapp.model.UserHydrogenCar
+import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AddHydrogenCarViewModel
 
 class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
@@ -54,7 +54,7 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
                 model,
                 gearBox,
                 brand,
-                UserHydrogenCar(23)
+                User(23)
             )
             addHydrogenCarViewModel.postHydrogenCar(hydrogenCar);
         }

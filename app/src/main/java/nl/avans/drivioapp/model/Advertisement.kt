@@ -1,4 +1,3 @@
-
 package nl.avans.drivioapp.model
 
 import com.squareup.moshi.Json

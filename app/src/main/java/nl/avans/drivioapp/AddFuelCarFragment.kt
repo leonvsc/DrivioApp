@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAddFuelCarBinding
 import nl.avans.drivioapp.model.FuelCar
-import nl.avans.drivioapp.model.UserFuelCar
+import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AddFuelCarViewModel
 
 class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
@@ -52,7 +52,7 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
                 brand,
                 numberPlate,
                 tankSize,
-                UserFuelCar(23)
+                User(23)
             )
             addFuelCarViewModel.postFuelCar(fuelCar);
         }
