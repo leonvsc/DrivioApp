@@ -11,7 +11,6 @@ import nl.avans.drivioapp.model.ElectricCar
 
 
 class MyCarsAdapter(
-    private val context: MyCarsFragment,
     private val dataset: List<ElectricCar>,
     private val listener: OnItemClickListener
     ) : RecyclerView.Adapter<MyCarsAdapter.MyCarViewHolder>() {
