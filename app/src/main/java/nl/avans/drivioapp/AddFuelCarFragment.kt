@@ -14,7 +14,6 @@ import nl.avans.drivioapp.viewModel.AddFuelCarViewModel
 class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
     private val addFuelCarViewModel: AddFuelCarViewModel by viewModels();
     private var _binding: FragmentAddFuelCarBinding? = null;
-    private var _bind: FragmentAddFuelCarBinding? = null;
     private val binding get() = _binding!!;
 
     override fun onCreateView(
@@ -22,7 +21,6 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddFuelCarBinding.inflate(inflater, container, false);
-        _bind = FragmentAddFuelCarBinding.inflate(inflater, container, false)
         val view = binding.root;
         return view;
     }
@@ -58,11 +56,10 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
             )
             addFuelCarViewModel.postFuelCar(fuelCar);
         }
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView();
-//        _binding = null;
-//    }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView();
+        _binding = null;
     }
 }

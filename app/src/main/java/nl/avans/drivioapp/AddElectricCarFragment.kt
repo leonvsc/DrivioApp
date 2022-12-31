@@ -16,7 +16,6 @@ import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val addElectricCarViewModel: AddElectricCarViewModel by viewModels();
     private var _binding: FragmentAddElectricCarBinding? = null;
-    private var _bind: PostElectricCarBinding? = null;
     private val binding get() = _binding!!;
 
     override fun onCreateView(
@@ -24,7 +23,6 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddElectricCarBinding.inflate(inflater, container, false);
-        _bind = PostElectricCarBinding.inflate(inflater, container, false)
         val view = binding.root;
         return view;
     }
@@ -65,11 +63,10 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             )
             addElectricCarViewModel.postElectricCar(electricCar);
         }
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView();
-//        _binding = null;
-//    }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView();
+        _binding = null;
     }
 }

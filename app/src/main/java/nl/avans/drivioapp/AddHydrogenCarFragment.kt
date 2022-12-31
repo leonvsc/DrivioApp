@@ -14,7 +14,6 @@ import nl.avans.drivioapp.viewModel.AddHydrogenCarViewModel
 class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
     private val addHydrogenCarViewModel: AddHydrogenCarViewModel by viewModels();
     private var _binding: FragmentAddHydrogenCarBinding? = null;
-    private var _bind: FragmentAddHydrogenCarBinding? = null;
     private val binding get() = _binding!!;
 
     override fun onCreateView(
@@ -22,7 +21,6 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddHydrogenCarBinding.inflate(inflater, container, false);
-        _bind = FragmentAddHydrogenCarBinding.inflate(inflater, container, false)
         val view = binding.root;
         return view;
     }
@@ -59,17 +57,10 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
                 UserHydrogenCar(23)
             )
             addHydrogenCarViewModel.postHydrogenCar(hydrogenCar);
-
-//            addHydrogenCarViewModel.postHydrogenCar.observe() {
-//                val response = advertisementViewModel.postAdvertisementResponse.value
-//
-//                if (response?.code() == 200) {
-//                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
-//                }
-//
-//            }
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView();
+        _binding = null;
     }
 }
