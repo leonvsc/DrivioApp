@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -56,6 +57,13 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             tvPrice.text = advertisement.body()?.price.toString()
             tvStartDate.text = advertisement.body()?.startDate.toString()
             tvEndDate.text = advertisement.body()?.endDate.toString()
+
+            if (advertisement.body()?.user?.userId == 47) {
+                binding.ibtnEdit.isVisible = true
+                binding.ibtnRemove.isVisible = true
+            } else {
+                binding.btnReserve.isVisible = true
+            }
         }
 
         binding.btnReserve.setOnClickListener {
