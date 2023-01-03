@@ -47,6 +47,23 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         setFragmentResultListener("advertisementId") { requestKey, bundle ->
             val advertisementId = bundle.getInt("advertisementId")
             advertisementViewModel.getAdvertisementById(advertisementId)
+
+            val ibtnRemove = binding.ibtnRemove
+
+            ibtnRemove.setOnClickListener {
+                advertisementViewModel.deleteAdvertisementWithResponse(advertisementId)
+            }
+        }
+
+        advertisementViewModel.deleteAdvertisementResponse.observe(viewLifecycleOwner) {
+            val response = advertisementViewModel.deleteAdvertisementResponse.value
+
+
+            if (response?.code() == 200) {
+                Toast.makeText(activity, "Delete successful!!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(activity, "Deletion failed!!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
