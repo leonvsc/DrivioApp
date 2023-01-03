@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = binding.bottomNavigationView
         bottomNavigationView.setupWithNavController(navController)
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

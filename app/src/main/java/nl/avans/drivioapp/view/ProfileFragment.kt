@@ -19,13 +19,14 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         binding.loginBtn.setOnClickListener {
             viewModel.setLoginButton(it)
@@ -34,6 +35,10 @@ class ProfileFragment : Fragment() {
         binding.registerBtn.setOnClickListener {
             viewModel.setRegisterButton(it)
         }
+
+        binding.listOfUserBtn.setOnClickListener {
+            viewModel.setUserListButton(it)
+        }
     }
 
     override fun onDestroyView() {
@@ -41,3 +46,4 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 }
+
