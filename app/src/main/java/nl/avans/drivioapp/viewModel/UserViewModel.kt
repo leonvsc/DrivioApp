@@ -16,8 +16,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val getAllUsers: LiveData<List<User>>
     private val repository: UserRepository
 
-    // always first executed when UserViewModel is called!
-    // binnen de viewmodel initialiseer je de database en de repository
+
     init {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
@@ -29,4 +28,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             repository.addUser(user)
         }
     }
+
+    fun updateUser(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUser(user)
+        }
+    }
 }
+
+

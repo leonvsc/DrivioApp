@@ -69,6 +69,21 @@
         <action
             android:id="@+id/action_userListFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_userListFragment_to_updateUFragment"
+            app:destination="@id/updateUFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateUFragment"
+        android:name="nl.avans.drivioapp.view.UpdateUFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_update_u">
+        <action
+            android:id="@+id/action_updateUFragment_to_userListFragment"
+            app:destination="@id/userListFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="nl.avans.drivioapp.model.User" />
     </fragment>
 </navigation>
 

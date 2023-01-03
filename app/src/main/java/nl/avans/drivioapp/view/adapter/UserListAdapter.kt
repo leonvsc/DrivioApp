@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.view.UserListFragmentDirections
 
 class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
@@ -26,6 +28,11 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.txt_id).text = currentItem.id.toString()
         holder.itemView.findViewById<TextView>(R.id.txt_email).text = currentItem.email
         holder.itemView.findViewById<TextView>(R.id.txt_password).text = currentItem.password
+
+        holder.itemView.findViewById<View>(R.id.user_row_layout).setOnClickListener {
+            val action = UserListFragmentDirections.actionUserListFragmentToUpdateUFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = userList.size
