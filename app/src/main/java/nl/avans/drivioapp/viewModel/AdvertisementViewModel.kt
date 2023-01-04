@@ -27,6 +27,10 @@ class AdvertisementViewModel : ViewModel() {
     val postAdvertisementResponse: LiveData<Response<Unit>>
         get() = _postAdvertisementResponse
 
+    private val _deleteAdvertisementResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteAdvertisementResponse: LiveData<Response<Unit>>
+        get() = _deleteAdvertisementResponse
+        
     private val _putAdvertisementResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
     val putAdvertisementResponse: LiveData<Response<Unit>>
         get() = _putAdvertisementResponse
@@ -56,6 +60,12 @@ class AdvertisementViewModel : ViewModel() {
         }
     }
 
+    fun deleteAdvertisementWithResponse(advertisementId: Int) {
+        viewModelScope.launch {
+            _deleteAdvertisementResponse.value =
+                advertisementRepository.deleteAdvertisementWIthResponse(advertisementId)
+        }
+        
     fun putAdvertisementWithResponse (advertisement: Advertisement) {
         viewModelScope.launch {
             _putAdvertisementResponse.value = advertisementRepository.putAdvertisementWithResponse(advertisement)
