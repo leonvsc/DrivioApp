@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
@@ -64,6 +66,17 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             } else {
                 Toast.makeText(activity, "Deletion failed!!", Toast.LENGTH_SHORT).show()
             }
+            setFragmentResult(
+                "advertisementIdEdit",
+                bundleOf("advertisementIdEdit" to advertisementId)
+            )
+        }
+
+        val ibtnEdit = binding.ibtnEdit
+        val ibtnRemove = binding.ibtnRemove
+
+        ibtnEdit.setOnClickListener {
+            replaceFragment(EditAdvertisement())
         }
 
         advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
@@ -107,5 +120,11 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 }
             }
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 }

@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface AdvertisementService {
@@ -26,4 +27,8 @@ interface AdvertisementService {
 
     @DELETE("advertisement/delete/{advertisementId}")
     suspend fun deleteAdvertisementWIthResponse(@Path("advertisementId") advertisementId: Int): Response<Unit>
+    
+    @PUT(value = "advertisement/update")
+    suspend fun putAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Unit>
+
 }
