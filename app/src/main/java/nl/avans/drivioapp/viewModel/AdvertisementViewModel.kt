@@ -27,6 +27,10 @@ class AdvertisementViewModel : ViewModel() {
     val postAdvertisementResponse: LiveData<Response<Unit>>
         get() = _postAdvertisementResponse
 
+    private val _putAdvertisementResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putAdvertisementResponse: LiveData<Response<Unit>>
+        get() = _putAdvertisementResponse
+
     init {
         getAdvertisements()
     }
@@ -49,6 +53,12 @@ class AdvertisementViewModel : ViewModel() {
         viewModelScope.launch {
             _postAdvertisementResponse.value =
                 advertisementRepository.postAdvertisementWithResponse(advertisement)
+        }
+    }
+
+    fun putAdvertisementWithResponse (advertisement: Advertisement) {
+        viewModelScope.launch {
+            _putAdvertisementResponse.value = advertisementRepository.putAdvertisementWithResponse(advertisement)
         }
     }
 }
