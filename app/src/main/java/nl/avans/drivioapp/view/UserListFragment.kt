@@ -1,14 +1,17 @@
 package nl.avans.drivioapp.view
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentUserListBinding
 import nl.avans.drivioapp.view.adapter.UserListAdapter
 import nl.avans.drivioapp.viewModel.UserViewModel
@@ -43,10 +46,42 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_delete, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.delete_icon -> {
+                        deleteAllUsers()
+                        return true
+                    }
+                }
+                return false
+            }
+
+        }, viewLifecycleOwner)
+
         binding.floatingActionButton.setOnClickListener {
             val action = UserListFragmentDirections.actionUserListFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
         }
+    }
+
+    private fun deleteAllUsers() {
+        val alert = AlertDialog.Builder(requireContext())
+        alert.setPositiveButton("Yes") { _, _ ->
+            userViewModel.deleteAllUsers()
+            Toast.makeText(
+                requireContext(),
+                "All Users Successful Removed!",
+                Toast.LENGTH_SHORT).show()
+        }
+        alert.setNegativeButton("No") { _, _ -> }
+        alert.setTitle("Delete all users?")
+        alert.setMessage("Are you sure you want to delete all users from the list?")
+        alert.create().show()
     }
 
     override fun onDestroyView() {
