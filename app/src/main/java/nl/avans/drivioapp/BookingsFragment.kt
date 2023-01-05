@@ -56,5 +56,12 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
                 bundleOf("reservationId" to reservation[position].reservationId)
             )
         }
+        replaceFragment(ReservationDetailsFragment())
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 }
