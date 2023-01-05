@@ -14,6 +14,7 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
+    // Remove single user credential
     @Delete
     suspend fun deleteUser(user: User)
 

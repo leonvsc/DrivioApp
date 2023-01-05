@@ -39,6 +39,7 @@ class RegisterFragment : Fragment() {
     private fun insertUserToDatabase() {
         val email = binding.editEmail.text.toString()
         val password = binding.editPassword.text.toString()
+
         if (validateInput(email, password)) {
             val user = User(0, email, password)
             userViewModel.addUser(user)

@@ -36,7 +36,7 @@ class UserListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.getAllUsers.observe(viewLifecycleOwner, Observer { userList ->   // userList was it, heb get gewoon veranderd, vergeet niet dit is eigenlijk de query die we hadden binnen de userDao
+        userViewModel.getAllUsers.observe(viewLifecycleOwner, Observer { userList ->   // 'it' was userList , heb get gewoon veranderd, vergeet niet dit is eigenlijk de query die we hadden binnen de userDao
             adapter.setData(userList)
         })
 

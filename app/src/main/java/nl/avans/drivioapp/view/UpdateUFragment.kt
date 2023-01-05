@@ -33,9 +33,7 @@ class UpdateUFragment : Fragment() {
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
-
-
-        // args to get the current user
+        // args to get the current user property values
         binding.updateEmail.setText(args.currentUser.email)
         binding.updatePassword.setText(args.currentUser.password)
 
@@ -64,7 +62,7 @@ class UpdateUFragment : Fragment() {
                 return false
             }
 
-        }, viewLifecycleOwner)
+        }, viewLifecycleOwner) // Use Lifecycle.state.RESUMED with onCreateView!
     }
 
     private fun updateUser() {
