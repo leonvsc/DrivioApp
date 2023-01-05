@@ -73,7 +73,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 advertisement.body()?.startDate.toString(),
                 advertisement.body()?.endDate.toString(),
                 true,
-                User(29),
+                User(47),
                 Advertisement(advertisementId)
             )
 

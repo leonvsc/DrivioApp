@@ -10,6 +10,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.ReservationAdapter
 import nl.avans.drivioapp.databinding.FragmentBookingsBinding
+import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Reservation
 import nl.avans.drivioapp.viewModel.ReservationViewModel
 
@@ -19,6 +20,7 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
     private val binding get() = _binding!!;
     private val reservationViewModel: ReservationViewModel by viewModels()
     private lateinit var reservation: List<Reservation>
+    private lateinit var reservationByUser: List<Reservation>
 
 
     override fun onCreateView(
@@ -34,8 +36,9 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
         super.onViewCreated(view, savedInstanceState)
         reservationViewModel.getReservationsResponse.observe(viewLifecycleOwner) {
             reservation = reservationViewModel.getReservationsResponse.value!!
+            reservationByUser = reservation.filter { it.user.userId == 47 }
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = ReservationAdapter(reservation, this)
+            recyclerView.adapter = ReservationAdapter(reservationByUser, this)
         }
 
         val swipeRefreshLayout = binding.swipeRefreshLayout
