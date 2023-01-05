@@ -55,6 +55,11 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             ibtnRemove.setOnClickListener {
                 advertisementViewModel.deleteAdvertisementWithResponse(advertisementId)
             }
+
+            setFragmentResult(
+                "advertisementIdEdit",
+                bundleOf("advertisementIdEdit" to advertisementId)
+            )
         }
 
         advertisementViewModel.deleteAdvertisementResponse.observe(viewLifecycleOwner) {
@@ -66,14 +71,9 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             } else {
                 Toast.makeText(activity, "Deletion failed!!", Toast.LENGTH_SHORT).show()
             }
-            setFragmentResult(
-                "advertisementIdEdit",
-                bundleOf("advertisementIdEdit" to advertisementId)
-            )
         }
 
         val ibtnEdit = binding.ibtnEdit
-        val ibtnRemove = binding.ibtnRemove
 
         ibtnEdit.setOnClickListener {
             replaceFragment(EditAdvertisement())
