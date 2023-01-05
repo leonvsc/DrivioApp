@@ -67,7 +67,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 price,
                 startDate,
                 endDate,
-                User(29)
+                User(47)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
 
