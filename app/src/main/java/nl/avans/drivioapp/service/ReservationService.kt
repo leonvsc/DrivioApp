@@ -23,5 +23,5 @@ interface ReservationService {
     suspend fun putReservationWithResponse(@Body reservation: Reservation): Response<Unit>
 
     @DELETE("reservation/delete/{reservationId}")
-    suspend fun deleteReservationWithResponse(@Path("ReservationId") reservationId: Int): Response<Unit>
+    suspend fun deleteReservationWithResponse(@Path("reservationId") reservationId: Int): Response<Unit>
 }
