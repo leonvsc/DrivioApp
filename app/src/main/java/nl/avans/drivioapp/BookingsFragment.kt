@@ -10,7 +10,6 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.adapter.ReservationAdapter
 import nl.avans.drivioapp.databinding.FragmentBookingsBinding
-import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Reservation
 import nl.avans.drivioapp.viewModel.ReservationViewModel
 

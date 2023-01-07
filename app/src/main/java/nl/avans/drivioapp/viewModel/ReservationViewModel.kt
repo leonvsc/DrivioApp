@@ -24,6 +24,14 @@ class ReservationViewModel : ViewModel() {
     val postReservationResponse: LiveData<Response<Unit>>
         get() = _postReservationResponse
 
+    private val _putReservationResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putReservationResponse: LiveData<Response<Unit>>
+        get() = _putReservationResponse
+
+    private val _deleteReservationResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteReservationResponse: LiveData<Response<Unit>>
+        get() = _deleteReservationResponse
+
     init {
         getReservations()
     }
@@ -43,6 +51,20 @@ class ReservationViewModel : ViewModel() {
     fun postReservationWithResponse(reservation: Reservation) {
         viewModelScope.launch {
             _postReservationResponse.value = reservationRepository.postReservationWithResponse(reservation)
+        }
+    }
+
+    fun putReservationWithResponse(Reservation: Reservation) {
+        viewModelScope.launch {
+            _putReservationResponse.value =
+                reservationRepository.putReservationWithResponse(Reservation)
+        }
+    }
+
+    fun deleteReservationWithResponse(ReservationId: Int) {
+        viewModelScope.launch {
+            _deleteReservationResponse.value =
+                reservationRepository.deleteReservationWithResponse(ReservationId)
         }
     }
 }

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentReservationDetailsBinding
@@ -38,6 +40,11 @@ class ReservationDetailsFragment : Fragment(R.layout.fragment_reservation_detail
         setFragmentResultListener("reservationId") { requestKey, bundle ->
             val reservationId = bundle.getInt("reservationId")
             reservationViewModel.getReservationById(reservationId)
+
+            setFragmentResult(
+                "reservationIdEdit",
+                bundleOf("reservationIdEdit" to reservationId)
+            )
         }
 
         reservationViewModel.getReservationByIdResponse.observe(viewLifecycleOwner) {
@@ -47,5 +54,17 @@ class ReservationDetailsFragment : Fragment(R.layout.fragment_reservation_detail
             tvStartDate.text = reservation.body()?.startDate
             tvEndDate.text = reservation.body()?.endDate
         }
+
+        val ibtnEdit = binding.ibtnEdit
+
+        ibtnEdit.setOnClickListener {
+            replaceFragment(EditBooking())
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.flFragment, fragment)
+        fragmentTransaction?.commit()
     }
 }

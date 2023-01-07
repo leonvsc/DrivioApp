@@ -2,10 +2,7 @@ package nl.avans.drivioapp.service
 
 import nl.avans.drivioapp.model.Reservation
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ReservationService {
     @GET("reservation")
@@ -21,4 +18,10 @@ interface ReservationService {
 
     @POST("reservation")
     suspend fun postReservationWithResponse(@Body reservation: Reservation): Response<Unit>
+
+    @PUT(value = "reservation/update")
+    suspend fun putReservationWithResponse(@Body reservation: Reservation): Response<Unit>
+
+    @DELETE("reservation/delete/{reservationId}")
+    suspend fun deleteReservationWithResponse(@Path("ReservationId") reservationId: Int): Response<Unit>
 }
