@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.discover -> replaceFragment(DiscoverFragment())
                 R.id.bookings -> replaceFragment(BookingsFragment())
-                R.id.messages -> replaceFragment(MessagesFragment())
+                R.id.map -> replaceFragment(MapFragment())
                 R.id.profile -> replaceFragment(ProfileFragment())
 
                 else -> {

@@ -12,10 +12,10 @@
         android:title="Bookings"/>
 
     <item
-        android:id="@+id/messages"
+        android:id="@+id/map"
         android:enabled="true"
         android:icon="@drawable/chat_fill0_wght400_grad0_opsz48"
-        android:title="Messages"
+        android:title="Map"
         />
 
     <item
