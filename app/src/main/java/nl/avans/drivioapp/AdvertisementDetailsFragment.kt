@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Reservation
@@ -19,6 +23,9 @@ import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import nl.avans.drivioapp.viewModel.ReservationViewModel
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.util.*
 
 class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_details) {
 
@@ -27,6 +34,9 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
     private val reservationViewModel: ReservationViewModel by viewModels()
     private lateinit var advertisement: Response<Advertisement>
+    private var longStartDate: Long = 0
+    private var longEndDate: Long = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,6 +103,43 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 binding.ibtnRemove.isVisible = true
             } else {
                 binding.btnReserve.isVisible = true
+                binding.btnSelectDates.isVisible = true
+            }
+        }
+
+        advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
+            val advertisement = advertisementViewModel.getAdvertisementByIdResponse.value
+
+            val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val timezone = TimeZone.getTimeZone("UTC")
+            dateFormatter.timeZone = timezone
+
+
+            val longStartDate = dateFormatter.parse(advertisement?.body()?.startDate).time
+            val longEndDate = dateFormatter.parse(advertisement?.body()?.endDate).time
+
+            val constraintsBuilder =
+                CalendarConstraints.Builder()
+                    .setValidator(DateValidatorPointForward.from(longStartDate))
+                    .setValidator(DateValidatorPointBackward.before(longEndDate))
+
+
+            val dateRangePicker =
+                MaterialDatePicker.Builder.dateRangePicker()
+                    .setTitleText("Select dates")
+                    .setCalendarConstraints(constraintsBuilder.build())
+                    .build()
+
+            binding.btnSelectDates.setOnClickListener {
+                activity?.let { it1 -> dateRangePicker.show(it1.supportFragmentManager, "DATE_PICKER") }
+            }
+
+            dateRangePicker.addOnPositiveButtonClickListener {
+                val startDate = dateFormatter.format(it.first)
+                val endDate = dateFormatter.format(it.second)
+
+                binding.tvSelectedStartDate.text = "Selected StartDate: $startDate"
+                binding.tvSelectedEndDate.text = "Selected EndDate: $endDate"
             }
         }
 
