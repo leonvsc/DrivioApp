@@ -70,7 +70,7 @@ class AdvertisementViewModel : ViewModel() {
     fun deleteAdvertisementWithResponse(advertisementId: Int) {
         viewModelScope.launch {
             _deleteAdvertisementResponse.value =
-                advertisementRepository.deleteAdvertisementWIthResponse(advertisementId)
+                advertisementRepository.deleteAdvertisementWithResponse(advertisementId)
         }
     }
 }

@@ -26,7 +26,7 @@ interface AdvertisementService {
 
 
     @DELETE("advertisement/delete/{advertisementId}")
-    suspend fun deleteAdvertisementWIthResponse(@Path("advertisementId") advertisementId: Int): Response<Unit>
+    suspend fun deleteAdvertisementWithResponse(@Path("advertisementId") advertisementId: Int): Response<Unit>
     
     @PUT(value = "advertisement/update")
     suspend fun putAdvertisementWithResponse(@Body advertisement: Advertisement): Response<Unit>
