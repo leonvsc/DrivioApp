@@ -52,7 +52,9 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
                 brand,
                 numberPlate,
                 tankSize,
-                User(23)
+                User(23),
+            0.0,
+                0.0
             )
             addFuelCarViewModel.postFuelCar(fuelCar);
         }

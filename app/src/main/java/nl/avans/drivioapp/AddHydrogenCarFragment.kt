@@ -54,7 +54,9 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
                 model,
                 gearBox,
                 brand,
-                User(23)
+                User(23),
+                0.0,
+                0.0
             )
             addHydrogenCarViewModel.postHydrogenCar(hydrogenCar);
         }
