@@ -9,6 +9,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
@@ -16,11 +17,7 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
     private lateinit var map: GoogleMap
     private val addElectricCarViewModel: AddElectricCarViewModel by viewModels()
 
-    private val carLocation = listOf(
-        LatLng(38.5784, -121.4771),
-        LatLng(38.5711, -121.4859),
-        LatLng(38.561, -121.5017)
-    )
+    private val carLocation = mutableListOf<LatLng>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,15 +34,15 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
         addElectricCarViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             val electricCars = addElectricCarViewModel.electricCarResponse.value!!
-            val electricCarsLatitude = electricCars
-            val electricCarsLongitude = electricCars
-            val electricCarLocation = LatLng(electricCarsLatitude, electricCarsLongitude)
+            for (electricCar in electricCars) {
+                carLocation.add(LatLng(electricCar.latitude, electricCar.longitude))
+            }
 
-            carLocation.forEach { carLocation ->
+            carLocation.forEachIndexed {index, carLocation ->
                 val marker = map.addMarker(
                     MarkerOptions()
-                        .title("Test")
-                        .position(electricCarLocation)
+                        .title(electricCars[index].brand)
+                        .position(carLocation)
                 )
                 marker?.tag = carLocation
             }
