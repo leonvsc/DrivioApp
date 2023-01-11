@@ -38,6 +38,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.btnAdvertisement.setOnClickListener {
             replaceFragment(AdvertisementProfileFragment())
         }
+        binding.buttonViewStatistics.setOnClickListener {
+            replaceFragment(StatisticsFragment())
+        }
     }
 
 

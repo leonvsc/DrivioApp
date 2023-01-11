@@ -34,4 +34,7 @@ object DrivioApi {
     val hydrogenCarService: HydrogenCarService by lazy {
         retrofit.create(HydrogenCarService::class.java)
     }
+    val statisticsService: StatisticsService by lazy {
+        retrofit.create(StatisticsService::class.java)
+    }
 }
