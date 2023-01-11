@@ -13,35 +13,26 @@ interface FuelCarService {
     @GET("fuelcar")
     suspend fun getFuelCars(): List<FuelCar>;
 
-    @DELETE("fuelcar/{id}")
-    suspend fun deleteFuelCarResponse(@Path("id") carId: Int): Response<ResponseBody>
+    @GET("fuelcar/{carId}")
+    suspend fun getFuelCarById(
+        @Path(
+            value = "carId",
+            encoded = false
+        ) carId: Int
+    ): Response<FuelCar>
 
-    @DELETE("fuelcar/{id}")
-    suspend fun deleteFuelCar(@Path("id") carId: Int)
+//    @DELETE("fuelcar/{id}")
+//    suspend fun deleteFuelCarResponse(@Path("id") carId: Int): Response<ResponseBody>
+//
+//    @DELETE("fuelcar/{id}")
+//    suspend fun deleteFuelCar(@Path("id") carId: Int)
 
     @POST(value = "fuelcar")
-    suspend fun postFuelCarWithResponse(@Body todoItem: FuelCar): Response<FuelCar>
+    suspend fun postFuelCarWithResponse(@Body fuelCar: FuelCar): Response<Unit>
 
-    @POST(value = "fuelcar")
-    suspend fun postFuelCar(@Body todoItem: FuelCar): FuelCar
+//    @POST(value = "fuelcar")
+//    suspend fun postFuelCar(@Body todoItem: FuelCar): FuelCar
 
-    @PUT(value = "fuelcar/{id}")
-    suspend fun putFuelCar(@Body todoItem: FuelCar, @Path("id") todoId: Int): FuelCar
-}
-
-private val BASE_URL = "https://drivio.nl/api/v1/"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
-
-object AddFuelCarAPI {
-    val retrofitService: FuelCarService by lazy {
-        retrofit.create(FuelCarService::class.java)
-    }
+//    @PUT(value = "fuelcar/{id}")
+//    suspend fun putFuelCar(@Body todoItem: FuelCar, @Path("id") todoId: Int): FuelCar
 }

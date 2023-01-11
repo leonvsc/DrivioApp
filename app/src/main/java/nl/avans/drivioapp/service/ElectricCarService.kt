@@ -12,38 +12,26 @@ interface ElectricCarService {
     @GET("electriccar")
     suspend fun getElectricCars(): List<ElectricCar>;
 
-    @GET("electriccar/{id}")
-    suspend fun getElectricCarById(@Path("id") carId: Int): Response<ElectricCar>;
+    @GET("electriccar/{carId}")
+    suspend fun getElectricCarById(
+        @Path(
+            value = "carId",
+            encoded = false
+        ) carId: Int
+    ): Response<ElectricCar>;
 
-    @DELETE("electriccar/{id}")
-    suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ElectricCar>
-
-    @DELETE("electriccar/{id}")
-    suspend fun deleteElectricCar(@Path("id") carId: Int)
-
+//    @DELETE("electriccar/{id}")
+//    suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ElectricCar>
+//
+//    @DELETE("electriccar/{id}")
+//    suspend fun deleteElectricCar(@Path("id") carId: Int)
+//
     @POST(value = "electriccar")
-    suspend fun postElectricCarWithResponse(@Body todoItem: ElectricCar): Response<ElectricCar>
+    suspend fun postElectricCarWithResponse(@Body electricCar: ElectricCar): Response<Unit>
 
-    @POST(value = "electriccar")
-    suspend fun postElectricCar(@Body todoItem: ElectricCar): ElectricCar
+//    @POST(value = "electriccar")
+//    suspend fun postElectricCar(@Body electricCar: ElectricCar): ElectricCar
 
-    @PUT(value = "electriccar/{id}")
-    suspend fun putElectricCar(@Body todoItem: ElectricCar, @Path("id") todoId: Int): ElectricCar
-}
-
-private val BASE_URL = "https://drivio.nl/api/v1/"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
-
-object AddElectricCarAPI {
-    val retrofitService: ElectricCarService by lazy {
-        retrofit.create(ElectricCarService::class.java)
-    }
+//    @PUT(value = "electriccar/{id}")
+//    suspend fun putElectricCar(@Body electricCar: ElectricCar, @Path("id") todoId: Int): ElectricCar
 }
