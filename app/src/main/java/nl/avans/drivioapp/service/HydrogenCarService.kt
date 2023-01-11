@@ -21,18 +21,12 @@ interface HydrogenCarService {
         ) carId: Int
     ): Response<HydrogenCar>
 
-//    @DELETE("hydrogencar/{id}")
-//    suspend fun deleteHydrogenCarResponse(@Path("id") carId: Int): Response<ResponseBody>
-//
-//    @DELETE("hydrogencar/{id}")
-//    suspend fun deleteHydrogenCar(@Path("id") carId: Int)
-
     @POST(value = "hydrogencar")
     suspend fun postHydrogenCarWithResponse(@Body hydrogenCar: HydrogenCar): Response<Unit>
 
-//    @POST(value = "hydrogencar")
-//    suspend fun postHydrogenCar(@Body todoItem: HydrogenCar): HydrogenCar
+    @DELETE("hydrogencar/delete/{carId}")
+    suspend fun deleteHydrogenCarWithResponse(@Path("id") carId: Int): Response<Unit>
 
-//    @PUT(value = "hydrogencar/{id}")
-//    suspend fun putHydrogenCar(@Body todoItem: HydrogenCar, @Path("id") todoId: Int): HydrogenCar
+    @PUT(value = "hydrogencar/update")
+    suspend fun putHydrogenCarWithResponse(@Body hydrogenCar: HydrogenCar): Response<Unit>
 }

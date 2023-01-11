@@ -17,4 +17,12 @@ class HydrogenCarRepository : HydrogenCarService {
     override suspend fun postHydrogenCarWithResponse(hydrogenCar: HydrogenCar): Response<Unit> {
         return DrivioApi.hydrogenCarService.postHydrogenCarWithResponse(hydrogenCar)
     }
+
+    override suspend fun deleteHydrogenCarWithResponse(carId: Int): Response<Unit> {
+        return DrivioApi.hydrogenCarService.deleteHydrogenCarWithResponse(carId)
+    }
+
+    override suspend fun putHydrogenCarWithResponse(hydrogenCar: HydrogenCar): Response<Unit> {
+        return DrivioApi.hydrogenCarService.putHydrogenCarWithResponse(hydrogenCar)
+    }
 }

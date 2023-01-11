@@ -20,18 +20,12 @@ interface ElectricCarService {
         ) carId: Int
     ): Response<ElectricCar>;
 
-//    @DELETE("electriccar/{id}")
-//    suspend fun deleteElectricCarResponse(@Path("id") carId: Int): Response<ElectricCar>
-//
-//    @DELETE("electriccar/{id}")
-//    suspend fun deleteElectricCar(@Path("id") carId: Int)
-//
     @POST(value = "electriccar")
     suspend fun postElectricCarWithResponse(@Body electricCar: ElectricCar): Response<Unit>
 
-//    @POST(value = "electriccar")
-//    suspend fun postElectricCar(@Body electricCar: ElectricCar): ElectricCar
+    @DELETE("electriccar/delete/{carId}")
+    suspend fun deleteElectricCarResponse(@Path("carId") carId: Int): Response<Unit>
 
-//    @PUT(value = "electriccar/{id}")
-//    suspend fun putElectricCar(@Body electricCar: ElectricCar, @Path("id") todoId: Int): ElectricCar
+    @PUT(value = "electriccar/update")
+    suspend fun putElectricCarWithResponse(@Body electricCar: ElectricCar): Response<Unit>
 }

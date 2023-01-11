@@ -25,6 +25,15 @@ class AddFuelCarViewModel : ViewModel() {
     private val _postFuelCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
     val postFuelCarResponse: LiveData<Response<Unit>>
         get() = _postFuelCarResponse
+
+    private val _deleteFuelCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteFuelCarResponse: LiveData<Response<Unit>>
+        get() = _deleteFuelCarResponse
+
+    private val _putFuelCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putFuelCarResponse: LiveData<Response<Unit>>
+        get() = _putFuelCarResponse
+
     init {
         getFuelCars();
     }
@@ -46,6 +55,20 @@ class AddFuelCarViewModel : ViewModel() {
         viewModelScope.launch {
             _postFuelCarResponse.value =
                 fuelCarRepository.postFuelCarWithResponse(fuelCar)
+        }
+    }
+
+    fun deleteFuelCarWithResponse(carId: Int) {
+        viewModelScope.launch {
+            _deleteFuelCarResponse.value =
+                fuelCarRepository.deleteFuelCarResponse(carId)
+        }
+    }
+
+    fun putFuelCarWithResponse(fuelCar: FuelCar) {
+        viewModelScope.launch {
+            _putFuelCarResponse.value =
+                fuelCarRepository.putFuelCarWithResponse(fuelCar)
         }
     }
 }

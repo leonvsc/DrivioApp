@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -41,11 +42,19 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             carId = bundle.getInt("carId")
             myCarsViewModel.getElectricCarById(carId!!)
 
-//            binding.btnDeleteCar.setOnClickListener {
-//                myCarsViewModel.deleteElectricCar(carId!!)
-////                TimeUnit.SECONDS.sleep(1)
-////                replaceFragment(MyCarsFragment())
-//            }
+            binding.btnDeleteCar.setOnClickListener {
+                myCarsViewModel.deleteElectricCarWithResponse(carId!!)
+
+                myCarsViewModel.deleteFuelCarResponse.observe(viewLifecycleOwner) {
+                    val response = myCarsViewModel.deleteFuelCarResponse.value
+//                  TODO: Make the button navigate to another page
+                    if (response?.code() == 200) {
+                        Toast.makeText(activity, "Deleted!!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {

@@ -18,4 +18,14 @@ class ElectricCarRepository : ElectricCarService {
     override suspend fun postElectricCarWithResponse(electricCar: ElectricCar): Response<Unit> {
         return DrivioApi.electricCarService.postElectricCarWithResponse(electricCar)
     }
+
+    override suspend fun deleteElectricCarResponse(carId: Int): Response<Unit> {
+        return DrivioApi.electricCarService.deleteElectricCarResponse(carId)
+    }
+
+    override suspend fun putElectricCarWithResponse(electricCar: ElectricCar): Response<Unit> {
+        return DrivioApi.electricCarService.putElectricCarWithResponse(electricCar)
+    }
+
+
 }

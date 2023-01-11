@@ -17,4 +17,12 @@ class FuelCarRepository : FuelCarService {
     override suspend fun postFuelCarWithResponse(fuelCar: FuelCar): Response<Unit> {
         return DrivioApi.fuelCarService.postFuelCarWithResponse(fuelCar)
     }
+
+    override suspend fun deleteFuelCarResponse(carId: Int): Response<Unit> {
+        return DrivioApi.fuelCarService.deleteFuelCarResponse(carId)
+    }
+
+    override suspend fun putFuelCarWithResponse(fuelCar: FuelCar): Response<Unit> {
+        return DrivioApi.fuelCarService.putFuelCarWithResponse(fuelCar)
+    }
 }

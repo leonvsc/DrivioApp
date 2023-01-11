@@ -26,6 +26,14 @@ class AddElectricCarViewModel : ViewModel() {
     val postElectricCarResponse: LiveData<Response<Unit>>
         get() = _postElectricCarResponse
 
+    private val _deleteElectricCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteElectricCarResponse: LiveData<Response<Unit>>
+        get() = _deleteElectricCarResponse
+
+    private val _putElectricCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putElectricCarWithResponse: LiveData<Response<Unit>>
+        get() = _putElectricCarResponse
+
     init {
         getElectricCars();
     }
@@ -45,6 +53,18 @@ class AddElectricCarViewModel : ViewModel() {
     fun postElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
             _postElectricCarResponse.value = electricCarRepository.postElectricCarWithResponse(electricCar);
+        }
+    }
+
+    fun deleteElectricCarWithResponse(carId: Int) {
+        viewModelScope.launch {
+            _deleteElectricCarResponse.value = electricCarRepository.deleteElectricCarResponse(carId)
+        }
+    }
+
+    fun putElectricCarWithResponse(electricCar: ElectricCar) {
+        viewModelScope.launch {
+            _putElectricCarResponse.value = electricCarRepository.putElectricCarWithResponse(electricCar);
         }
     }
 }
