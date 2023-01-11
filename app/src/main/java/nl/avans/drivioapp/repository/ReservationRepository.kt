@@ -17,4 +17,12 @@ class ReservationRepository : ReservationService {
     override suspend fun postReservationWithResponse(reservation: Reservation): Response<Unit> {
         return DrivioApi.reservationService.postReservationWithResponse(reservation)
     }
+
+    override suspend fun putReservationWithResponse(reservation: Reservation): Response<Unit> {
+        return DrivioApi.reservationService.putReservationWithResponse(reservation)
+    }
+
+    override suspend fun deleteReservationWithResponse(reservationId: Int): Response<Unit> {
+        return DrivioApi.reservationService.deleteReservationWithResponse(reservationId)
+    }
 }
