@@ -6,19 +6,33 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.service.AddElectricCarAPI
+import nl.avans.drivioapp.repository.ElectricCarRepository
 import retrofit2.Response
 
 private const val TAG = "AddElectricCarViewModel"
 
 class AddElectricCarViewModel : ViewModel() {
-    private val _electricCarResponse: MutableLiveData<List<ElectricCar>> = MutableLiveData();
+    private val electricCarRepository = ElectricCarRepository()
+
+    private val _getElectricCarResponse: MutableLiveData<List<ElectricCar>> = MutableLiveData();
     val electricCarResponse: LiveData<List<ElectricCar>>
-        get() = _electricCarResponse;
+        get() = _getElectricCarResponse;
 
     private val _getElectricCarByIdResponse: MutableLiveData<Response<ElectricCar>> = MutableLiveData()
     val getElectricCarByIdResponse: LiveData<Response<ElectricCar>>
         get() = _getElectricCarByIdResponse
+
+    private val _postElectricCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val postElectricCarResponse: LiveData<Response<Unit>>
+        get() = _postElectricCarResponse
+
+    private val _deleteElectricCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteElectricCarResponse: LiveData<Response<Unit>>
+        get() = _deleteElectricCarResponse
+
+    private val _putElectricCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putElectricCarWithResponse: LiveData<Response<Unit>>
+        get() = _putElectricCarResponse
 
     init {
         getElectricCars();
@@ -26,20 +40,31 @@ class AddElectricCarViewModel : ViewModel() {
 
     fun getElectricCars() {
         viewModelScope.launch {
-            _electricCarResponse.value = AddElectricCarAPI.retrofitService.getElectricCars();
+            _getElectricCarResponse.value = electricCarRepository.getElectricCars();
         }
     }
 
     fun getElectricCarById(carId: Int) {
         viewModelScope.launch {
-            _getElectricCarByIdResponse.value = AddElectricCarAPI.retrofitService.getElectricCarById(carId)
+            _getElectricCarByIdResponse.value = electricCarRepository.getElectricCarById(carId)
         }
     }
 
-    fun postElectricCar(electricCar: ElectricCar) {
+    fun postElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
-            AddElectricCarAPI.retrofitService.postElectricCar(electricCar);
-            _electricCarResponse.value = AddElectricCarAPI.retrofitService.getElectricCars();
+            _postElectricCarResponse.value = electricCarRepository.postElectricCarWithResponse(electricCar);
+        }
+    }
+
+    fun deleteElectricCarWithResponse(carId: Int) {
+        viewModelScope.launch {
+            _deleteElectricCarResponse.value = electricCarRepository.deleteElectricCarResponse(carId)
+        }
+    }
+
+    fun putElectricCarWithResponse(electricCar: ElectricCar) {
+        viewModelScope.launch {
+            _putElectricCarResponse.value = electricCarRepository.putElectricCarWithResponse(electricCar);
         }
     }
 }

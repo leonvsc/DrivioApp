@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.databinding.FragmentAddFuelCarBinding
@@ -54,7 +55,17 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
                 tankSize,
                 User(23)
             )
-            addFuelCarViewModel.postFuelCar(fuelCar);
+            addFuelCarViewModel.postFuelCarWithResponse(fuelCar);
+
+            addFuelCarViewModel.postFuelCarResponse.observe(viewLifecycleOwner) {
+                val response = addFuelCarViewModel.postFuelCarResponse.value
+
+                if (response?.code() == 200) {
+                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

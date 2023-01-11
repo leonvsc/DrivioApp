@@ -5,17 +5,34 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.HydrogenCar
-import nl.avans.drivioapp.service.AddElectricCarAPI
-import nl.avans.drivioapp.service.AddHydrogenCarAPI
+import nl.avans.drivioapp.repository.HydrogenCarRepository
+import retrofit2.Response
 
 private const val TAG = "AddHydrogenCarViewModel"
 
 class AddHydrogenCarViewModel : ViewModel() {
-    private val _hydrogenCarResponse: MutableLiveData<List<HydrogenCar>> = MutableLiveData();
-    val hydrogenCarResponse: LiveData<List<HydrogenCar>>
-        get() = _hydrogenCarResponse;
+    private val hydrogenCarRepository = HydrogenCarRepository()
+
+    private val _getHydrogenCarResponse: MutableLiveData<List<HydrogenCar>> = MutableLiveData();
+    val getHydrogenCarResponse: LiveData<List<HydrogenCar>>
+        get() = _getHydrogenCarResponse;
+
+    private val _getHydrogenCarByIdResponse: MutableLiveData<Response<HydrogenCar>> = MutableLiveData()
+    val getHydrogenCarByIdResponse: LiveData<Response<HydrogenCar>>
+        get() = _getHydrogenCarByIdResponse
+
+    private val _postHydrogenCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val postHydrogenCarResponse: LiveData<Response<Unit>>
+        get() = _postHydrogenCarResponse
+
+    private val _deleteHydrogenCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val deleteHydrogenCarResponse: LiveData<Response<Unit>>
+        get() = _deleteHydrogenCarResponse
+
+    private val _putHydrogenCarResponse: MutableLiveData<Response<Unit>> = MutableLiveData()
+    val putHydrogenCarResponse: LiveData<Response<Unit>>
+        get() = _putHydrogenCarResponse
 
     init {
         getHydrogenCars();
@@ -23,14 +40,31 @@ class AddHydrogenCarViewModel : ViewModel() {
 
     fun getHydrogenCars() {
         viewModelScope.launch {
-            _hydrogenCarResponse.value = AddHydrogenCarAPI.retrofitService.getHydrogenCars();
+            _getHydrogenCarResponse.value = hydrogenCarRepository.getHydrogenCars();
         }
     }
 
-    fun postHydrogenCar(hydrogenCar: HydrogenCar) {
+    fun getHydrogenCarById(carId: Int) {
         viewModelScope.launch {
-            AddHydrogenCarAPI.retrofitService.postHydrogenCar(hydrogenCar);
-            _hydrogenCarResponse.value = AddHydrogenCarAPI.retrofitService.getHydrogenCars();
+            _getHydrogenCarByIdResponse.value = hydrogenCarRepository.getHydrogenCarById(carId)
+        }
+    }
+
+    fun postHydrogenCarWithResponse(hydrogenCar: HydrogenCar) {
+        viewModelScope.launch {
+            _postHydrogenCarResponse.value = hydrogenCarRepository.postHydrogenCarWithResponse(hydrogenCar);
+        }
+    }
+
+    fun deleteHydrogenCarWithResponse(carId: Int) {
+        viewModelScope.launch {
+            _deleteHydrogenCarResponse.value = hydrogenCarRepository.deleteHydrogenCarWithResponse(carId);
+        }
+    }
+
+    fun putHydrogenCarWithResponse(hydrogenCar: HydrogenCar) {
+        viewModelScope.launch {
+            _putHydrogenCarResponse.value = hydrogenCarRepository.putHydrogenCarWithResponse(hydrogenCar);
         }
     }
 }
