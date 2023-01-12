@@ -33,6 +33,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         statisticsViewModel.getStatisticsResponse.observe(viewLifecycleOwner) {
+            statistic = statisticsViewModel.getStatisticsResponse.value!!
             statistic = statistic.filter { it.user.userId == 47 }
             val recyclerView = binding.recyclerView
             recyclerView.adapter = StatisticsAdapter(statistic, this)
