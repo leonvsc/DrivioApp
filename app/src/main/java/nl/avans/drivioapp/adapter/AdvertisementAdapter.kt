@@ -11,12 +11,12 @@ import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
 class AdvertisementAdapter(
-    private val context: DiscoverFragment,
+//    private val context: DiscoverFragment,
     private val dataset: List<Advertisement>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
 
-    inner class AdvertisementViewHolder(private val binding: ListAdvertisementBinding) :
+    inner class AdvertisementViewHolder(binding: ListAdvertisementBinding) :
         RecyclerView.ViewHolder(binding.root), OnClickListener {
         val tvTitle: TextView = binding.tvTitle
         val tvDescription: TextView = binding.tvDescription

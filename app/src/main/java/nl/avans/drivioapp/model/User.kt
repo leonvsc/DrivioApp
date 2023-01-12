@@ -1,6 +1,7 @@
 package nl.avans.drivioapp.model
 
 import android.os.Parcelable
+import com.squareup.moshi.Json
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,6 +16,7 @@ data class User(
     @ColumnInfo(name = "password") val password: String
 ): Parcelable
 
-
-
-
+data class User1(
+    @Json(name = "userId")
+    val userId: Int?
+)

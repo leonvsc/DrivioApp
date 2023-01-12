@@ -10,11 +10,13 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
+
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 
-class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdapter.OnItemClickListener {
+class DiscoverFragment : Fragment(R.layout.fragment_discover),
+    AdvertisementAdapter.OnItemClickListener {
 
     private var _binding: FragmentDiscoverBinding? = null;
     private val binding get() = _binding!!;
@@ -36,7 +38,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover), AdvertisementAdap
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
             advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = AdvertisementAdapter(this, advertisement, this)
+            recyclerView.adapter = AdvertisementAdapter(advertisement, this)
         }
 
         val swipeRefreshLayout = binding.root

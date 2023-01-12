@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">DrivioApp</string>
+    <string name="add_electric_car">Add electric car</string>
     <string name="discover">Fragment Discover!</string>
     <string name="bookings">Fragment Bookings!</string>
     <string name="messages">Fragment Messages!</string>
@@ -16,6 +17,9 @@
     <string name="user_list">UserList</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="take_picture" />
+    <string name="take_picture_description" />
+
     <string name="action_update_user">Update</string>
 </resources>
 
