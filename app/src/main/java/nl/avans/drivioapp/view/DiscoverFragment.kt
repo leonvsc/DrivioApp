@@ -8,6 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 
@@ -55,19 +57,14 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
                 bundleOf("advertisementId" to advertisement[position].advertisementId)
             )
         }
-//        replaceFragment(AdvertisementDetailsFragment())
+        findNavController().navigate(R.id.action_discoverFragment_to_advertisementDetailsFragment)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.flFragment, fragment)
-//        fragmentTransaction?.commit()
-//    }
 
 }
 
