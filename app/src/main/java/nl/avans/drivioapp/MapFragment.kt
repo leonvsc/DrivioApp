@@ -5,9 +5,12 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -57,6 +60,10 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
                         .position(carLocation)
                 )
                 marker?.tag = carLocation
+                map.setOnMarkerClickListener {
+                    Toast.makeText(activity, electricCars[index].model, Toast.LENGTH_SHORT).show()
+                    true
+                }
             }
         }
     }
