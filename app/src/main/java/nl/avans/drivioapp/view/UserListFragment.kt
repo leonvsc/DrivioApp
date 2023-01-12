@@ -67,6 +67,11 @@ class UserListFragment : Fragment() {
             val action = UserListFragmentDirections.actionUserListFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        binding.floatingActionButton2.setOnClickListener {
+            val action = UserListFragmentDirections.actionUserListFragmentToProfileFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     private fun deleteAllUsers() {

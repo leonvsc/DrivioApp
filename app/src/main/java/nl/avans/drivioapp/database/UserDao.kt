@@ -23,5 +23,12 @@ interface UserDao {
 
     @Query("SELECT * FROM user_credentials ORDER BY id ASC")
     fun getAllUsers(): LiveData<List<User>>
+
+    @Query("SELECT * FROM user_credentials WHERE email LIKE :email AND password LIKE :password")
+    fun getUserCredentialData(email: String, password: String): LiveData<User>
 }
+
+
+
+
 

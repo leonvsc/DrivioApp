@@ -35,10 +35,6 @@ class ProfileFragment : Fragment() {
         binding.registerBtn.setOnClickListener {
             viewModel.setRegisterButton(it)
         }
-
-        binding.listOfUserBtn.setOnClickListener {
-            viewModel.setUserListButton(it)
-        }
     }
 
     override fun onDestroyView() {

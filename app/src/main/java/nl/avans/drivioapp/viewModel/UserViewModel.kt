@@ -10,10 +10,10 @@ import nl.avans.drivioapp.database.UserDatabase
 import nl.avans.drivioapp.database.UserRepository
 import nl.avans.drivioapp.model.User
 
-// Let op! deze viewmodel is anders dan een gewone viewmodel want het bevat een application reference
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     val getAllUsers: LiveData<List<User>>
+    private var readUserCredentialData: LiveData<User>? = null
     private val repository: UserRepository
 
 
@@ -21,6 +21,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
         getAllUsers = repository.getAllUsers
+        readUserCredentialData = repository.readUserCredentialData
     }
 
     fun addUser(user: User) {
@@ -46,7 +47,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             repository.deleteAllUsers()
         }
     }
+
+    fun getLoginDetails(email: String, password: String): LiveData<User> {
+        return repository.getLoginDetails(email, password)
+    }
 }
+
+
+
+
+
 
 
 

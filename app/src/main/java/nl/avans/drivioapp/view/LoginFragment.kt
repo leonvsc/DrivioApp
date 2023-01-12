@@ -5,20 +5,59 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
+import nl.avans.drivioapp.databinding.FragmentLoginBinding
+import nl.avans.drivioapp.viewModel.UserViewModel
 
 class LoginFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var userViewModel: UserViewModel
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        val userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
+        binding.login.setOnClickListener {
+            val email = binding.emailLogin.text.toString()
+            val password = binding.passwordLogin.text.toString()
+
+            userViewModel.getLoginDetails(email, password)
+                .observe(viewLifecycleOwner, Observer { user ->
+                    if (user == null) {
+                        Toast.makeText(requireContext(), "User credentials incorrect!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Welcome ${user.email}", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_loginFragment_to_discoverFragment)
+                    }
+                })
+        }
+
+        return binding.root
+    }
+
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

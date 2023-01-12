@@ -6,7 +6,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Parcelize // Serialization
+
+@Parcelize // safe-args
 @Entity(tableName = "user_credentials")
 data class User(
     @PrimaryKey(autoGenerate = true) val id: Int,

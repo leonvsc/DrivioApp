@@ -17,10 +17,6 @@ class ProfileViewModel : ViewModel() {
         Navigation.findNavController(view).navigate(action)
     }
 
-    fun setUserListButton(view: View) {
-        val action = ProfileFragmentDirections.actionProfileFragmentToUserListFragment()
-        Navigation.findNavController(view).navigate(action)
-    }
 }
 
 
