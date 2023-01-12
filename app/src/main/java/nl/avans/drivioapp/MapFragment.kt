@@ -63,7 +63,7 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
                 map.setOnMarkerClickListener {
                     Toast.makeText(activity, electricCars[index].model, Toast.LENGTH_SHORT).show()
                     true
-                }
+                } // TODO: Shows only the last one in the list.
             }
         }
     }
