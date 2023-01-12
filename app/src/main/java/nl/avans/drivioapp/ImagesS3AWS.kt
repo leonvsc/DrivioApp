@@ -4,7 +4,6 @@ import aws.sdk.kotlin.services.s3.*
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.smithy.kotlin.runtime.content.asByteStream
 import java.io.File
-import kotlin.system.exitProcess
 
 class ImagesS3AWS {
 

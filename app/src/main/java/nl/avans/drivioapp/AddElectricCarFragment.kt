@@ -1,57 +1,46 @@
 package nl.avans.drivioapp
 
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.appsearch.SetSchemaRequest.READ_EXTERNAL_STORAGE
 import android.content.ActivityNotFoundException
+import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Base64
-import android.util.Base64.encodeToString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker
-import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import aws.sdk.kotlin.services.s3.S3Client
-import aws.sdk.kotlin.services.s3.model.PutObjectRequest
-import aws.smithy.kotlin.runtime.content.asByteStream
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
-import java.io.ByteArrayOutputStream
-import java.io.File
+import java.util.*
 
 
 class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val addElectricCarViewModel: AddElectricCarViewModel by viewModels();
     private var _binding: FragmentAddElectricCarBinding? = null;
     private val binding get() = _binding!!;
-
     private val REQUEST_CODE = 100
     private val REQUEST_IMAGE_CAPTURE = 1
+    private var imageUri: Uri? = null
 
 
     private fun dispatchTakePictureIntent() {
+        val values = ContentValues()
+        values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
+        values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
+
+        imageUri = activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         } catch (e: ActivityNotFoundException) {
-            // display error state to the user
+            Toast.makeText(activity, "Failed, picture not uploaded", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -61,14 +50,16 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         startActivityForResult(intent, REQUEST_CODE)
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java but not in Kotlin")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
-            println("Image uploaded")
-            val imageUri: Uri? = data?.data;
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+            binding.ivUploadedImage.setImageURI(data?.data)
+        } else if (resultCode == Activity.RESULT_OK) {
             binding.ivUploadedImage.setImageURI(imageUri)
+            println("Picture data is: $imageUri")
         }
+
     }
 
     override fun onCreateView(
