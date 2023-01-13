@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import aws.sdk.kotlin.services.s3.*
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest

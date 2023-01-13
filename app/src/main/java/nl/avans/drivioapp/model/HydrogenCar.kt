@@ -38,5 +38,5 @@ data class HydrogenCar(
 	val brand: String,
 
 	@Json(name="user")
-	val user: User
+	val user: User1
 )

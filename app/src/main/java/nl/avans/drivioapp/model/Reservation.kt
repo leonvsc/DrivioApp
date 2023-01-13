@@ -12,7 +12,7 @@ data class Reservation(
     @Json(name = "availabilityStatus")
     val availabilityStatus: Boolean,
     @Json(name = "user")
-    val user: User,
+    val user: User1,
     @Json(name = "advertisement")
     val advertisement: Advertisement
 )

@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
-import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,7 +68,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 price,
                 startDate,
                 endDate,
-                User(47)
+                User1(47)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
 
