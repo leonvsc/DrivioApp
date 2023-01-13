@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import java.text.SimpleDateFormat
@@ -59,6 +60,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
             val price = binding.etPrice.text.toString().toDouble()
             val startDate = startDate
             val endDate = endDate
+            val carId = 55
 
             val advertisement = Advertisement(
                 null,
@@ -67,7 +69,8 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 price,
                 startDate,
                 endDate,
-                User(47)
+                User(47),
+                ElectricCar(carId)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
 

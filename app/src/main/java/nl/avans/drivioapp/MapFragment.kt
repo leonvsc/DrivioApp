@@ -50,7 +50,12 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
         addElectricCarViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             val electricCars = addElectricCarViewModel.electricCarResponse.value!!
             for (electricCar in electricCars) {
-                carLocation.add(LatLng(electricCar.latitude, electricCar.longitude))
+                electricCar.latitude?.let { it1 -> electricCar.longitude?.let { it2 ->
+                    LatLng(it1,
+                        it2
+                    )
+                } }
+                    ?.let { it2 -> carLocation.add(it2) }
             }
 
             carLocation.forEachIndexed {index, carLocation ->

@@ -1,6 +1,5 @@
 package nl.avans.drivioapp.model
 
-import com.google.android.gms.maps.model.LatLng
 import com.squareup.moshi.Json
 
 data class ElectricCar(
@@ -8,47 +7,67 @@ data class ElectricCar(
     val carId: Int?,
 
     @Json(name = "fastChargeSpeed")
-    val fastChargeSpeed: Int,
+    val fastChargeSpeed: Int?,
 
     @Json(name = "carRange")
-    val carRange: Int,
+    val carRange: Int?,
 
     @Json(name = "chargeConnection")
-    val chargeConnection: String,
+    val chargeConnection: String?,
 
     @Json(name = "buildYear")
-    val buildYear: Int,
+    val buildYear: Int?,
 
     @Json(name = "numberPlate")
-    val numberPlate: String,
+    val numberPlate: String?,
 
     @Json(name = "chargeSpeed")
-    val chargeSpeed: Int,
+    val chargeSpeed: Int?,
 
     @Json(name = "carType")
-    val carType: String,
+    val carType: String?,
 
     @Json(name = "fuelType")
-    val fuelType: String,
+    val fuelType: String?,
 
     @Json(name = "model")
-    val model: String,
+    val model: String?,
 
     @Json(name = "whPerKm")
-    val whPerKm: Any,
+    val whPerKm: Any?,
 
     @Json(name = "gearBox")
-    val gearBox: String,
+    val gearBox: String?,
 
     @Json(name = "brand")
-    val brand: String,
+    val brand: String?,
 
     @Json(name = "user")
-    val user: User,
+    val user: User?,
 
     @Json(name = "latitude")
-    val latitude: Double,
+    val latitude: Double?,
 
     @Json(name = "longitude")
-    val longitude: Double
-)
+    val longitude: Double?
+) {
+    constructor(carId: Int?) : this(
+        carId,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    )
+
+}

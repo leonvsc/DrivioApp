@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentEditAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import retrofit2.Response
@@ -50,6 +51,7 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
             val etPrice = binding.etPrice
             val etStartDate = binding.etStartDate
             val etEndDate = binding.etEndDate
+            val carId = advertisement.body()?.electricCar?.carId
 
             etTitle.setText(advertisement.body()?.title.toString())
             etDescription.setText(advertisement.body()?.description.toString())
@@ -102,7 +104,8 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
                     price,
                     startDate,
                     endDate,
-                    User(47)
+                    User(47),
+                    ElectricCar(carId)
                 )
                 advertisementViewModel.putAdvertisementWithResponse(advertisement)
             }
