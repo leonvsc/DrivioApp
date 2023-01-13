@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
@@ -72,7 +73,7 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
                 "carDetailsId",
                 bundleOf("carDetailsId" to carId)
             )
-//            replaceFragment(UpdateCarFragment())
+            findNavController().navigate(R.id.action_myCarDetailsFragment_to_updateCarFragment)
         }
 
     }
@@ -81,11 +82,4 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         super.onDestroyView()
         _binding = null
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.flFragment, fragment)
-//        fragmentTransaction?.commit()
-//    }
-
 }

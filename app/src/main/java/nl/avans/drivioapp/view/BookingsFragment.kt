@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.ReservationAdapter
 import nl.avans.drivioapp.databinding.FragmentBookingsBinding
@@ -56,12 +57,6 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
                 bundleOf("reservationId" to reservation[position].reservationId)
             )
         }
-//        replaceFragment(ReservationDetailsFragment())
+        findNavController().navigate(R.id.action_bookingsFragment_to_reservationDetailsFragment)
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.flFragment, fragment)
-//        fragmentTransaction?.commit()
-//    }
 }

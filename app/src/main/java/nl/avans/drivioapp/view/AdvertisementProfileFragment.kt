@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
 import nl.avans.drivioapp.databinding.FragmentAdvertisementProfileBinding
@@ -47,7 +48,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
         }
 
         binding.btnCreateAdvertisement.setOnClickListener {
-//            replaceFragment(CreateAdvertisementFragment())
+            findNavController().navigate(R.id.action_advertisementProfileFragment_to_createAdvertisementFragment)
         }
     }
 
@@ -58,12 +59,6 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
                 bundleOf("advertisementId" to advertisementByUser[position].advertisementId)
             )
         }
-//        replaceFragment(AdvertisementDetailsFragment())
+        findNavController().navigate(R.id.action_advertisementProfileFragment_to_advertisementDetailsFragment)
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.flFragment, fragment)
-//        fragmentTransaction?.commit()
-//    }
 }

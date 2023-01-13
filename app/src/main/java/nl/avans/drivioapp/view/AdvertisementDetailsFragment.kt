@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.model.Advertisement
@@ -78,7 +79,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val ibtnEdit = binding.ibtnEdit
 
         ibtnEdit.setOnClickListener {
-//            replaceFragment(EditAdvertisement())
+            findNavController().navigate(R.id.action_advertisementDetailsFragment_to_editAdvertisement)
         }
 
         advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
@@ -123,10 +124,4 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             }
         }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-//        fragmentTransaction?.replace(R.id.flFragment, fragment)
-//        fragmentTransaction?.commit()
-//    }
 }
