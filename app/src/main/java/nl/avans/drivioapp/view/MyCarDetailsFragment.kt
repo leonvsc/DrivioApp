@@ -1,15 +1,18 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
 
@@ -41,11 +44,19 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             carId = bundle.getInt("carId")
             myCarsViewModel.getElectricCarById(carId!!)
 
-//            binding.btnDeleteCar.setOnClickListener {
-//                myCarsViewModel.deleteElectricCar(carId!!)
-////                TimeUnit.SECONDS.sleep(1)
-////                replaceFragment(MyCarsFragment())
-//            }
+            binding.btnDeleteCar.setOnClickListener {
+                myCarsViewModel.deleteElectricCarWithResponse(carId!!)
+
+                myCarsViewModel.deleteFuelCarResponse.observe(viewLifecycleOwner) {
+                    val response = myCarsViewModel.deleteFuelCarResponse.value
+//                  TODO: Make the button navigate to another page
+                    if (response?.code() == 200) {
+                        Toast.makeText(activity, "Deleted!!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {
@@ -62,7 +73,7 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
                 "carDetailsId",
                 bundleOf("carDetailsId" to carId)
             )
-            replaceFragment(UpdateCarFragment())
+            findNavController().navigate(R.id.action_myCarDetailsFragment_to_updateCarFragment)
         }
 
     }
@@ -71,11 +82,4 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.flFragment, fragment)
-        fragmentTransaction?.commit()
-    }
-
 }

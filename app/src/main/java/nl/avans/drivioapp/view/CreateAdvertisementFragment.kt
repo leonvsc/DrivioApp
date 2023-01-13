@@ -12,6 +12,7 @@ import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -69,7 +70,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 price,
                 startDate,
                 endDate,
-                User(47),
+                User1(47),
                 ElectricCar(carId)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)

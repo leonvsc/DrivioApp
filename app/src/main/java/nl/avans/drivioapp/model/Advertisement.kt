@@ -16,7 +16,7 @@ data class Advertisement(
     @Json(name = "endDate")
     val endDate: String?,
     @Json(name="user")
-    val user: User?,
+    val user: User1?,
     @Json(name="electricCar")
     val electricCar: ElectricCar?
 )

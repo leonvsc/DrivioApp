@@ -25,4 +25,16 @@ object DrivioApi {
     val reservationService: ReservationService by lazy {
         retrofit.create(ReservationService::class.java)
     }
+    val electricCarService: ElectricCarService by lazy {
+        retrofit.create(ElectricCarService::class.java)
+    }
+    val fuelCarService: FuelCarService by lazy {
+        retrofit.create(FuelCarService::class.java)
+    }
+    val hydrogenCarService: HydrogenCarService by lazy {
+        retrofit.create(HydrogenCarService::class.java)
+    }
+    val statisticsService: StatisticsService by lazy {
+        retrofit.create(StatisticsService::class.java)
+    }
 }

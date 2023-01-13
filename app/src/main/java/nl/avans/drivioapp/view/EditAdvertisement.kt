@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentEditAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
@@ -104,7 +106,7 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
                     price,
                     startDate,
                     endDate,
-                    User(47),
+                    User1(47),
                     ElectricCar(carId)
                 )
                 advertisementViewModel.putAdvertisementWithResponse(advertisement)

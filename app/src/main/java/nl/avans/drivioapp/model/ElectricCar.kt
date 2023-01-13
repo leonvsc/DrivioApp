@@ -43,7 +43,7 @@ data class ElectricCar(
     val brand: String?,
 
     @Json(name = "user")
-    val user: User?,
+    val user: User1?,
 
     @Json(name = "latitude")
     val latitude: Double?,
@@ -69,5 +69,4 @@ data class ElectricCar(
         null,
         null
     )
-
 }

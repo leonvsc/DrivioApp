@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Reservation
 import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import nl.avans.drivioapp.viewModel.ReservationViewModel
 import retrofit2.Response
@@ -76,7 +79,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val ibtnEdit = binding.ibtnEdit
 
         ibtnEdit.setOnClickListener {
-            replaceFragment(EditAdvertisement())
+            findNavController().navigate(R.id.action_advertisementDetailsFragment_to_editAdvertisement)
         }
 
         advertisementViewModel.getAdvertisementByIdResponse.observe(viewLifecycleOwner) {
@@ -103,7 +106,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 advertisement.body()?.startDate.toString(),
                 advertisement.body()?.endDate.toString(),
                 true,
-                User(29),
+                User1(47),
                 Advertisement(advertisementId)
             )
 
@@ -120,11 +123,5 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 }
             }
         }
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.flFragment, fragment)
-        fragmentTransaction?.commit()
     }
 }

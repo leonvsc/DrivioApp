@@ -34,8 +34,8 @@ data class FuelCar(
     @Json(name = "tankSize")
     val tankSize: Int,
 
-    @Json(name = "user")
-    val user: User,
+	@Json(name="user")
+	val user: User1,
 
     @Json(name = "latitude")
     val latitude: Double,

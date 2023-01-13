@@ -1,15 +1,17 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
 
@@ -82,19 +84,23 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 whPerKm,
                 gearBox,
                 brand,
-                User(23),
+                User1(23),
                 0.0,
                 0.0
             )
-            addElectricCarViewModel.postElectricCar(electricCar);
+            addElectricCarViewModel.putElectricCarWithResponse(electricCar)
+
+            addElectricCarViewModel.putElectricCarWithResponse.observe(viewLifecycleOwner) {
+                val response = addElectricCarViewModel.putElectricCarWithResponse.value
+//              TODO: Make switch to other fragment after put
+                if (response?.code() == 200) {
+                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
+                }
         }
 
     }
-
-        private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.flFragment, fragment)
-        fragmentTransaction?.commit()
     }
 }
 
