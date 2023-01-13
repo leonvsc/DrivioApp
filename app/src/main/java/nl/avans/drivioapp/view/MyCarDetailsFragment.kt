@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
 

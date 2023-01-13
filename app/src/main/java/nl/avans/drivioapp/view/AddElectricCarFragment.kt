@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -13,9 +13,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import java.util.*

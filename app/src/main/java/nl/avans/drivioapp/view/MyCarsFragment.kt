@@ -1,4 +1,4 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.MyCarsAdapter
 import nl.avans.drivioapp.databinding.FragmentMyCarsBinding
 import nl.avans.drivioapp.model.ElectricCar

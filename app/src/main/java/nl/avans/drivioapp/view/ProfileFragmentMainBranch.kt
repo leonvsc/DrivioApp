@@ -1,14 +1,14 @@
-package nl.avans.drivioapp
+package nl.avans.drivioapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import nl.avans.drivioapp.databinding.FragmentAdvertisementProfileBinding
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentProfileBinding
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragmentMainBranch : Fragment(R.layout.fragment_profile) {
     private var _binding: FragmentProfileBinding? = null;
     private val binding get() = _binding!!;
 
