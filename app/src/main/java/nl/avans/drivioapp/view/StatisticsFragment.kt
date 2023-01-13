@@ -55,6 +55,6 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics),
                 bundleOf("statisticId" to statistic[position].statisticId)
             )
         }
-        findNavController().navigate(R.id.action_statisticsFragment_to_reservationDetailsFragment)
+        findNavController().navigate(R.id.action_statisticsFragment_to_statisticDetailsFragment)
     }
 }

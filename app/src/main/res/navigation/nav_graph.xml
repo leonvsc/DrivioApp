@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_profileFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loggedInFragment"
+            app:destination="@id/loggedInFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -85,9 +88,9 @@
     </fragment>
     <fragment
         android:id="@+id/updateUFragment"
-        android:name="nl.avans.drivioapp.view.UpdateUFragment"
+        android:name="nl.avans.drivioapp.view.UpdateUserFragment"
         android:label="Update"
-        tools:layout="@layout/fragment_update_u">
+        tools:layout="@layout/fragment_update_user">
         <action
             android:id="@+id/action_updateUFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
@@ -167,8 +170,48 @@
         android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" >
         <action
-            android:id="@+id/action_statisticsFragment_to_reservationDetailsFragment"
-            app:destination="@id/reservationDetailsFragment" />
+            android:id="@+id/action_statisticsFragment_to_statisticDetailsFragment"
+            app:destination="@id/statisticDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addElectricCarFragment"
+        android:name="nl.avans.drivioapp.view.AddElectricCarFragment"
+        android:label="AddElectricCarFragment" />
+    <fragment
+        android:id="@+id/loggedInFragment"
+        android:name="nl.avans.drivioapp.view.LoggedInFragment"
+        android:label="fragment_logged_in"
+        tools:layout="@layout/fragment_logged_in" >
+        <action
+            android:id="@+id/action_loggedInFragment_to_addElectricCarFragment"
+            app:destination="@id/addElectricCarFragment" />
+        <action
+            android:id="@+id/action_loggedInFragment_to_addFuelCarFragment"
+            app:destination="@id/addFuelCarFragment" />
+        <action
+            android:id="@+id/action_loggedInFragment_to_addHydrogenCarFragment"
+            app:destination="@id/addHydrogenCarFragment" />
+        <action
+            android:id="@+id/action_loggedInFragment_to_myCarsFragment"
+            app:destination="@id/myCarsFragment" />
+        <action
+            android:id="@+id/action_loggedInFragment_to_advertisementProfileFragment"
+            app:destination="@id/advertisementProfileFragment" />
+        <action
+            android:id="@+id/action_loggedInFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFuelCarFragment"
+        android:name="nl.avans.drivioapp.view.AddFuelCarFragment"
+        android:label="AddFuelCarFragment" />
+    <fragment
+        android:id="@+id/addHydrogenCarFragment"
+        android:name="nl.avans.drivioapp.view.AddHydrogenCarFragment"
+        android:label="AddHydrogenCarFragment" />
+    <fragment
+        android:id="@+id/statisticDetailsFragment"
+        android:name="nl.avans.drivioapp.view.StatisticDetailsFragment"
+        android:label="StatisticDetailsFragment" />
 </navigation>
 

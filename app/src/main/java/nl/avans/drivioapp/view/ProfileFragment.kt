@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentProfileBinding
 import nl.avans.drivioapp.viewModel.ProfileViewModel
 
@@ -34,6 +36,10 @@ class ProfileFragment : Fragment() {
 
         binding.registerBtn.setOnClickListener {
             viewModel.setRegisterButton(it)
+        }
+
+        binding.btnLoggedIn.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_loggedInFragment)
         }
     }
 

@@ -3,24 +3,24 @@ package nl.avans.drivioapp.view
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import nl.avans.drivioapp.R
-import nl.avans.drivioapp.databinding.FragmentUpdateUBinding
+import nl.avans.drivioapp.databinding.FragmentUpdateUserBinding
 import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.UserViewModel
 
-class UpdateUFragment : Fragment() {
+class UpdateUserFragment : Fragment() {
 
-    private val args by navArgs<UpdateUFragmentArgs>()
+    private val args by navArgs<UpdateUserFragmentArgs>()
     private lateinit var userViewModel: UserViewModel
 
-    private var _binding: FragmentUpdateUBinding? = null
+    private var _binding: FragmentUpdateUserBinding? = null
     private val binding get() = _binding!!
 
 
@@ -29,7 +29,7 @@ class UpdateUFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentUpdateUBinding.inflate(inflater, container, false)
+        _binding = FragmentUpdateUserBinding.inflate(inflater, container, false)
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
