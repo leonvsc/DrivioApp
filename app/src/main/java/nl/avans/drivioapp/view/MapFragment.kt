@@ -37,11 +37,6 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
         map = googleMap
         addMarkers()
         getLocationAccess()
-        val amsterdamBounds = LatLngBounds(
-            LatLng((52.251333), 4.654195),  // SW bounds
-            LatLng((52.464782), 5.086095) // NE bounds
-        )
-        map.moveCamera(CameraUpdateFactory.newLatLngBounds(amsterdamBounds, 0))
     }
 
     private fun addMarkers() {
@@ -49,12 +44,7 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
         addElectricCarViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             val electricCars = addElectricCarViewModel.electricCarResponse.value!!
             for (electricCar in electricCars) {
-                electricCar.latitude?.let { it1 -> electricCar.longitude?.let { it2 ->
-                    LatLng(it1,
-                        it2
-                    )
-                } }
-                    ?.let { it2 -> carLocation.add(it2) }
+                carLocation.add(LatLng(electricCar.latitude!!, electricCar.longitude!!))
             }
 
             carLocation.forEachIndexed {index, carLocation ->
@@ -64,10 +54,6 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
                         .position(carLocation)
                 )
                 marker?.tag = carLocation
-                map.setOnMarkerClickListener {
-                    Toast.makeText(activity, electricCars[index].model, Toast.LENGTH_SHORT).show()
-                    true
-                } // TODO: Shows only the last one in the list.
             }
         }
     }
