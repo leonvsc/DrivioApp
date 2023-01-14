@@ -1,4 +1,4 @@
-package nl.avans.drivioapp.view
+package nl.avans.drivioapp.AWS
 
 import aws.sdk.kotlin.services.s3.*
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
@@ -9,6 +9,7 @@ class ImagesS3AWS {
 
     suspend fun putS3Object(bucketName: String, objectKey: String, objectPath: String) {
 
+        println("PutS3Object accessed")
         val metadataVal = mutableMapOf<String, String>()
         metadataVal["myVal"] = "test"
 

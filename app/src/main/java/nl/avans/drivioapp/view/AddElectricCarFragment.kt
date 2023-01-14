@@ -13,11 +13,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import nl.avans.drivioapp.AWS.ImagesS3AWS
+import nl.avans.drivioapp.AWS.`s3-constants`
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.util.*
 
 
@@ -28,6 +36,8 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val REQUEST_CODE = 100
     private val REQUEST_IMAGE_CAPTURE = 1
     private var imageUri: Uri? = null
+    private var file: File? = null
+    private var imageToS3: Unit? = null
 
 
     private fun dispatchTakePictureIntent() {
@@ -55,10 +65,31 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
-            binding.ivUploadedImage.setImageURI(data?.data)
+            imageUri = data?.data
+            binding.ivUploadedImage.setImageURI(imageUri)
+            val inputStream: InputStream? = imageUri?.let {
+                activity?.contentResolver?.openInputStream(
+                    it
+                )
+            }
+            file = File.createTempFile("image", imageUri!!.lastPathSegment)
+            println("File = $file")
+            val outStream: OutputStream = FileOutputStream(file)
+
+            imageToS3 = outStream.write(inputStream!!.readBytes())
+            println("Image to S3 = " + imageToS3.toString())
         } else if (resultCode == Activity.RESULT_OK) {
             binding.ivUploadedImage.setImageURI(imageUri)
             println("Picture data is: $imageUri")
+            val inputStream: InputStream? = imageUri?.let {
+                activity?.contentResolver?.openInputStream(
+                    it
+                )
+            }
+            file = File.createTempFile("image", imageUri!!.lastPathSegment)
+            val outStream: OutputStream = FileOutputStream(file)
+
+            imageToS3 = outStream.write(inputStream!!.readBytes())
         }
 
     }
@@ -85,36 +116,37 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 
         binding.postElectricCarBtn.setOnClickListener {
 
-            val fastChargeSpeed = binding.etFastChargeSpeed.text.toString().toInt()
-            val carRange = binding.etCarRange.text.toString().toInt()
-            val chargeConnection = binding.etChargeConnection.text.toString()
-            val buildYear = binding.etBuildYear.text.toString().toInt()
-            val numberPlate = binding.etNumberPlate.text.toString()
-            val chargeSpeed = binding.etChargeSpeed.text.toString().toInt()
-            val carType = binding.etCarType.text.toString()
-            val fuelType = binding.etFuelType.text.toString()
-            val model = binding.etModel.text.toString()
-            val whPerKm = binding.etWhPerKm.text.toString().toInt()
-            val gearBox = binding.etGearBox.text.toString()
-            val brand = binding.etBrand.text.toString()
-
-            val electricCar = ElectricCar(
-                null,
-                fastChargeSpeed,
-                carRange,
-                chargeConnection,
-                buildYear,
-                numberPlate,
-                chargeSpeed,
-                carType,
-                fuelType,
-                model,
-                whPerKm,
-                gearBox,
-                brand,
-                User1(23)
-            )
-            addElectricCarViewModel.postElectricCarWithResponse(electricCar);
+//            val fastChargeSpeed = binding.etFastChargeSpeed.text.toString().toInt()
+//            val carRange = binding.etCarRange.text.toString().toInt()
+//            val chargeConnection = binding.etChargeConnection.text.toString()
+//            val buildYear = binding.etBuildYear.text.toString().toInt()
+//            val numberPlate = binding.etNumberPlate.text.toString()
+//            val chargeSpeed = binding.etChargeSpeed.text.toString().toInt()
+//            val carType = binding.etCarType.text.toString()
+//            val fuelType = binding.etFuelType.text.toString()
+//            val model = binding.etModel.text.toString()
+//            val whPerKm = binding.etWhPerKm.text.toString().toInt()
+//            val gearBox = binding.etGearBox.text.toString()
+//            val brand = binding.etBrand.text.toString()
+//
+//            val electricCar = ElectricCar(
+//                null,
+//                fastChargeSpeed,
+//                carRange,
+//                chargeConnection,
+//                buildYear,
+//                numberPlate,
+//                chargeSpeed,
+//                carType,
+//                fuelType,
+//                model,
+//                whPerKm,
+//                gearBox,
+//                brand,
+//                User1(23)
+//            )
+//            addElectricCarViewModel.postElectricCarWithResponse(electricCar);
+            addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME, "test", file.toString())
 
             addElectricCarViewModel.postElectricCarResponse.observe(viewLifecycleOwner) {
                 val response = addElectricCarViewModel.postElectricCarResponse.value
