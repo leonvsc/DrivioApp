@@ -53,6 +53,92 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFuelType" />
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etNewPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:hint="New price"
+                    android:inputType="number"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etAdditionalCosts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:hint="Additional costs"
+                    android:inputType="number"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_calculate_tco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculate TCO" />
+
+            <TextView
+                android:id="@+id/tvTCO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TCO" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etYearsOfUse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:hint="Years of use"
+                    android:inputType="number"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_calculate_usage_costs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculate usage costs" />
+
+            <TextView
+                android:id="@+id/tvUsageCosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TCO" />
+
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/btnUpdateCar"
         style="?attr/materialIconButtonStyle"
