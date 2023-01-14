@@ -8,6 +8,21 @@
     android:padding="20dp"
     tools:context=".view.UpdateUserFragment">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/erase_user_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="95dp"
+        android:clickable="true"
+        android:contentDescription="delete_user"
+        android:focusable="true"
+        android:src="@drawable/ic_delete"
+        android:tint="@color/white"
+        android:tooltipText="@string/delete_user_tooltip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <EditText
         android:id="@+id/update_email"
@@ -22,7 +37,8 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/update_password"
@@ -57,6 +73,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update_password"
         app:layout_constraintVertical_bias="0.2" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

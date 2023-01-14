@@ -44,10 +44,14 @@ class RegisterFragment : Fragment() {
         val email = binding.editEmail.text.toString()
         val password = binding.editPassword.text.toString()
 
+        // if email field and password field not empty..
         if (validateInput(email, password)) {
+            // make new user object
             val user = User(0, email, password)
+            // add user to the database
             userViewModel.addUser(user)
             Toast.makeText(requireContext(), "New User Successfully added", Toast.LENGTH_SHORT).show()
+            // navigate to user list fragment
             findNavController().navigate(R.id.action_registerFragment_to_userListFragment)
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT).show()

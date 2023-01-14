@@ -62,9 +62,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setLocale(language: String) {
 
+        // Set country language
         val locale = Locale(language)
         Locale.setDefault(locale)
 
+        // Configuration for country language
         val config = Configuration()
         config.locale = locale
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)

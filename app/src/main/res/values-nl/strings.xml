@@ -22,6 +22,11 @@
 
     <string name="action_update_user">Wijzig</string>
     <string name="change_language">EN/NL</string>
-    <string name="translate">Vertaal</string>
+    <string name="translate">Kies uw taal</string>
+    <string name="delete_all_users_tooltip">Verwijder alle gebruikers</string>
+    <string name="add_new_user">Nieuwe gebruiker</string>
+    <string name="back_to_login">Inloggen</string>
+    <string name="delete_user_tooltip">Verwijder gebruiker</string>
+
 </resources>
 
