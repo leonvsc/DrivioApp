@@ -4,15 +4,18 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import nl.avans.drivioapp.AWS.ImagesS3AWS
@@ -113,6 +116,11 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         binding.cameraBtn.setOnClickListener {
             dispatchTakePictureIntent()
         }
+
+        val imageView: ImageView = binding.ivUploadedImage
+        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/DSC_0546.JPG"
+
+        Picasso.get().load(url).into(imageView)
 
         binding.postElectricCarBtn.setOnClickListener {
 
