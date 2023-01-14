@@ -23,20 +23,11 @@
         android:label="Bookings"
         tools:layout="@layout/fragment_bookings">
         <action
-            android:id="@+id/action_bookingsFragment_to_messagesFragment"
-            app:destination="@id/messagesFragment" />
+            android:id="@+id/action_bookingsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
         <action
             android:id="@+id/action_bookingsFragment_to_reservationDetailsFragment"
             app:destination="@id/reservationDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/messagesFragment"
-        android:name="nl.avans.drivioapp.view.MessagesFragment"
-        android:label="Messages"
-        tools:layout="@layout/fragment_messages">
-        <action
-            android:id="@+id/action_messagesFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -135,7 +126,7 @@
     </fragment>
     <fragment
         android:id="@+id/createAdvertisementFragment"
-        android:name="nl.avans.drivioapp.view.CreateAdvertisementFragment"
+        android:name="nl.avans.drivioapp.CreateAdvertisementFragment"
         android:label="fragment_create_advertisement"
         tools:layout="@layout/fragment_create_advertisement" />
     <fragment
@@ -213,5 +204,9 @@
         android:id="@+id/statisticDetailsFragment"
         android:name="nl.avans.drivioapp.view.StatisticDetailsFragment"
         android:label="StatisticDetailsFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="nl.avans.drivioapp.view.MapFragment"
+        android:label="MapFragment" />
 </navigation>
 

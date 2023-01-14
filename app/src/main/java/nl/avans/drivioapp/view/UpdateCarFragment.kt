@@ -84,7 +84,9 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 whPerKm,
                 gearBox,
                 brand,
-                User1(23)
+                User1(23),
+                0.0,
+                0.0
             )
             addElectricCarViewModel.putElectricCarWithResponse(electricCar)
 
