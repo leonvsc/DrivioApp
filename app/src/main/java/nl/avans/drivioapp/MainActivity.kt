@@ -1,15 +1,16 @@
 package nl.avans.drivioapp
 
+import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import nl.avans.drivioapp.databinding.ActivityMainBinding
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loadLocale()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,6 +35,50 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = binding.bottomNavigationView
         bottomNavigationView.setupWithNavController(navController)
+
+        binding.languageButton.setOnClickListener {
+            changeLanguage()
+        }
+    }
+
+    private fun changeLanguage() {
+        val languages = arrayOf("English", "Dutch")
+
+        val builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Choose your language")
+        builder.setSingleChoiceItems(languages, -1) { dialog, listItem ->
+            if (listItem == 0) {
+                setLocale("en")
+                recreate()
+            } else if (listItem == 1) {
+                setLocale("nl")
+                recreate()
+            }
+            dialog.dismiss()
+        }
+        val aDialog = builder.create()
+        aDialog.show()
+    }
+
+    private fun setLocale(language: String) {
+
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        editor.putString("Chosen_language", language)
+        editor.apply()
+
+    }
+
+    private fun loadLocale() {
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        val language = sharedPreferences.getString("Chosen_language", "")!!
+        setLocale(language)
     }
 
 //    override fun onSupportNavigateUp(): Boolean {

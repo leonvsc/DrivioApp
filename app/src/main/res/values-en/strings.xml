@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DrivioApp</string>
     <string name="add_electric_car">Add electric car</string>
@@ -16,11 +17,10 @@
     <string name="action_register">Register</string>
     <string name="user_list">UserList</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="take_picture" />
-    <string name="take_picture_description" />
+    <string name="take_picture">Take picture</string>
+    <string name="take_picture_description">Take picture description</string>
 
     <string name="action_update_user">Update</string>
     <string name="change_language">EN/NL</string>
     <string name="translate">Translate</string>
 </resources>
-
