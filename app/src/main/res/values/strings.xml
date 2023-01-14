@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DrivioApp</string>
+    <string name="app_name">Drivio</string>
     <string name="add_electric_car">Add electric car</string>
     <string name="discover">Fragment Discover!</string>
     <string name="bookings">Fragment Bookings!</string>
