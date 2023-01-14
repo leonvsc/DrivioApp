@@ -48,12 +48,19 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.resetLogin.setOnClickListener {
+            reset()
+        }
+
     }
 
+    private fun reset() {
+        binding.emailLogin.setText("")
+        binding.passwordLogin.setText("")
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

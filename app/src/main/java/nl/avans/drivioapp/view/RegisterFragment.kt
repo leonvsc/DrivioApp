@@ -33,6 +33,10 @@ class RegisterFragment : Fragment() {
             insertUserToDatabase()
         }
 
+        binding.resetRegister.setOnClickListener {
+            reset()
+        }
+
         return binding.root
     }
 
@@ -52,6 +56,11 @@ class RegisterFragment : Fragment() {
 
     private fun validateInput(email: String, password: String): Boolean {
         return (email.isNotEmpty() && password.isNotEmpty())
+    }
+
+    private fun reset() {
+        binding.editEmail.setText("")
+        binding.editPassword.setText("")
     }
 
     override fun onDestroyView() {
