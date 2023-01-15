@@ -13,11 +13,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import nl.avans.drivioapp.AWS.`s3-constants`
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.random.Random
 
@@ -29,9 +36,13 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val REQUEST_CODE = 100
     private val REQUEST_IMAGE_CAPTURE = 1
     private var imageUri: Uri? = null
+    private var file: File? = null
+    private var imageToS3: Unit? = null
+    private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-HH-mm")
+    private val currentDateTime: String = LocalDateTime.now().format(formatter)
 
 
-    private fun dispatchTakePictureIntent() {
+    fun dispatchTakePictureIntent() {
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
         values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
@@ -46,7 +57,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         }
     }
 
-    private fun openGalleryForImage() {
+    fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
@@ -56,10 +67,27 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
-            binding.ivUploadedImage.setImageURI(data?.data)
+            imageUri = data?.data
+            binding.ivUploadedImage.setImageURI(imageUri)
+            val inputStream: InputStream? = imageUri?.let {
+                activity?.contentResolver?.openInputStream(
+                    it
+                )
+            }
+            file = File.createTempFile("image", imageUri!!.lastPathSegment)
+            val outStream: OutputStream = FileOutputStream(file)
+            imageToS3 = outStream.write(inputStream!!.readBytes())
+
         } else if (resultCode == Activity.RESULT_OK) {
             binding.ivUploadedImage.setImageURI(imageUri)
-            println("Picture data is: $imageUri")
+            val inputStream: InputStream? = imageUri?.let {
+                activity?.contentResolver?.openInputStream(
+                    it
+                )
+            }
+            file = File.createTempFile("image", imageUri!!.lastPathSegment)
+            val outStream: OutputStream = FileOutputStream(file)
+            imageToS3 = outStream.write(inputStream!!.readBytes())
         }
 
     }
@@ -103,6 +131,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 
             val electricCar = ElectricCar(
                 null,
+                "$currentDateTime.jpg",
                 fastChargeSpeed,
                 carRange,
                 chargeConnection,
@@ -120,6 +149,10 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 randomLongitude
             )
             addElectricCarViewModel.postElectricCarWithResponse(electricCar);
+            if (file != null) {
+            addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME,
+                "$currentDateTime.jpg", file.toString())
+            }
 
             addElectricCarViewModel.postElectricCarResponse.observe(viewLifecycleOwner) {
                 val response = addElectricCarViewModel.postElectricCarResponse.value

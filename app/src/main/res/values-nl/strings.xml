@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DrivioApp</string>
+    <string name="add_electric_car">Toevoegen elektrische voertuig</string>
+    <string name="discover">Ontdekken</string>
+    <string name="bookings">Boeken</string>
+    <string name="messages">Berichten</string>
+    <string name="profile">Profiel</string>
+    <string name="user_welcome_msg">Word lid van het meest innovatieve carsharing-platform van de wereld!</string>
+    <string name="login">Inloggen</string>
+    <string name="register">Registreren</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Wachtwoord</string>
+    <string name="action_sign_in_short">Log in</string>
+    <string name="action_sign_in">Inloggen</string>
+    <string name="reset_sign_in">Resetten</string>
+    <string name="action_register">Registreren</string>
+    <string name="user_list">Gebruikerslijst</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="take_picture">Maak foto</string>
+    <string name="take_picture_description">Maak foto beschrijving</string>
+
+    <string name="action_update_user">Wijzig</string>
+    <string name="change_language">EN/NL</string>
+    <string name="translate">Kies uw taal</string>
+    <string name="delete_all_users_tooltip">Verwijder alle gebruikers</string>
+    <string name="add_new_user">Nieuwe gebruiker</string>
+    <string name="back_to_login">Inloggen</string>
+    <string name="delete_user_tooltip">Verwijder gebruiker</string>
+    <string name="logout">Uitloggen</string>
+    <string name="view_my_cars">Mijn voertuigen</string>
+    <string name="view_my_statistics">Mijn statistieken</string>
+    <string name="my_advertisements">Mijn advertenties</string>
+    <string name="add_hydrogen_car">Toevoegen hydrogen voertuig</string>
+    <string name="add_fuel_car">Toevoegen brandstof voertuig</string>
+    <string name="filter_1">Prijs minder dan 50 euro</string>
+
+</resources>
+

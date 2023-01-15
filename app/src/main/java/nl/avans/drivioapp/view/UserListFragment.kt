@@ -35,8 +35,9 @@ class UserListFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        // Instantiate view model
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.getAllUsers.observe(viewLifecycleOwner, Observer { userList ->   // 'it' was userList , heb get gewoon veranderd, vergeet niet dit is eigenlijk de query die we hadden binnen de userDao
+        userViewModel.getAllUsers.observe(viewLifecycleOwner, Observer { userList ->
             adapter.setData(userList)
         })
 
@@ -46,7 +47,9 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // No longer in use
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
+
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_delete, menu)
             }
@@ -62,6 +65,10 @@ class UserListFragment : Fragment() {
             }
 
         }, viewLifecycleOwner)
+
+        binding.eraseListBtn.setOnClickListener {
+            deleteAllUsers()
+        }
 
         binding.floatingActionButton.setOnClickListener {
             val action = UserListFragmentDirections.actionUserListFragmentToRegisterFragment()

@@ -41,6 +41,16 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
             advertisement = advertisementViewModel.getAdvertisementResponse.value!!
             val recyclerView = binding.recyclerView
             recyclerView.adapter = AdvertisementAdapter(advertisement, this)
+
+            val filter = binding.chip1
+            filter.setOnCheckedChangeListener { chip, isChecked ->
+                if (chip.isChecked) {
+                    val filteredList = advertisement.filter { it.price!! < 50 }
+                    recyclerView.adapter = AdvertisementAdapter(filteredList, this)
+                } else {
+                    recyclerView.adapter = AdvertisementAdapter(advertisement, this)
+                }
+            }
         }
 
         val swipeRefreshLayout = binding.root

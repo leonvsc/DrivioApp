@@ -36,7 +36,7 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars),
         myCarsViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             myCar = myCarsViewModel.electricCarResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = MyCarsAdapter(this, myCar, this)
+            recyclerView.adapter = MyCarsAdapter(myCar, this)
         }
 
         val swipeRefreshLayout = binding.root
