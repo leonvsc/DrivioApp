@@ -33,6 +33,7 @@
     <string name="my_advertisements">Mijn advertenties</string>
     <string name="add_hydrogen_car">Toevoegen hydrogen voertuig</string>
     <string name="add_fuel_car">Toevoegen brandstof voertuig</string>
+    <string name="filter_1">Prijs minder dan 50 euro</string>
 
 </resources>
 
