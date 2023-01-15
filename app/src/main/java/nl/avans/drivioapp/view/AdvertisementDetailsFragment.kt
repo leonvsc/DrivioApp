@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -13,6 +14,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.squareup.picasso.Picasso
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.model.Advertisement
@@ -48,6 +50,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val tvPrice: TextView = binding.tvPrice
         val tvStartDate: TextView = binding.tvStartDate
         val tvEndDate: TextView = binding.tvEndDate
+        val ivUploadedImage: ImageView = binding.ivUploadedImage
 
         setFragmentResultListener("advertisementId") { requestKey, bundle ->
             val advertisementId = bundle.getInt("advertisementId")
@@ -90,6 +93,8 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             tvPrice.text = advertisement.body()?.price.toString()
             tvStartDate.text = advertisement.body()?.startDate.toString()
             tvEndDate.text = advertisement.body()?.endDate.toString()
+            val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${advertisement.body()?.electricCar?.imageUrl}"
+            Picasso.get().load(url).into(ivUploadedImage)
 
             if (advertisement.body()?.user?.userId == 47) {
                 binding.ibtnEdit.isVisible = true

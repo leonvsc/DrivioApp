@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -12,6 +13,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.squareup.picasso.Picasso
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentMyCarDetailsBinding
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
@@ -39,6 +41,7 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         val tvBuildYear: TextView = binding.tvBuildYear
         val tvModel: TextView = binding.tvModel
         val tvFuelType: TextView = binding.tvFuelType
+        val ivUploadedImage: ImageView = binding.ivUploadedImage
 
         setFragmentResultListener("carId") { requestKey, bundle ->
             carId = bundle.getInt("carId")
@@ -67,6 +70,8 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             tvBuildYear.text = myCar?.body()?.buildYear.toString()
             tvModel.text = myCar?.body()?.model.toString()
             tvFuelType.text = myCar?.body()?.fuelType.toString()
+            val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${myCar?.body()?.imageUrl}"
+            Picasso.get().load(url).into(ivUploadedImage)
         }
         binding.btnUpdateCar.setOnClickListener{
             setFragmentResult(

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import nl.avans.drivioapp.view.DiscoverFragment
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
@@ -54,9 +53,8 @@ class AdvertisementAdapter(
         holder.tvPrice.text = item.price.toString()
         holder.tvStartDate.text = item.startDate
         holder.tvEndDate.text = item.endDate
-        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/01-15-12-15.jpg"
+        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${item.electricCar?.imageUrl}"
         Picasso.get().load(url).into(holder.ivUploadedImage)
-
     }
 
     override fun getItemCount() = dataset.size

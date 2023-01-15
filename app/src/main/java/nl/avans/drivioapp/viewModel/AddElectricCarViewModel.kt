@@ -13,7 +13,6 @@ import retrofit2.Response
 private const val TAG = "AddElectricCarViewModel"
 
 class AddElectricCarViewModel : ViewModel() {
-//    private lateinit var imagesS3AWS: ImagesS3AWS
     private val electricCarRepository = ElectricCarRepository()
 
     private val _getElectricCarResponse: MutableLiveData<List<ElectricCar>> = MutableLiveData();
