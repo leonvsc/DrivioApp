@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import nl.avans.drivioapp.AWS.ImagesS3AWS
 import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.repository.ElectricCarRepository
 import retrofit2.Response
@@ -65,6 +66,12 @@ class AddElectricCarViewModel : ViewModel() {
     fun putElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
             _putElectricCarResponse.value = electricCarRepository.putElectricCarWithResponse(electricCar);
+        }
+    }
+
+    fun putImage(bucketName: String, objectKey: String, objectPath: String) {
+        viewModelScope.launch {
+            ImagesS3AWS().putS3Object(bucketName,objectKey,objectPath)
         }
     }
 }

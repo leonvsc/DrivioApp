@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import nl.avans.drivioapp.view.DiscoverFragment
+import com.squareup.picasso.Picasso
 import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
@@ -23,6 +24,7 @@ class AdvertisementAdapter(
         val tvPrice: TextView = binding.tvPrice
         val tvStartDate: TextView = binding.tvStartDate
         val tvEndDate: TextView = binding.tvEndDate
+        val ivUploadedImage: ImageView = binding.ivUploadedImage
 
         init {
             itemView.setOnClickListener(this)
@@ -51,7 +53,8 @@ class AdvertisementAdapter(
         holder.tvPrice.text = item.price.toString()
         holder.tvStartDate.text = item.startDate
         holder.tvEndDate.text = item.endDate
-
+        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${item.electricCar?.imageUrl}"
+        Picasso.get().load(url).into(holder.ivUploadedImage)
     }
 
     override fun getItemCount() = dataset.size

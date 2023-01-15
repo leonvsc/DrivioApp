@@ -36,16 +36,22 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars),
         myCarsViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             myCar = myCarsViewModel.electricCarResponse.value ?: listOf()
             val recyclerView = binding.recyclerView
-            recyclerView.adapter = MyCarsAdapter(this, myCar, this)
+            recyclerView.adapter = MyCarsAdapter(myCar, this)
         }
 
-        val swipeRefreshLayout = binding.root
+        // Make it possible on the page to swipe down for a new reload
+        val swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             myCarsViewModel.getElectricCars()
         }
+
+        binding.btnAddCar.setOnClickListener{
+            findNavController().navigate(R.id.action_myCarsFragment_to_addElectricCarFragment)
+        }
     }
 
+    // Assign the carId to the item where the user clicks on to use in the details fragment
     override fun onItemClick(position: Int) {
         myCarsViewModel.electricCarResponse.observe(viewLifecycleOwner) {
             setFragmentResult(

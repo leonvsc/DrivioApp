@@ -18,6 +18,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String", "AWS_ACCESS_KEY_ID", "\"${properties.getProperty('AWS_ACCESS_KEY_ID')}\""
+        buildConfigField "String", "AWS_SECRET_ACCESS_KEY", "\"${properties.getProperty('AWS_SECRET_ACCESS_KEY')}\""
     }
 
     buildTypes {
@@ -42,6 +47,7 @@ android {
 }
 
 dependencies {
+    // AWS
     implementation("aws.sdk.kotlin:s3:0.19.0-beta")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
@@ -108,8 +114,13 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    
     // Kotlin extensions
     implementation("androidx.fragment:fragment-ktx:1.5.5")
+    
     // Testing Fragments in Isolation
     debugImplementation("androidx.fragment:fragment-testing:1.5.5")
+
 }

@@ -17,7 +17,6 @@
             android:paddingLeft="16dp"
             android:paddingTop="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -27,7 +26,6 @@
             android:layout_margin="0dp"
             android:paddingLeft="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -37,7 +35,6 @@
             android:layout_margin="0dp"
             android:paddingLeft="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -47,7 +44,6 @@
             android:layout_margin="0dp"
             android:paddingLeft="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -58,7 +54,6 @@
             android:paddingLeft="16dp"
             android:paddingBottom="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -69,7 +64,6 @@
             android:paddingLeft="16dp"
             android:paddingBottom="16dp"
             android:textSize="16sp"
-
             />
 
         <TextView
@@ -80,7 +74,6 @@
         android:paddingLeft="16dp"
         android:paddingBottom="16dp"
         android:textSize="16sp"
-
         />
 
         <TextView
@@ -91,8 +84,12 @@
         android:paddingLeft="16dp"
         android:paddingBottom="16dp"
         android:textSize="16sp"
-
         />
+
+        <ImageView
+            android:id="@+id/ivUploadedImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
