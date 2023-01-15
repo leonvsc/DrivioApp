@@ -115,5 +115,11 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    
+    // Kotlin extensions
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
+    
+    // Testing Fragments in Isolation
+    debugImplementation("androidx.fragment:fragment-testing:1.5.5")
 
 }

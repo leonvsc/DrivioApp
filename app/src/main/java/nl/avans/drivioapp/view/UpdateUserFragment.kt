@@ -62,7 +62,11 @@ class UpdateUserFragment : Fragment() {
                 return false
             }
 
-        }, viewLifecycleOwner) // Use Lifecycle.state.RESUMED with onCreateView!
+        }, viewLifecycleOwner) // Use Lifecycle.state.RESUMED with onCreateView! but not here inside onViewCreated()
+
+        binding.eraseUserBtn.setOnClickListener {
+            deleteUser()
+        }
     }
 
     private fun updateUser() {
@@ -70,12 +74,12 @@ class UpdateUserFragment : Fragment() {
         val password = binding.updatePassword.text.toString()
 
         if (validateInput(email, password)) {
-            // make current user object
+            // make user object
             val updatedUser = User(args.currentUser.id, email, password)
-            // update current user object
+            // update user object
             userViewModel.updateUser(updatedUser)
             Toast.makeText(requireContext(), "User Updated Successfully", Toast.LENGTH_SHORT).show()
-            // navigate back
+            // navigate back to the list of users
             findNavController().navigate(R.id.action_updateUFragment_to_userListFragment)
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT)
@@ -88,7 +92,7 @@ class UpdateUserFragment : Fragment() {
     }
 
     private fun deleteUser() {
-        val alert = AlertDialog.Builder(requireContext())
+        val alert = AlertDialog.Builder(requireContext()) // make an alertdialog pop-up window
         alert.setPositiveButton("Yes") { _, _ ->
             userViewModel.deleteUser(args.currentUser)
             Toast.makeText(

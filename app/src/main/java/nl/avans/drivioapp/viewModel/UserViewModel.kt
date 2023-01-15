@@ -17,6 +17,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: UserRepository
 
 
+    // Immediately executed when the class is instantiated.
     init {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
@@ -24,6 +25,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         readUserCredentialData = repository.readUserCredentialData
     }
 
+    // Dispatchers thread pool : IO = input/output. Mostly used for network calls and database queries
     fun addUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUser(user)
