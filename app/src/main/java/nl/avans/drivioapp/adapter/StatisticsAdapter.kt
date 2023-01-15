@@ -33,7 +33,8 @@ class StatisticsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatisticsViewHolder {
-        val binding = ListStatisticsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListStatisticsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return StatisticsViewHolder(binding)
     }

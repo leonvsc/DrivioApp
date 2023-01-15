@@ -16,7 +16,7 @@ import nl.avans.drivioapp.model.Statistic
 import nl.avans.drivioapp.viewModel.StatisticsViewModel
 
 class StatisticsFragment : Fragment(R.layout.fragment_statistics),
-    StatisticsAdapter.OnItemClickListener{
+    StatisticsAdapter.OnItemClickListener {
     private var _binding: FragmentStatisticsBinding? = null;
     private val binding get() = _binding!!;
     private val statisticsViewModel: StatisticsViewModel by viewModels()
@@ -48,6 +48,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics),
             statisticsViewModel.getStatistics()
         }
     }
+
     override fun onItemClick(position: Int) {
         statisticsViewModel.getStatisticsResponse.observe(viewLifecycleOwner) {
             setFragmentResult(

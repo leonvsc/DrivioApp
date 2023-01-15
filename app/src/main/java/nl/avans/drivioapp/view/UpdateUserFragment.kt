@@ -27,7 +27,7 @@ class UpdateUserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateUserBinding.inflate(inflater, container, false)
 
@@ -47,22 +47,25 @@ class UpdateUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // add menu delete to actionbar
-        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_delete, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.delete_icon -> {
-                        deleteUser()
-                        return true
-                    }
+        (requireActivity() as MenuHost).addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.menu_delete, menu)
                 }
-                return false
-            }
 
-        }, viewLifecycleOwner) // Use Lifecycle.state.RESUMED with onCreateView! but not here inside onViewCreated()
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    when (menuItem.itemId) {
+                        R.id.delete_icon -> {
+                            deleteUser()
+                            return true
+                        }
+                    }
+                    return false
+                }
+
+            },
+            viewLifecycleOwner
+        ) // Use Lifecycle.state.RESUMED with onCreateView! but not here inside onViewCreated()
 
         binding.eraseUserBtn.setOnClickListener {
             deleteUser()

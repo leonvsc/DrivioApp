@@ -12,9 +12,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentEditAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
-import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.User
+import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -73,11 +72,21 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
                     .build()
 
             etStartDate.setOnClickListener {
-                activity?.let { it1 -> startDatePicker.show(it1.supportFragmentManager, "DATE_PICKER") }
+                activity?.let { it1 ->
+                    startDatePicker.show(
+                        it1.supportFragmentManager,
+                        "DATE_PICKER"
+                    )
+                }
             }
 
             etEndDate.setOnClickListener {
-                activity?.let { it1 -> endDatePicker.show(it1.supportFragmentManager, "DATE_PICKER") }
+                activity?.let { it1 ->
+                    endDatePicker.show(
+                        it1.supportFragmentManager,
+                        "DATE_PICKER"
+                    )
+                }
             }
 
             startDatePicker.addOnPositiveButtonClickListener {

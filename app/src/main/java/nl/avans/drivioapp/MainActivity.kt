@@ -3,24 +3,18 @@ package nl.avans.drivioapp
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import nl.avans.drivioapp.databinding.ActivityMainBinding
-import nl.avans.drivioapp.databinding.FragmentProfileBinding
-import nl.avans.drivioapp.view.LoginFragment
-import nl.avans.drivioapp.view.ProfileFragment
-import java.util.Locale
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
-//    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 
@@ -31,12 +25,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setSupportActionBar(binding.toolbar)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
 
         val bottomNavigationView = binding.bottomNavigationView
         bottomNavigationView.setupWithNavController(navController)
@@ -87,9 +78,4 @@ class MainActivity : AppCompatActivity() {
         val language = sharedPreferences.getString("Chosen_language", "")!!
         setLocale(language)
     }
-
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-//    }
 }

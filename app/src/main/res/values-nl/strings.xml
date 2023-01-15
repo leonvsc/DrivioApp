@@ -16,10 +16,8 @@
     <string name="reset_sign_in">Resetten</string>
     <string name="action_register">Registreren</string>
     <string name="user_list">Gebruikerslijst</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="take_picture">Maak foto</string>
     <string name="take_picture_description">Maak foto beschrijving</string>
-
     <string name="action_update_user">Wijzig</string>
     <string name="change_language">EN/NL</string>
     <string name="translate">Kies uw taal</string>

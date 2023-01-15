@@ -79,7 +79,8 @@ class ReservationDetailsFragment : Fragment(R.layout.fragment_reservation_detail
             val btnNavigate = binding.btnNavigate
             val carLatitude = reservation.body()?.advertisement?.electricCar?.latitude
             val carLongitude = reservation.body()?.advertisement?.electricCar?.longitude
-            val uri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=${carLatitude},${carLongitude}")
+            val uri =
+                Uri.parse("https://www.google.com/maps/dir/?api=1&destination=${carLatitude},${carLongitude}")
             val mapIntent = Intent(Intent.ACTION_VIEW, uri)
 
             btnNavigate.setOnClickListener {

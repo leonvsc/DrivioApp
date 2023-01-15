@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         Properties properties = new Properties()
-            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
         buildConfigField "String", "AWS_ACCESS_KEY_ID", "\"${properties.getProperty('AWS_ACCESS_KEY_ID')}\""
         buildConfigField "String", "AWS_SECRET_ACCESS_KEY", "\"${properties.getProperty('AWS_SECRET_ACCESS_KEY')}\""
     }
@@ -115,10 +115,10 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-    
+
     // Kotlin extensions
     implementation("androidx.fragment:fragment-ktx:1.5.5")
-    
+
     // Testing Fragments in Isolation
     debugImplementation("androidx.fragment:fragment-testing:1.5.5")
 

@@ -32,7 +32,10 @@ class ReservationAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationAdapter.ReservationViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ReservationAdapter.ReservationViewHolder {
         val binding =
             ListReservationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 

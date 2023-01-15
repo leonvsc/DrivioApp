@@ -50,7 +50,8 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
         values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
 
-        imageUri = activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        imageUri =
+            activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         try {
@@ -185,7 +186,8 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 fileName?.let { it1 ->
                     addElectricCarViewModel.putImage(
                         `s3-constants`.BUCKET_NAME,
-                        it1, file.toString())
+                        it1, file.toString()
+                    )
                 }
             }
 
@@ -198,9 +200,9 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }
-        }
+            }
 
-    }
+        }
     }
 }
 

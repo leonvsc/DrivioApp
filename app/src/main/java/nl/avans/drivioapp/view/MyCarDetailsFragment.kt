@@ -76,11 +76,12 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             tvBuildYear.text = myCar?.body()?.buildYear.toString()
             tvModel.text = myCar?.body()?.model.toString()
             tvFuelType.text = myCar?.body()?.fuelType.toString()
-            val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${myCar?.body()?.imageUrl}"
+            val url =
+                "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${myCar?.body()?.imageUrl}"
             Picasso.get().load(url).into(ivUploadedImage)
         }
         // Set the carId as a result to use it in the update fragment
-        binding.btnUpdateCar.setOnClickListener{
+        binding.btnUpdateCar.setOnClickListener {
             setFragmentResult(
                 "carDetailsId",
                 bundleOf("carDetailsId" to carId)
@@ -89,7 +90,7 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         }
 
         // Navigate to the calculate tco tab
-        binding.btnCalculateTco.setOnClickListener{
+        binding.btnCalculateTco.setOnClickListener {
             findNavController().navigate(R.id.action_myCarDetailsFragment_to_calculateTCOFragment)
         }
     }

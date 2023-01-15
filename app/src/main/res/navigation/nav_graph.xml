@@ -45,7 +45,7 @@
         android:id="@+id/loginFragment"
         android:name="nl.avans.drivioapp.view.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -57,7 +57,7 @@
         android:id="@+id/registerFragment"
         android:name="nl.avans.drivioapp.view.RegisterFragment"
         android:label="Register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
@@ -66,7 +66,7 @@
         android:id="@+id/userListFragment"
         android:name="nl.avans.drivioapp.view.UserListFragment"
         android:label="UserList"
-        tools:layout="@layout/fragment_user_list" >
+        tools:layout="@layout/fragment_user_list">
         <action
             android:id="@+id/action_userListFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -93,7 +93,7 @@
         android:id="@+id/advertisementDetailsFragment"
         android:name="nl.avans.drivioapp.view.AdvertisementDetailsFragment"
         android:label="fragment_advertisement_details"
-        tools:layout="@layout/fragment_advertisement_details" >
+        tools:layout="@layout/fragment_advertisement_details">
         <action
             android:id="@+id/action_advertisementDetailsFragment_to_editAdvertisement"
             app:destination="@id/editAdvertisement" />
@@ -102,7 +102,7 @@
         android:id="@+id/reservationDetailsFragment"
         android:name="nl.avans.drivioapp.view.ReservationDetailsFragment"
         android:label="fragment_reservation_details"
-        tools:layout="@layout/fragment_reservation_details" >
+        tools:layout="@layout/fragment_reservation_details">
         <action
             android:id="@+id/action_reservationDetailsFragment_to_editBooking"
             app:destination="@id/editBooking" />
@@ -116,7 +116,7 @@
         android:id="@+id/advertisementProfileFragment"
         android:name="nl.avans.drivioapp.view.AdvertisementProfileFragment"
         android:label="fragment_advertisement_profile"
-        tools:layout="@layout/fragment_advertisement_profile" >
+        tools:layout="@layout/fragment_advertisement_profile">
         <action
             android:id="@+id/action_advertisementProfileFragment_to_createAdvertisementFragment"
             app:destination="@id/createAdvertisementFragment" />
@@ -138,7 +138,7 @@
         android:id="@+id/myCarDetailsFragment"
         android:name="nl.avans.drivioapp.view.MyCarDetailsFragment"
         android:label="fragment_my_car_details"
-        tools:layout="@layout/fragment_my_car_details" >
+        tools:layout="@layout/fragment_my_car_details">
         <action
             android:id="@+id/action_myCarDetailsFragment_to_updateCarFragment"
             app:destination="@id/updateCarFragment" />
@@ -152,7 +152,7 @@
     <fragment
         android:id="@+id/updateCarFragment"
         android:name="nl.avans.drivioapp.view.UpdateCarFragment"
-        android:label="UpdateCarFragment" >
+        android:label="UpdateCarFragment">
         <action
             android:id="@+id/action_updateCarFragment_to_myCarsFragment"
             app:destination="@id/myCarsFragment" />
@@ -160,7 +160,7 @@
     <fragment
         android:id="@+id/myCarsFragment"
         android:name="nl.avans.drivioapp.view.MyCarsFragment"
-        android:label="MyCarsFragment" >
+        android:label="MyCarsFragment">
         <action
             android:id="@+id/action_myCarsFragment_to_myCarDetailsFragment"
             app:destination="@id/myCarDetailsFragment" />
@@ -172,7 +172,7 @@
         android:id="@+id/statisticsFragment"
         android:name="nl.avans.drivioapp.view.StatisticsFragment"
         android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" >
+        tools:layout="@layout/fragment_statistics">
         <action
             android:id="@+id/action_statisticsFragment_to_statisticDetailsFragment"
             app:destination="@id/statisticDetailsFragment" />
@@ -180,7 +180,7 @@
     <fragment
         android:id="@+id/addElectricCarFragment"
         android:name="nl.avans.drivioapp.view.AddElectricCarFragment"
-        android:label="AddElectricCarFragment" >
+        android:label="AddElectricCarFragment">
         <action
             android:id="@+id/action_addElectricCarFragment_to_myCarsFragment"
             app:destination="@id/myCarsFragment" />
@@ -189,7 +189,7 @@
         android:id="@+id/loggedInFragment"
         android:name="nl.avans.drivioapp.view.LoggedInFragment"
         android:label="fragment_logged_in"
-        tools:layout="@layout/fragment_logged_in" >
+        tools:layout="@layout/fragment_logged_in">
         <action
             android:id="@+id/action_loggedInFragment_to_addElectricCarFragment"
             app:destination="@id/addElectricCarFragment" />

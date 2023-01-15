@@ -15,10 +15,8 @@
     <string name="reset_sign_in">Reset</string>
     <string name="action_register">Register</string>
     <string name="user_list">UserList</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="take_picture" />
     <string name="take_picture_description" />
-
     <string name="action_update_user">Update</string>
     <string name="change_language">EN/NL</string>
     <string name="translate">Select your Language</string>

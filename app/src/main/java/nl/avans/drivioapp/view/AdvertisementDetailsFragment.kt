@@ -19,7 +19,6 @@ import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAdvertisementDetailsBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Reservation
-import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import nl.avans.drivioapp.viewModel.ReservationViewModel
@@ -95,7 +94,8 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
             tvPrice.text = advertisement.body()?.price.toString()
             tvStartDate.text = advertisement.body()?.startDate.toString()
             tvEndDate.text = advertisement.body()?.endDate.toString()
-            val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${advertisement.body()?.electricCar?.imageUrl}"
+            val url =
+                "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${advertisement.body()?.electricCar?.imageUrl}"
             Picasso.get().load(url).into(ivUploadedImage)
 
             if (advertisement.body()?.user?.userId == 47) {
