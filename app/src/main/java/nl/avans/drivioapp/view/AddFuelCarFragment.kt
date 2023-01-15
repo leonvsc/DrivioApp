@@ -12,6 +12,7 @@ import nl.avans.drivioapp.databinding.FragmentAddFuelCarBinding
 import nl.avans.drivioapp.model.FuelCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddFuelCarViewModel
+import kotlin.random.Random
 
 class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
     private val addFuelCarViewModel: AddFuelCarViewModel by viewModels();
@@ -42,6 +43,8 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
             val model = binding.etModel.text.toString()
             val gearBox = binding.etGearBox.text.toString()
             val brand = binding.etBrand.text.toString()
+            val randomLatitude = Random.nextDouble(52.2, 52.4)
+            val randomLongitude = Random.nextDouble(4.7, 4.9)
 
             val fuelCar = FuelCar(
                 carType,
@@ -54,7 +57,9 @@ class AddFuelCarFragment : Fragment(R.layout.fragment_add_fuel_car) {
                 brand,
                 numberPlate,
                 tankSize,
-                User1(23)
+                User1(23),
+                randomLatitude,
+                randomLongitude
             )
             addFuelCarViewModel.postFuelCarWithResponse(fuelCar);
 

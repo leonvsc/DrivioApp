@@ -12,6 +12,7 @@ import nl.avans.drivioapp.databinding.FragmentAddHydrogenCarBinding
 import nl.avans.drivioapp.model.HydrogenCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddHydrogenCarViewModel
+import kotlin.random.Random
 
 class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
     private val addHydrogenCarViewModel: AddHydrogenCarViewModel by viewModels();
@@ -43,6 +44,8 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
             val tankSize = binding.etTankSize.text.toString().toInt()
             val gearBox = binding.etGearBox.text.toString()
             val brand = binding.etBrand.text.toString()
+            val randomLatitude = Random.nextDouble(52.2, 52.4)
+            val randomLongitude = Random.nextDouble(4.7, 4.9)
 
             val hydrogenCar = HydrogenCar(
                 carRange,
@@ -56,7 +59,9 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
                 model,
                 gearBox,
                 brand,
-                User1(23)
+                User1(23),
+                randomLatitude,
+                randomLongitude
             )
             addHydrogenCarViewModel.postHydrogenCarWithResponse(hydrogenCar);
 

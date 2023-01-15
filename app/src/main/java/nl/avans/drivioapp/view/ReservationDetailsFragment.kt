@@ -1,5 +1,7 @@
 package nl.avans.drivioapp.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -73,6 +75,16 @@ class ReservationDetailsFragment : Fragment(R.layout.fragment_reservation_detail
             tvTitle.text = reservation.body()?.advertisement?.title.toString()
             tvStartDate.text = reservation.body()?.startDate
             tvEndDate.text = reservation.body()?.endDate
+
+            val btnNavigate = binding.btnNavigate
+            val carLatitude = reservation.body()?.advertisement?.electricCar?.latitude
+            val carLongitude = reservation.body()?.advertisement?.electricCar?.longitude
+            val uri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=${carLatitude},${carLongitude}")
+            val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+
+            btnNavigate.setOnClickListener {
+                startActivity(mapIntent)
+            }
         }
 
         val ibtnEdit = binding.ibtnEdit

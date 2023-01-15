@@ -13,6 +13,8 @@ import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentEditAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.User1
+import nl.avans.drivioapp.model.ElectricCar
+import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import retrofit2.Response
 import java.text.SimpleDateFormat
@@ -51,6 +53,7 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
             val etPrice = binding.etPrice
             val etStartDate = binding.etStartDate
             val etEndDate = binding.etEndDate
+            val carId = advertisement.body()?.electricCar?.carId
 
             etTitle.setText(advertisement.body()?.title.toString())
             etDescription.setText(advertisement.body()?.description.toString())
@@ -103,7 +106,8 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
                     price,
                     startDate,
                     endDate,
-                    User1(47)
+                    User1(47),
+                    ElectricCar(carId)
                 )
                 advertisementViewModel.putAdvertisementWithResponse(advertisement)
             }

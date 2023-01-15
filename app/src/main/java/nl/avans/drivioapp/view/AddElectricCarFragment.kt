@@ -19,6 +19,7 @@ import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import java.util.*
+import kotlin.random.Random
 
 
 class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
@@ -97,6 +98,8 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             val whPerKm = binding.etWhPerKm.text.toString().toInt()
             val gearBox = binding.etGearBox.text.toString()
             val brand = binding.etBrand.text.toString()
+            val randomLatitude = Random.nextDouble(52.2, 52.4)
+            val randomLongitude = Random.nextDouble(4.7, 4.9)
 
             val electricCar = ElectricCar(
                 null,
@@ -112,7 +115,9 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 whPerKm,
                 gearBox,
                 brand,
-                User1(23)
+                User1(23),
+                randomLatitude,
+                randomLongitude
             )
             addElectricCarViewModel.postElectricCarWithResponse(electricCar);
 
