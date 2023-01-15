@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Brand"
+                android:hint="@string/brand"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Model"
+                android:hint="@string/model"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Build year"
+                android:hint="@string/build_year"
                 android:inputType="number"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Numberplate"
+                android:hint="@string/numberplate"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Car Type"
+                android:hint="@string/car_type"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Gearbox"
+                android:hint="@string/gearbox"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Fuel Type"
+                android:hint="@string/fuel_type"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Range"
+                android:hint="@string/range"
                 android:inputType="number"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Charge Connection"
+                android:hint="@string/charge_connection"
                 android:inputType="text"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Charge Speed"
+                android:hint="@string/charge_speed"
                 android:inputType="number"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -160,7 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Fast Charge Speed"
+                android:hint="@string/fast_charge_speed"
                 android:inputType="number"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -173,7 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:hint="Wh per km (int)"
+                android:hint="@string/wh_per_km_int"
                 android:inputType="number"
                 android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -208,7 +208,7 @@
         android:id="@+id/post_electric_car_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post"
+        android:text="@string/post"
 
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"

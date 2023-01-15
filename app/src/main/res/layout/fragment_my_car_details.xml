@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
-        android:text="CarId"
+        android:text="@string/carid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/tvBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brand"
+        android:text="@string/brand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCarId" />
@@ -30,7 +30,7 @@
         android:id="@+id/tvModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Model"
+        android:text="@string/model"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBrand" />
@@ -39,7 +39,7 @@
         android:id="@+id/tvFuelType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fuel type"
+        android:text="@string/fuel_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvModel" />
@@ -48,7 +48,7 @@
         android:id="@+id/tvBuildYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Build year"
+        android:text="@string/build_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFuelType" />
@@ -58,19 +58,20 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBuildYear" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBuildYear"
+        app:layout_constraintVertical_bias="0.120000005" />
 
     <Button
         android:id="@+id/btnUpdateCar"
         style="?attr/materialIconButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
         android:visibility="visible"
         app:icon="@drawable/edit_fill0_wght400_grad0_opsz48"
         app:iconSize="30dp"
         app:layout_constraintEnd_toStartOf="@+id/btnDeleteCar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -78,12 +79,21 @@
         style="?attr/materialIconButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:visibility="visible"
         app:icon="@drawable/delete_fill0_wght400_grad0_opsz48"
         app:iconSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCalculateTco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate_tco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

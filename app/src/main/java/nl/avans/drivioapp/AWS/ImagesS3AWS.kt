@@ -6,6 +6,7 @@ import java.io.File
 
 class ImagesS3AWS {
 
+    // Function to upload images to S3
     suspend fun putS3Object(bucketName: String, objectKey: String, objectPath: String) {
 
         println("PutS3Object accessed")

@@ -34,6 +34,27 @@
     <string name="add_hydrogen_car">Toevoegen hydrogen voertuig</string>
     <string name="add_fuel_car">Toevoegen brandstof voertuig</string>
     <string name="filter_1">Prijs minder dan 50 euro</string>
+    <string name="calculate_tco">TCO berekenen</string>
+    <string name="build_year">Bouwjaar</string>
+    <string name="fuel_type">Brandstof type</string>
+    <string name="model">Model</string>
+    <string name="brand">Merk</string>
+    <string name="carid">CarId</string>
+    <string name="numberplate">Kentekenplaat</string>
+    <string name="car_type">Auto type</string>
+    <string name="gearbox">Versnellingsbak</string>
+    <string name="range">Range</string>
+    <string name="charge_connection">Oplaad connectie</string>
+    <string name="charge_speed">Laad snelheid</string>
+    <string name="fast_charge_speed">Snelaad snelheid</string>
+    <string name="wh_per_km_int">Wh per km (int)</string>
+    <string name="post">Post</string>
+    <string name="new_price">Nieuw prijs</string>
+    <string name="additional_costs">Extra kosten</string>
+    <string name="kilometers_per_year">Kilometers per jaar</string>
+    <string name="tco">TCO</string>
+    <string name="years_of_use">Jaren in gebruik</string>
+    <string name="calculate_usage_costs">Bereken gebruikers kosten</string>
 
 </resources>
 
