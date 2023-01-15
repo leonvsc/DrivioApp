@@ -52,6 +52,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
         val tvEndDate: TextView = binding.tvEndDate
         val ivUploadedImage: ImageView = binding.ivUploadedImage
 
+        // Receive advertisementId
         setFragmentResultListener("advertisementId") { requestKey, bundle ->
             val advertisementId = bundle.getInt("advertisementId")
             advertisementViewModel.getAdvertisementById(advertisementId)
@@ -62,6 +63,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
                 advertisementViewModel.deleteAdvertisementWithResponse(advertisementId)
             }
 
+            // Send advertisementId
             setFragmentResult(
                 "advertisementIdEdit",
                 bundleOf("advertisementIdEdit" to advertisementId)

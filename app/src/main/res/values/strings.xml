@@ -54,5 +54,17 @@
     <string name="tco">TCO</string>
     <string name="years_of_use">Years of use</string>
     <string name="calculate_usage_costs">Calculate usage costs</string>
+    <string name="map">Map</string>
+    <string name="reserve">Reserve</string>
+    <string name="create_advertisement">Create advertisement</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="select_dates">Select Dates</string>
+    <string name="startdate">Startdate</string>
+    <string name="enddate">Enddate</string>
+    <string name="edit_advertisement">Edit Advertisement</string>
+    <string name="edit_reservation">Edit Reservation</string>
+    <string name="navigate_to_car">Navigate to car</string>
 </resources>
 

@@ -42,6 +42,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 .build()
 
         binding.btnSelectDate.setOnClickListener {
+            // Show Date Range Picker
             activity?.let { it1 -> dateRangePicker.show(it1.supportFragmentManager, "DATE_PICKER") }
         }
 
@@ -50,7 +51,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
             startDate = dateFormatter.format(it.first)
             endDate = dateFormatter.format(it.second)
 
-            // TODO: Fix Resource string
             binding.tvStartDate.text = "Startdate: $startDate"
             binding.tvEndDate.text = "Enddate: $endDate"
         }
@@ -74,9 +74,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 ElectricCar(carId)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
-
-
-            // TODO: Navigate to something when the post request was successful
 
             advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
                 val response = advertisementViewModel.postAdvertisementResponse.value

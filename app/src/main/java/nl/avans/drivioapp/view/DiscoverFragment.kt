@@ -45,6 +45,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
             val filter = binding.chip1
             filter.setOnCheckedChangeListener { chip, isChecked ->
                 if (chip.isChecked) {
+                    // Filtering on advertisement pricing
                     val filteredList = advertisement.filter { it.price!! < 50 }
                     recyclerView.adapter = AdvertisementAdapter(filteredList, this)
                 } else {

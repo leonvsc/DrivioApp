@@ -27,6 +27,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         app:srcCompat="@drawable/add_fill0_wght400_grad0_opsz48"
-        />
+        android:contentDescription="@string/create_advertisement" />
 
 </FrameLayout>

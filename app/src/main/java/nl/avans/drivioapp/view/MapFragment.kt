@@ -42,6 +42,7 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
     private fun addMarkers() {
 
         addElectricCarViewModel.electricCarResponse.observe(viewLifecycleOwner) {
+            // Add car location markers on the map
             val electricCars = addElectricCarViewModel.electricCarResponse.value!!
             for (electricCar in electricCars) {
                 carLocation.add(LatLng(electricCar.latitude!!, electricCar.longitude!!))
@@ -60,6 +61,7 @@ class MapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private fun getLocationAccess() {
+        // Checking GPS permission
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
         } else ActivityCompat.requestPermissions(
