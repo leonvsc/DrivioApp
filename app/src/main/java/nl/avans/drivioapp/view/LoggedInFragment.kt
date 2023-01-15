@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentLoggedInBinding
@@ -24,6 +26,16 @@ class LoggedInFragment : Fragment(R.layout.fragment_logged_in) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.logout.setOnClickListener {
+            findNavController().navigate(R.id.action_loggedInFragment_to_profileFragment)
+            parentFragmentManager.commit {
+                replace<ProfileFragment>(R.id.fragmentContainerView)
+                setReorderingAllowed(true)
+                addToBackStack(null)
+            }
+        }
+
         binding.buttonAddElectricCar.setOnClickListener{
             findNavController().navigate(R.id.action_loggedInFragment_to_addElectricCarFragment)
         }
