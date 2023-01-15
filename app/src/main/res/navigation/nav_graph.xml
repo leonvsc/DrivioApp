@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_myCarDetailsFragment_to_updateCarFragment"
             app:destination="@id/updateCarFragment" />
+        <action
+            android:id="@+id/action_myCarDetailsFragment_to_calculateTCOFragment"
+            app:destination="@id/calculateTCOFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateCarFragment"
@@ -154,6 +157,9 @@
         <action
             android:id="@+id/action_myCarsFragment_to_myCarDetailsFragment"
             app:destination="@id/myCarDetailsFragment" />
+        <action
+            android:id="@+id/action_myCarsFragment_to_addElectricCarFragment"
+            app:destination="@id/addElectricCarFragment" />
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
@@ -211,5 +217,9 @@
         android:id="@+id/mapFragment"
         android:name="nl.avans.drivioapp.view.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/calculateTCOFragment"
+        android:name="nl.avans.drivioapp.view.CalculateTCOFragment"
+        android:label="CalculateTCOFragment" />
 </navigation>
 

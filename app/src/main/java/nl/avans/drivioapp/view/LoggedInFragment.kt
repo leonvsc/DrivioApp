@@ -36,15 +36,6 @@ class LoggedInFragment : Fragment(R.layout.fragment_logged_in) {
             }
         }
 
-        binding.buttonAddElectricCar.setOnClickListener{
-            findNavController().navigate(R.id.action_loggedInFragment_to_addElectricCarFragment)
-        }
-        binding.buttonAddFuelCar.setOnClickListener{
-            findNavController().navigate(R.id.action_loggedInFragment_to_addFuelCarFragment)
-        }
-        binding.buttonAddHydrogenCar.setOnClickListener{
-            findNavController().navigate(R.id.action_loggedInFragment_to_addHydrogenCarFragment)
-        }
         binding.buttonViewMyCars.setOnClickListener{
             findNavController().navigate(R.id.action_loggedInFragment_to_myCarsFragment)
         }

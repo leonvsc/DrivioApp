@@ -39,10 +39,14 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars),
             recyclerView.adapter = MyCarsAdapter(myCar, this)
         }
 
-        val swipeRefreshLayout = binding.root
+        val swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             myCarsViewModel.getElectricCars()
+        }
+
+        binding.btnAddCar.setOnClickListener{
+            findNavController().navigate(R.id.action_myCarsFragment_to_addElectricCarFragment)
         }
     }
 

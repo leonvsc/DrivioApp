@@ -23,7 +23,7 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
     private val binding get() = _binding!!;
     private val myCarsViewModel: MyCarsViewModel by viewModels()
     private var carId: Int? = null;
-    private var TCO: Int? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,27 +43,6 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
         val tvModel: TextView = binding.tvModel
         val tvFuelType: TextView = binding.tvFuelType
         val ivUploadedImage: ImageView = binding.ivUploadedImage
-        val tvTCO: TextView = binding.tvTCO
-        val tvUsageCosts: TextView = binding.tvUsageCosts
-
-
-
-
-        binding.btnCalculateTco.setOnClickListener {
-            val newPrice = binding.etNewPrice.text.toString().toInt()
-            val additionalCosts = binding.etAdditionalCosts.text.toString().toInt()
-            println("Newprice = $newPrice")
-            println("Additional costs = $additionalCosts")
-            TCO = newPrice + additionalCosts
-            tvTCO.text = TCO.toString()
-        }
-
-        binding.btnCalculateUsageCosts.setOnClickListener {
-            val yearsOfUse = binding.etYearsOfUse.text.toString().toInt()
-            println("Years of use $yearsOfUse")
-            val usageCosts = TCO?.div(yearsOfUse)
-            tvUsageCosts.text = usageCosts.toString()
-        }
 
         setFragmentResultListener("carId") { requestKey, bundle ->
             carId = bundle.getInt("carId")
@@ -103,6 +82,9 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
             findNavController().navigate(R.id.action_myCarDetailsFragment_to_updateCarFragment)
         }
 
+        binding.btnCalculateTco.setOnClickListener{
+            findNavController().navigate(R.id.action_myCarDetailsFragment_to_calculateTCOFragment)
+        }
     }
 
     override fun onDestroyView() {
