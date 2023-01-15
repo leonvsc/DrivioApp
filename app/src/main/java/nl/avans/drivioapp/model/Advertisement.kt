@@ -16,8 +16,10 @@ data class Advertisement(
     @Json(name = "endDate")
     val endDate: String?,
     @Json(name="user")
-    val user: User1?
+    val user: User1?,
+    @Json(name="electricCar")
+    val electricCar: ElectricCar?
 )
 {
-    constructor(advertisementId: Int?) : this(advertisementId, null, null, null, null, null, null)
+    constructor(advertisementId: Int?) : this(advertisementId, null, null, null, null, null, null, null)
 }

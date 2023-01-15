@@ -34,6 +34,7 @@ import java.io.OutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.random.Random
 
 
 class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
