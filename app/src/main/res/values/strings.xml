@@ -21,5 +21,6 @@
     <string name="take_picture_description" />
 
     <string name="action_update_user">Update</string>
+    <string name="filter_1">Prijs minder dan 50 euro</string>
 </resources>
 
