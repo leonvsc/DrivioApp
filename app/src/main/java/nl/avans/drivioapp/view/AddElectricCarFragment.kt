@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -29,6 +31,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -41,6 +45,9 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private var imageUri: Uri? = null
     private var file: File? = null
     private var imageToS3: Unit? = null
+    private var imageBitMap: Bitmap? = null
+    private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-HH-mm")
+    private val currentDateTime: String = LocalDateTime.now().format(formatter)
 
 
     private fun dispatchTakePictureIntent() {
@@ -69,18 +76,22 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             imageUri = data?.data
+//            val source =
+//                imageUri?.let { ImageDecoder.createSource(requireActivity().contentResolver, it) }
+//            imageBitMap = source?.let { ImageDecoder.decodeBitmap(it) }
             binding.ivUploadedImage.setImageURI(imageUri)
-            val inputStream: InputStream? = imageUri?.let {
-                activity?.contentResolver?.openInputStream(
-                    it
-                )
-            }
+//
+//            val inputStream: InputStream? = imageUri?.let {
+//                activity?.contentResolver?.openInputStream(
+//                    it
+//                )
+//            }
             file = File.createTempFile("image", imageUri!!.lastPathSegment)
-            println("File = $file")
-            val outStream: OutputStream = FileOutputStream(file)
+            println("File in upload is : $file")
+//            val outStream: OutputStream = FileOutputStream(file)
 
-            imageToS3 = outStream.write(inputStream!!.readBytes())
-            println("Image to S3 = " + imageToS3.toString())
+//            imageToS3 = outStream.write(inputStream!!.readBytes())
+
         } else if (resultCode == Activity.RESULT_OK) {
             binding.ivUploadedImage.setImageURI(imageUri)
             println("Picture data is: $imageUri")
@@ -90,6 +101,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 )
             }
             file = File.createTempFile("image", imageUri!!.lastPathSegment)
+            println("File in camera is : $file")
             val outStream: OutputStream = FileOutputStream(file)
 
             imageToS3 = outStream.write(inputStream!!.readBytes())
@@ -118,8 +130,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         }
 
         val imageView: ImageView = binding.ivUploadedImage
-        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/DSC_0546.JPG"
-
+        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/01-15-12-15.jpg"
         Picasso.get().load(url).into(imageView)
 
         binding.postElectricCarBtn.setOnClickListener {
@@ -154,7 +165,8 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 //                User1(23)
 //            )
 //            addElectricCarViewModel.postElectricCarWithResponse(electricCar);
-            addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME, "test", file.toString())
+            addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME,
+                "$currentDateTime.jpg", file.toString())
 
             addElectricCarViewModel.postElectricCarResponse.observe(viewLifecycleOwner) {
                 val response = addElectricCarViewModel.postElectricCarResponse.value
