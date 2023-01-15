@@ -6,6 +6,9 @@ data class ElectricCar(
     @Json(name = "carId")
     val carId: Int?,
 
+    @Json(name = "imageUrl")
+    val imageUrl: String?,
+
     @Json(name = "fastChargeSpeed")
     val fastChargeSpeed: Int?,
 
@@ -34,7 +37,7 @@ data class ElectricCar(
     val model: String?,
 
     @Json(name = "whPerKm")
-    val whPerKm: Any?,
+    val whPerKm: Int?,
 
     @Json(name = "gearBox")
     val gearBox: String?,
@@ -53,6 +56,7 @@ data class ElectricCar(
 ) {
     constructor(carId: Int?) : this(
         carId,
+        null,
         null,
         null,
         null,

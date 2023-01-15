@@ -62,6 +62,12 @@
             android:textSize="16sp"
 
             />
+        <ImageView
+            android:id="@+id/ivUploadedImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
     </LinearLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>
