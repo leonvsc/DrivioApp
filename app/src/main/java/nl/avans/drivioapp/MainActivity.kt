@@ -6,10 +6,15 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import nl.avans.drivioapp.databinding.ActivityMainBinding
+import nl.avans.drivioapp.databinding.FragmentProfileBinding
+import nl.avans.drivioapp.view.LoginFragment
+import nl.avans.drivioapp.view.ProfileFragment
 import java.util.Locale
 
 
@@ -82,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         val language = sharedPreferences.getString("Chosen_language", "")!!
         setLocale(language)
     }
+
 
 //    override fun onSupportNavigateUp(): Boolean {
 //        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

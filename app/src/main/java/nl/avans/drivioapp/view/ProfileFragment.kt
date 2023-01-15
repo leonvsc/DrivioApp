@@ -37,10 +37,6 @@ class ProfileFragment : Fragment() {
         binding.registerBtn.setOnClickListener {
             viewModel.setRegisterButton(it)
         }
-
-        binding.btnLoggedIn.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_loggedInFragment)
-        }
     }
 
     override fun onDestroyView() {
