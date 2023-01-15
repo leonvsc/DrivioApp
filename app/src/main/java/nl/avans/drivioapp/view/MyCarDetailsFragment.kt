@@ -56,7 +56,6 @@ class MyCarDetailsFragment : Fragment(R.layout.fragment_my_car_details) {
 
                 myCarsViewModel.deleteFuelCarResponse.observe(viewLifecycleOwner) {
                     val response = myCarsViewModel.deleteFuelCarResponse.value
-//                  TODO: Make the button navigate to another page
                     if (response?.code() == 200) {
                         Toast.makeText(activity, "Deleted!!", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_myCarDetailsFragment_to_myCarsFragment)

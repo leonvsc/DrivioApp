@@ -193,7 +193,6 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 
             addElectricCarViewModel.putElectricCarWithResponse.observe(viewLifecycleOwner) {
                 val response = addElectricCarViewModel.putElectricCarWithResponse.value
-//              TODO: Make switch to other fragment after put
                 if (response?.code() == 200) {
                     Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_updateCarFragment_to_myCarsFragment)
