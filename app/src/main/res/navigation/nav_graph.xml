@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_advertisementDetailsFragment_to_editAdvertisement"
             app:destination="@id/editAdvertisement" />
+        <action
+            android:id="@+id/action_advertisementDetailsFragment_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/reservationDetailsFragment"
@@ -111,7 +114,14 @@
         android:id="@+id/editAdvertisement"
         android:name="nl.avans.drivioapp.view.EditAdvertisement"
         android:label="fragment_edit_advertisement"
-        tools:layout="@layout/fragment_edit_advertisement" />
+        tools:layout="@layout/fragment_edit_advertisement" >
+        <action
+            android:id="@+id/action_editAdvertisement_to_advertisementDetailsFragment"
+            app:destination="@id/advertisementDetailsFragment" />
+        <action
+            android:id="@+id/action_editAdvertisement_to_advertisementProfileFragment"
+            app:destination="@id/advertisementProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/advertisementProfileFragment"
         android:name="nl.avans.drivioapp.view.AdvertisementProfileFragment"

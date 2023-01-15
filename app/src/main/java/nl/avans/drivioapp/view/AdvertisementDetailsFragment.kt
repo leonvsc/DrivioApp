@@ -122,7 +122,7 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
 
 
                 if (response?.code() == 200) {
-                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                    binding.tvResult.text = "Reservation succesfull!!"
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }
