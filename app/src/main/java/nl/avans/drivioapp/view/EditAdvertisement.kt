@@ -116,7 +116,9 @@ class EditAdvertisement : Fragment(R.layout.fragment_edit_advertisement) {
                 val response = advertisementViewModel.putAdvertisementResponse.value
 
                 if (response?.code() == 200) {
-                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                    binding.tvResult.text = "Advertisement succesfull updated!!"
+
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }
