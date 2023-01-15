@@ -13,6 +13,7 @@ import nl.avans.drivioapp.model.User
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     val getAllUsers: LiveData<List<User>>
+    private val getUsers: List<User>
     private var readUserCredentialData: LiveData<User>? = null
     private val repository: UserRepository
 
@@ -22,6 +23,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         val userDao = UserDatabase.getDatabase(application).userDao()
         repository = UserRepository(userDao)
         getAllUsers = repository.getAllUsers
+        getUsers = repository.getUsers
         readUserCredentialData = repository.readUserCredentialData
     }
 
@@ -52,6 +54,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLoginDetails(email: String, password: String): LiveData<User> {
         return repository.getLoginDetails(email, password)
+    }
+
+    fun getUserCredential(email: String, password: String): User {
+        return repository.getUserCredential(email, password)
     }
 }
 
