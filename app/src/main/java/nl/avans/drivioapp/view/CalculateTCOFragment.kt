@@ -32,16 +32,18 @@ class CalculateTCOFragment : Fragment(R.layout.fragment_calculate_tco) {
         val tvTCO: TextView = binding.tvTCO
         val tvUsageCosts: TextView = binding.tvUsageCosts
 
+        // Button to calculate the TCO when values are filled in
         binding.btnCalculateTco.setOnClickListener {
             val newPrice = binding.etNewPrice.text.toString().toInt()
             val additionalCosts = binding.etAdditionalCosts.text.toString().toInt()
             val kilometersPerYear = binding.etKilometersPerYear.text.toString().toInt()
             println("Newprice = $newPrice")
             println("Additional costs = $additionalCosts")
-            TCO = (newPrice + additionalCosts) / kilometersPerYear
+            TCO = (newPrice + additionalCosts) / kilometersPerYear + newPrice
             tvTCO.text = TCO.toString()
         }
 
+        // Button to calculate the usage costs when values are filled in
         binding.btnCalculateUsageCosts.setOnClickListener {
             val yearsOfUse = binding.etYearsOfUse.text.toString().toInt()
             val fuelType = binding.etFuelType.text.toString()

@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import nl.avans.drivioapp.AWS.`s3-constants`
 import nl.avans.drivioapp.R
@@ -43,7 +44,8 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-HH-mm")
     private var fileName: String? = null
 
-    fun dispatchTakePictureIntent() {
+    // Function to open camera from phone
+    private fun dispatchTakePictureIntent() {
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
         values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
@@ -58,12 +60,14 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         }
     }
 
-    fun openGalleryForImage() {
+    // Function to select image from phone
+    private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
     }
 
+    // Function to handle the uploaded or selected image which than can be sent to AWS S3
     @Deprecated("Deprecated in Java but not in Kotlin")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -120,6 +124,7 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             myCarsViewModel.getElectricCarById(carId)
         }
 
+        // Fill in the et field with the values from the db and show the connected image
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {
             val myCar = myCarsViewModel.getElectricCarByIdResponse.value
             binding.etFastChargeSpeed.setText(myCar?.body()?.fastChargeSpeed.toString())
@@ -139,6 +144,7 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             Picasso.get().load(url).into(binding.ivUploadedImage)
         }
 
+        // Clicking the put button will post the information noted in the edit text fields
         binding.postElectricCarBtn.setOnClickListener {
 
             val fastChargeSpeed = binding.etFastChargeSpeed.text.toString().toInt()
@@ -174,6 +180,7 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 0.0
             )
             addElectricCarViewModel.putElectricCarWithResponse(electricCar)
+            // When the post button is clicked and a new image is selected, the image will be uploaded to an S3 bucket
             if (file != null) {
                 fileName?.let { it1 ->
                     addElectricCarViewModel.putImage(
@@ -187,6 +194,7 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 //              TODO: Make switch to other fragment after put
                 if (response?.code() == 200) {
                     Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_updateCarFragment_to_myCarsFragment)
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }
