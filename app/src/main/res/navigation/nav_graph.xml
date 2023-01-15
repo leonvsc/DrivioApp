@@ -118,6 +118,9 @@
         <action
             android:id="@+id/action_editAdvertisement_to_advertisementDetailsFragment"
             app:destination="@id/advertisementDetailsFragment" />
+        <action
+            android:id="@+id/action_editAdvertisement_to_advertisementProfileFragment"
+            app:destination="@id/advertisementProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/advertisementProfileFragment"

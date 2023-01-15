@@ -123,7 +123,6 @@ class AdvertisementDetailsFragment : Fragment(R.layout.fragment_advertisement_de
 
                 if (response?.code() == 200) {
                     binding.tvResult.text = "Reservation succesfull!!"
-                    findNavController().navigate(R.id.action_advertisementDetailsFragment_to_bookingsFragment)
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }
