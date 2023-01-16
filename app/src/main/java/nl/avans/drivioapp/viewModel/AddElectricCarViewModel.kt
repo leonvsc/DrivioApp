@@ -78,4 +78,10 @@ class AddElectricCarViewModel : ViewModel() {
             ImagesS3AWS().putS3Object(bucketName, objectKey, objectPath)
         }
     }
+
+    fun deleteImage(bucketName: String, objectName: String) {
+        viewModelScope.launch {
+            ImagesS3AWS().deleteS3Object(bucketName, objectName)
+        }
+    }
 }

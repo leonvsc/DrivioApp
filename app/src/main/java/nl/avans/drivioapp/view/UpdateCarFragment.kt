@@ -189,6 +189,8 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                         it1, file.toString()
                     )
                 }
+                addElectricCarViewModel.deleteImage(`s3-constants`.BUCKET_NAME, "FILE name")
+                // TODO: Change file name to the correct name of the old file
             }
 
             addElectricCarViewModel.putElectricCarWithResponse.observe(viewLifecycleOwner) {
