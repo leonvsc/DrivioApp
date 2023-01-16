@@ -15,7 +15,8 @@ abstract class UserDatabase : RoomDatabase() {
     // singleton pattern. Only one instance of the companion object should exist
     companion object {
         // @Volatile = variable should not be modified by different threads
-        @Volatile private var INSTANCE: UserDatabase? = null
+        @Volatile
+        private var INSTANCE: UserDatabase? = null
 
         fun getDatabase(context: Context): UserDatabase {
             // if database already exist.. return existing DB.

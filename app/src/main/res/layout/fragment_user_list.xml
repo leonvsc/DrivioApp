@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="delete_all_users"
         android:focusable="true"
-        android:tint="@color/white"
         android:src="@drawable/ic_delete"
+        android:tint="@color/white"
+        android:tooltipText="@string/delete_all_users_tooltip"
         app:layout_constraintBottom_toBottomOf="@+id/user_list_recycler_view"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-        app:layout_constraintStart_toEndOf="@+id/floatingActionButton2"
-        android:tooltipText="@string/delete_all_users_tooltip"
-        android:contentDescription="delete_all_users" />
+        app:layout_constraintStart_toEndOf="@+id/floatingActionButton2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -40,11 +40,11 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="add_user"
         android:focusable="true"
+        android:src="@drawable/ic_add_user"
         android:tint="@color/white"
         android:tooltipText="@string/add_new_user"
-        android:contentDescription="add_user"
-        android:src="@drawable/ic_add_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -55,11 +55,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="back_to_profile"
         android:focusable="true"
+        android:src="@drawable/ic_back_to_profile"
         android:tint="@color/white"
         android:tooltipText="@string/back_to_login"
-        android:contentDescription="back_to_profile"
-        android:src="@drawable/ic_back_to_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

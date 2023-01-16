@@ -1,6 +1,5 @@
 package nl.avans.drivioapp.service
 
-import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.Statistic
 import retrofit2.Response
 import retrofit2.http.*

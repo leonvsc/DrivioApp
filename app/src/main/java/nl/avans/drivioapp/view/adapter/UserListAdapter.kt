@@ -30,7 +30,8 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.txt_password).text = currentItem.password
 
         holder.itemView.findViewById<View>(R.id.user_row_layout).setOnClickListener {
-            val action = UserListFragmentDirections.actionUserListFragmentToUpdateUFragment(currentItem)
+            val action =
+                UserListFragmentDirections.actionUserListFragmentToUpdateUFragment(currentItem)
             holder.itemView.findNavController().navigate(action)
         }
     }

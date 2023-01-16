@@ -17,7 +17,7 @@ object DrivioApi {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .baseUrl(BASE_URL)
         .build()
-    
+
     val advertisementService: AdvertisementService by lazy {
         retrofit.create(AdvertisementService::class.java)
     }

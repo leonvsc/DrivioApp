@@ -8,11 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.adapter.AdvertisementAdapter
-
 import nl.avans.drivioapp.databinding.FragmentDiscoverBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
@@ -45,6 +43,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover),
             val filter = binding.chip1
             filter.setOnCheckedChangeListener { chip, isChecked ->
                 if (chip.isChecked) {
+                    // Filtering on advertisement pricing
                     val filteredList = advertisement.filter { it.price!! < 50 }
                     recyclerView.adapter = AdvertisementAdapter(filteredList, this)
                 } else {

@@ -2,12 +2,12 @@ package nl.avans.drivioapp.view
 
 
 import android.os.Bundle
-import nl.avans.drivioapp.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentCalculateTcoBinding
 
 
@@ -50,12 +50,10 @@ class CalculateTCOFragment : Fragment(R.layout.fragment_calculate_tco) {
             if (fuelType == "Benzine") {
                 val usageCosts = TCO?.div(yearsOfUse)?.div(2)
                 tvUsageCosts.text = usageCosts.toString()
-            }
-            else if (fuelType == "Electrisch") {
+            } else if (fuelType == "Electrisch") {
                 val usageCosts = TCO?.div(yearsOfUse)?.div(4)
                 tvUsageCosts.text = usageCosts.toString()
-            }
-            else if (fuelType == "Waterstof") {
+            } else if (fuelType == "Waterstof") {
                 val usageCosts = TCO?.div(yearsOfUse)?.div(6)
                 tvUsageCosts.text = usageCosts.toString()
             }
