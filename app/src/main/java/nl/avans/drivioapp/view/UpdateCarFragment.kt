@@ -23,6 +23,7 @@ import nl.avans.drivioapp.model.ElectricCar
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AddElectricCarViewModel
 import nl.avans.drivioapp.viewModel.MyCarsViewModel
+import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -36,6 +37,7 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val binding get() = _binding!!;
     private val myCarsViewModel: MyCarsViewModel by viewModels()
     private var carId: Int? = null;
+    private lateinit var myCar: Response<ElectricCar>
     private val REQUEST_CODE = 100
     private val REQUEST_IMAGE_CAPTURE = 1
     private var imageUri: Uri? = null
@@ -127,20 +129,20 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
 
         // Fill in the et field with the values from the db and show the connected image
         myCarsViewModel.getElectricCarByIdResponse.observe(viewLifecycleOwner) {
-            val myCar = myCarsViewModel.getElectricCarByIdResponse.value
-            binding.etFastChargeSpeed.setText(myCar?.body()?.fastChargeSpeed.toString())
-            binding.etCarRange.setText(myCar?.body()?.carRange.toString())
-            binding.etChargeConnection.setText(myCar?.body()?.chargeConnection.toString())
-            binding.etBuildYear.setText(myCar?.body()?.buildYear.toString())
-            binding.etNumberPlate.setText(myCar?.body()?.numberPlate.toString())
-            binding.etChargeSpeed.setText(myCar?.body()?.chargeSpeed.toString())
-            binding.etCarType.setText(myCar?.body()?.carType.toString())
-            binding.etFuelType.setText(myCar?.body()?.fuelType.toString())
-            binding.etModel.setText(myCar?.body()?.model.toString())
-            binding.etWhPerKm.setText(myCar?.body()?.whPerKm.toString())
-            binding.etGearBox.setText(myCar?.body()?.gearBox.toString())
-            binding.etBrand.setText(myCar?.body()?.brand.toString())
-            fileName = myCar?.body()?.imageUrl
+            myCar = myCarsViewModel.getElectricCarByIdResponse.value!!
+            binding.etFastChargeSpeed.setText(myCar.body()?.fastChargeSpeed.toString())
+            binding.etCarRange.setText(myCar.body()?.carRange.toString())
+            binding.etChargeConnection.setText(myCar.body()?.chargeConnection.toString())
+            binding.etBuildYear.setText(myCar.body()?.buildYear.toString())
+            binding.etNumberPlate.setText(myCar.body()?.numberPlate.toString())
+            binding.etChargeSpeed.setText(myCar.body()?.chargeSpeed.toString())
+            binding.etCarType.setText(myCar.body()?.carType.toString())
+            binding.etFuelType.setText(myCar.body()?.fuelType.toString())
+            binding.etModel.setText(myCar.body()?.model.toString())
+            binding.etWhPerKm.setText(myCar.body()?.whPerKm.toString())
+            binding.etGearBox.setText(myCar.body()?.gearBox.toString())
+            binding.etBrand.setText(myCar.body()?.brand.toString())
+            fileName = myCar.body()?.imageUrl
             val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/$fileName"
             Picasso.get().load(url).into(binding.ivUploadedImage)
         }
@@ -189,6 +191,11 @@ class UpdateCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                         it1, file.toString()
                     )
                 }
+                val oldFileName = myCar.body()?.imageUrl
+                if (oldFileName != null) {
+                    addElectricCarViewModel.deleteImage(`s3-constants`.BUCKET_NAME, oldFileName)
+                }
+                // TODO: Change file name to the correct name of the old file
             }
 
             addElectricCarViewModel.putElectricCarWithResponse.observe(viewLifecycleOwner) {

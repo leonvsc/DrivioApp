@@ -1,5 +1,6 @@
 package nl.avans.drivioapp.AWS
 
+import aws.sdk.kotlin.services.s3.model.DeleteObjectRequest
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.smithy.kotlin.runtime.content.asByteStream
 import java.io.File
@@ -23,5 +24,15 @@ class ImagesS3AWS {
         s3Client.putObject(request)
         println("Tag information is $request")
 
+    }
+
+    suspend fun deleteS3Object(bucketName: String, objectName: String) {
+
+        val request = DeleteObjectRequest {
+            bucket = bucketName
+            key = objectName
+        }
+        s3Client.deleteObject(request)
+        println("Tag information is $request")
     }
 }
