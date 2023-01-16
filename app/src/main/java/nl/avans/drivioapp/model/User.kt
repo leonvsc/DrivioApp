@@ -1,10 +1,10 @@
 package nl.avans.drivioapp.model
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 
@@ -14,7 +14,7 @@ data class User(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "email") val email: String,
     @ColumnInfo(name = "password") val password: String
-): Parcelable
+) : Parcelable
 
 data class User1(
     @Json(name = "userId")

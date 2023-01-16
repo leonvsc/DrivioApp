@@ -7,16 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import nl.avans.drivioapp.view.MyCarsFragment
 import nl.avans.drivioapp.databinding.ListElectricCarBinding
 import nl.avans.drivioapp.model.ElectricCar
 
 
 class MyCarsAdapter(
-//    private val context: MyCarsFragment,
     private val dataset: List<ElectricCar>,
     private val listener: OnItemClickListener
-    ) : RecyclerView.Adapter<MyCarsAdapter.MyCarViewHolder>() {
+) : RecyclerView.Adapter<MyCarsAdapter.MyCarViewHolder>() {
 
     inner class MyCarViewHolder(private val binding: ListElectricCarBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
@@ -42,7 +40,8 @@ class MyCarsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCarViewHolder {
-        val binding = ListElectricCarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListElectricCarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return MyCarViewHolder(binding)
     }

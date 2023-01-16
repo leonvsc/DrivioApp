@@ -12,7 +12,6 @@ import nl.avans.drivioapp.databinding.ListAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 
 class AdvertisementAdapter(
-//    private val context: DiscoverFragment,
     private val dataset: List<Advertisement>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
@@ -53,7 +52,8 @@ class AdvertisementAdapter(
         holder.tvPrice.text = item.price.toString()
         holder.tvStartDate.text = item.startDate
         holder.tvEndDate.text = item.endDate
-        val url = "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${item.electricCar?.imageUrl}"
+        val url =
+            "https://images-drivio-app.s3.eu-west-1.amazonaws.com/${item.electricCar?.imageUrl}"
         Picasso.get().load(url).into(holder.ivUploadedImage)
     }
 

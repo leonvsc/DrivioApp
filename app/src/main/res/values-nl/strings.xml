@@ -16,10 +16,8 @@
     <string name="reset_sign_in">Resetten</string>
     <string name="action_register">Registreren</string>
     <string name="user_list">Gebruikerslijst</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="take_picture">Maak foto</string>
     <string name="take_picture_description">Maak foto beschrijving</string>
-
     <string name="action_update_user">Wijzig</string>
     <string name="change_language">EN/NL</string>
     <string name="translate">Kies uw taal</string>
@@ -55,6 +53,18 @@
     <string name="tco">TCO</string>
     <string name="years_of_use">Jaren in gebruik</string>
     <string name="calculate_usage_costs">Bereken gebruikers kosten</string>
+    <string name="map">Kaart</string>
+    <string name="reserve">Reserveren</string>
+    <string name="create_advertisement">Creëer advertentie</string>
+    <string name="title">Titel</string>
+    <string name="description">Beschrijving</string>
+    <string name="price">Prijs</string>
+    <string name="select_dates">Selecteer datums</string>
+    <string name="startdate">Start datum</string>
+    <string name="enddate">Eind datum</string>
+    <string name="edit_advertisement">Wijzig advertentie</string>
+    <string name="edit_reservation">Wijzig reservering</string>
+    <string name="navigate_to_car">Navigeer naar auto</string>
 
 </resources>
 

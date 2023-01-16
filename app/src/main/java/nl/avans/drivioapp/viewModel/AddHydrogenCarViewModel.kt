@@ -18,7 +18,8 @@ class AddHydrogenCarViewModel : ViewModel() {
     val getHydrogenCarResponse: LiveData<List<HydrogenCar>>
         get() = _getHydrogenCarResponse;
 
-    private val _getHydrogenCarByIdResponse: MutableLiveData<Response<HydrogenCar>> = MutableLiveData()
+    private val _getHydrogenCarByIdResponse: MutableLiveData<Response<HydrogenCar>> =
+        MutableLiveData()
     val getHydrogenCarByIdResponse: LiveData<Response<HydrogenCar>>
         get() = _getHydrogenCarByIdResponse
 
@@ -52,19 +53,22 @@ class AddHydrogenCarViewModel : ViewModel() {
 
     fun postHydrogenCarWithResponse(hydrogenCar: HydrogenCar) {
         viewModelScope.launch {
-            _postHydrogenCarResponse.value = hydrogenCarRepository.postHydrogenCarWithResponse(hydrogenCar);
+            _postHydrogenCarResponse.value =
+                hydrogenCarRepository.postHydrogenCarWithResponse(hydrogenCar);
         }
     }
 
     fun deleteHydrogenCarWithResponse(carId: Int) {
         viewModelScope.launch {
-            _deleteHydrogenCarResponse.value = hydrogenCarRepository.deleteHydrogenCarWithResponse(carId);
+            _deleteHydrogenCarResponse.value =
+                hydrogenCarRepository.deleteHydrogenCarWithResponse(carId);
         }
     }
 
     fun putHydrogenCarWithResponse(hydrogenCar: HydrogenCar) {
         viewModelScope.launch {
-            _putHydrogenCarResponse.value = hydrogenCarRepository.putHydrogenCarWithResponse(hydrogenCar);
+            _putHydrogenCarResponse.value =
+                hydrogenCarRepository.putHydrogenCarWithResponse(hydrogenCar);
         }
     }
 }

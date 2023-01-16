@@ -1,11 +1,11 @@
 package nl.avans.drivioapp.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.R
@@ -23,7 +23,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
@@ -50,11 +50,13 @@ class RegisterFragment : Fragment() {
             val user = User(0, email, password)
             // add user to the database
             userViewModel.addUser(user)
-            Toast.makeText(requireContext(), "New User Successfully added", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "New User Successfully added", Toast.LENGTH_SHORT)
+                .show()
             // navigate to user list fragment
             findNavController().navigate(R.id.action_registerFragment_to_userListFragment)
         } else {
-            Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Please fill out all fields!", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

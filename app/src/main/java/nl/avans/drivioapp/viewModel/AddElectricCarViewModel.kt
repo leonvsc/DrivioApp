@@ -19,7 +19,8 @@ class AddElectricCarViewModel : ViewModel() {
     val electricCarResponse: LiveData<List<ElectricCar>>
         get() = _getElectricCarResponse;
 
-    private val _getElectricCarByIdResponse: MutableLiveData<Response<ElectricCar>> = MutableLiveData()
+    private val _getElectricCarByIdResponse: MutableLiveData<Response<ElectricCar>> =
+        MutableLiveData()
     val getElectricCarByIdResponse: LiveData<Response<ElectricCar>>
         get() = _getElectricCarByIdResponse
 
@@ -53,25 +54,28 @@ class AddElectricCarViewModel : ViewModel() {
 
     fun postElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
-            _postElectricCarResponse.value = electricCarRepository.postElectricCarWithResponse(electricCar);
+            _postElectricCarResponse.value =
+                electricCarRepository.postElectricCarWithResponse(electricCar);
         }
     }
 
     fun deleteElectricCarWithResponse(carId: Int) {
         viewModelScope.launch {
-            _deleteElectricCarResponse.value = electricCarRepository.deleteElectricCarResponse(carId)
+            _deleteElectricCarResponse.value =
+                electricCarRepository.deleteElectricCarResponse(carId)
         }
     }
 
     fun putElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
-            _putElectricCarResponse.value = electricCarRepository.putElectricCarWithResponse(electricCar);
+            _putElectricCarResponse.value =
+                electricCarRepository.putElectricCarWithResponse(electricCar);
         }
     }
 
     fun putImage(bucketName: String, objectKey: String, objectPath: String) {
         viewModelScope.launch {
-            ImagesS3AWS().putS3Object(bucketName,objectKey,objectPath)
+            ImagesS3AWS().putS3Object(bucketName, objectKey, objectPath)
         }
     }
 }

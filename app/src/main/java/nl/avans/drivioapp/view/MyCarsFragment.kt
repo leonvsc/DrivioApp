@@ -46,7 +46,7 @@ class MyCarsFragment : Fragment(R.layout.fragment_my_cars),
             myCarsViewModel.getElectricCars()
         }
 
-        binding.btnAddCar.setOnClickListener{
+        binding.btnAddCar.setOnClickListener {
             findNavController().navigate(R.id.action_myCarsFragment_to_addElectricCarFragment)
         }
     }

@@ -11,7 +11,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
 import nl.avans.drivioapp.model.Advertisement
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.User
 import nl.avans.drivioapp.model.User1
 import nl.avans.drivioapp.viewModel.AdvertisementViewModel
 import java.text.SimpleDateFormat
@@ -42,6 +41,7 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 .build()
 
         binding.btnSelectDate.setOnClickListener {
+            // Show Date Range Picker
             activity?.let { it1 -> dateRangePicker.show(it1.supportFragmentManager, "DATE_PICKER") }
         }
 
@@ -50,7 +50,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
             startDate = dateFormatter.format(it.first)
             endDate = dateFormatter.format(it.second)
 
-            // TODO: Fix Resource string
             binding.tvStartDate.text = "Startdate: $startDate"
             binding.tvEndDate.text = "Enddate: $endDate"
         }
@@ -74,9 +73,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 ElectricCar(carId)
             )
             advertisementViewModel.postAdvertisementWithResponse(advertisement)
-
-
-            // TODO: Navigate to something when the post request was successful
 
             advertisementViewModel.postAdvertisementResponse.observe(viewLifecycleOwner) {
                 val response = advertisementViewModel.postAdvertisementResponse.value

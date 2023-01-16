@@ -16,10 +16,8 @@
     <string name="reset_sign_in">Reset</string>
     <string name="action_register">Register</string>
     <string name="user_list">UserList</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="take_picture">Take picture</string>
     <string name="take_picture_description">Take picture description</string>
-
     <string name="action_update_user">Update</string>
     <string name="change_language">EN/NL</string>
     <string name="translate">Select your Language</string>
@@ -55,4 +53,16 @@
     <string name="tco">TCO</string>
     <string name="years_of_use">Years of use</string>
     <string name="calculate_usage_costs">Calculate usage costs</string>
+    <string name="map">Map</string>
+    <string name="reserve">Reserve</string>
+    <string name="create_advertisement">Create advertisement</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="select_dates">Select dates</string>
+    <string name="startdate">Start date</string>
+    <string name="enddate">End date</string>
+    <string name="edit_advertisement">Edit advertisement</string>
+    <string name="edit_reservation">Edit reservation</string>
+    <string name="navigate_to_car">Navigate to car</string>
 </resources>

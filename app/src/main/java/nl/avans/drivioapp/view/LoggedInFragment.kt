@@ -36,7 +36,7 @@ class LoggedInFragment : Fragment(R.layout.fragment_logged_in) {
             }
         }
 
-        binding.buttonViewMyCars.setOnClickListener{
+        binding.buttonViewMyCars.setOnClickListener {
             findNavController().navigate(R.id.action_loggedInFragment_to_myCarsFragment)
         }
         binding.btnAdvertisement.setOnClickListener {

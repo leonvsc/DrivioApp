@@ -4,9 +4,9 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -26,7 +26,7 @@ class UserListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentUserListBinding.inflate(inflater, container, false)
 
@@ -88,7 +88,8 @@ class UserListFragment : Fragment() {
             Toast.makeText(
                 requireContext(),
                 "All Users Successful Removed!",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
         }
         alert.setNegativeButton("No") { _, _ -> }
         alert.setTitle("Delete all users?")

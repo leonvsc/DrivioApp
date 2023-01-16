@@ -7,12 +7,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -50,7 +48,8 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
         values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
 
-        imageUri = activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        imageUri =
+            activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         try {
@@ -157,8 +156,10 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             addElectricCarViewModel.postElectricCarWithResponse(electricCar);
             // When the post button is clicked and an image is selected, the image will be uploaded to an S3 bucket
             if (file != null) {
-            addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME,
-                "$currentDateTime.jpg", file.toString())
+                addElectricCarViewModel.putImage(
+                    `s3-constants`.BUCKET_NAME,
+                    "$currentDateTime.jpg", file.toString()
+                )
             }
 
             // Response to inform if the post was successful

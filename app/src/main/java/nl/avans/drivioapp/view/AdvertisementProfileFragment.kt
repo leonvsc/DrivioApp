@@ -54,6 +54,7 @@ class AdvertisementProfileFragment : Fragment(R.layout.fragment_advertisement_pr
 
     override fun onItemClick(position: Int) {
         advertisementViewModel.getAdvertisementResponse.observe(viewLifecycleOwner) {
+            // Send advertisementId
             setFragmentResult(
                 "advertisementId",
                 bundleOf("advertisementId" to advertisementByUser[position].advertisementId)

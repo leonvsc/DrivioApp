@@ -25,7 +25,7 @@ class StatisticDetailsFragment : Fragment(R.layout.fragment_statistic_details) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentStatisticDetailsBinding.inflate(inflater, container, false);
         val view = binding.root
         return view

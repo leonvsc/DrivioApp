@@ -58,7 +58,8 @@ class StatisticsViewModel : ViewModel() {
 
     fun deleteStatisticsWithResponse(statisticId: Int) {
         viewModelScope.launch {
-            _deleteStatisticResponse.value = statisticsRepository.deleteStatisticWithResponse(statisticId)
+            _deleteStatisticResponse.value =
+                statisticsRepository.deleteStatisticWithResponse(statisticId)
         }
     }
 

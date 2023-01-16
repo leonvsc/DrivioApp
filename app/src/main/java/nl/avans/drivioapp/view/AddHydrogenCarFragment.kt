@@ -76,6 +76,7 @@ class AddHydrogenCarFragment : Fragment(R.layout.fragment_add_hydrogen_car) {
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView();
         _binding = null;

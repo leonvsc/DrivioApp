@@ -4,15 +4,15 @@ import com.squareup.moshi.Json
 
 class Statistic(
 
-    @Json(name="statisticId")
+    @Json(name = "statisticId")
     val statisticId: Int?,
 
-    @Json(name="name")
+    @Json(name = "name")
     val name: String,
 
-    @Json(name="value")
+    @Json(name = "value")
     val value: String,
 
-    @Json(name="user")
+    @Json(name = "user")
     val user: User1
 )

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import nl.avans.drivioapp.model.ElectricCar
-import nl.avans.drivioapp.model.FuelCar
 import nl.avans.drivioapp.repository.ElectricCarRepository
 import retrofit2.Response
 
@@ -19,7 +18,8 @@ class MyCarsViewModel : ViewModel() {
     val electricCarResponse: LiveData<List<ElectricCar>>
         get() = _getElectricCarResponse;
 
-    private val _getElectricCarByIdResponse: MutableLiveData<Response<ElectricCar>> = MutableLiveData()
+    private val _getElectricCarByIdResponse: MutableLiveData<Response<ElectricCar>> =
+        MutableLiveData()
     val getElectricCarByIdResponse: LiveData<Response<ElectricCar>>
         get() = _getElectricCarByIdResponse
 
@@ -53,7 +53,8 @@ class MyCarsViewModel : ViewModel() {
 
     fun postElectricCarWithResponse(electricCar: ElectricCar) {
         viewModelScope.launch {
-            _postElectricCarResponse.value = electricCarRepository.postElectricCarWithResponse(electricCar);
+            _postElectricCarResponse.value =
+                electricCarRepository.postElectricCarWithResponse(electricCar);
         }
     }
 

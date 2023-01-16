@@ -37,6 +37,7 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
         super.onViewCreated(view, savedInstanceState)
         reservationViewModel.getReservationsResponse.observe(viewLifecycleOwner) {
             reservation = reservationViewModel.getReservationsResponse.value!!
+            // Filter on specific user
             reservationByUser = reservation.filter { it.user.userId == 47 }
             val recyclerView = binding.recyclerView
             recyclerView.adapter = ReservationAdapter(reservationByUser, this)
@@ -44,6 +45,7 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
 
         val swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
+            // Pull down to refresh
             swipeRefreshLayout.isRefreshing = false
             reservationViewModel.getReservations()
         }
@@ -52,6 +54,7 @@ class BookingsFragment : Fragment(R.layout.fragment_bookings),
 
     override fun onItemClick(position: Int) {
         reservationViewModel.getReservationsResponse.observe(viewLifecycleOwner) {
+            // Send reservationId
             setFragmentResult(
                 "reservationId",
                 bundleOf("reservationId" to reservation[position].reservationId)
