@@ -16,4 +16,5 @@ val staticCredentials = StaticCredentialsProvider {
 
 val s3Client = S3Client {
     region = `s3-constants`.AWS_REGION
-    credentialsProvider = staticCredentials}
+    credentialsProvider = staticCredentials
+}

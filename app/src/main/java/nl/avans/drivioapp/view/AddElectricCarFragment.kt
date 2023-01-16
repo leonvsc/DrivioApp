@@ -7,12 +7,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import nl.avans.drivioapp.AWS.`s3-constants`
 import nl.avans.drivioapp.R
 import nl.avans.drivioapp.databinding.FragmentAddElectricCarBinding
@@ -41,8 +44,8 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
     private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-HH-mm")
     private val currentDateTime: String = LocalDateTime.now().format(formatter)
 
-
-    fun dispatchTakePictureIntent() {
+    // Function to open camera from phone
+    private fun dispatchTakePictureIntent() {
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, R.string.take_picture)
         values.put(MediaStore.Images.Media.DESCRIPTION, R.string.take_picture_description)
@@ -57,12 +60,14 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
         }
     }
 
-    fun openGalleryForImage() {
+    // Function to select image from phone
+    private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
     }
 
+    // Result handler to handle the result from the images
     @Deprecated("Deprecated in Java but not in Kotlin")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -112,6 +117,7 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
             dispatchTakePictureIntent()
         }
 
+        // Clicking the post button will post the information noted in the edit text fields
         binding.postElectricCarBtn.setOnClickListener {
 
             val fastChargeSpeed = binding.etFastChargeSpeed.text.toString().toInt()
@@ -149,16 +155,19 @@ class AddElectricCarFragment : Fragment(R.layout.fragment_add_electric_car) {
                 randomLongitude
             )
             addElectricCarViewModel.postElectricCarWithResponse(electricCar);
+            // When the post button is clicked and an image is selected, the image will be uploaded to an S3 bucket
             if (file != null) {
             addElectricCarViewModel.putImage(`s3-constants`.BUCKET_NAME,
                 "$currentDateTime.jpg", file.toString())
             }
 
+            // Response to inform if the post was successful
             addElectricCarViewModel.postElectricCarResponse.observe(viewLifecycleOwner) {
                 val response = addElectricCarViewModel.postElectricCarResponse.value
 
                 if (response?.code() == 200) {
                     Toast.makeText(activity, "Success!!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_addElectricCarFragment_to_myCarsFragment)
                 } else {
                     Toast.makeText(activity, "Failed!!", Toast.LENGTH_SHORT).show()
                 }

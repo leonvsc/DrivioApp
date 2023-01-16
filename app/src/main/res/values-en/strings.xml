@@ -34,4 +34,25 @@
     <string name="add_hydrogen_car">Add hydrogen car</string>
     <string name="add_fuel_car">Add fuel car</string>
     <string name="filter_1">Price less than 50 euro</string>
+    <string name="calculate_tco">Calculate TCO</string>
+    <string name="build_year">Build year</string>
+    <string name="fuel_type">Fuel type</string>
+    <string name="model">Model</string>
+    <string name="brand">Brand</string>
+    <string name="carid">CarId</string>
+    <string name="numberplate">Numberplate</string>
+    <string name="car_type">Car Type</string>
+    <string name="gearbox">Gearbox</string>
+    <string name="range">Range</string>
+    <string name="charge_connection">Charge Connection</string>
+    <string name="charge_speed">Charge Speed</string>
+    <string name="fast_charge_speed">Fast Charge Speed</string>
+    <string name="wh_per_km_int">Wh per km (int)</string>
+    <string name="post">Post</string>
+    <string name="new_price">New price</string>
+    <string name="additional_costs">Additional costs</string>
+    <string name="kilometers_per_year">Kilometers per year</string>
+    <string name="tco">TCO</string>
+    <string name="years_of_use">Years of use</string>
+    <string name="calculate_usage_costs">Calculate usage costs</string>
 </resources>
