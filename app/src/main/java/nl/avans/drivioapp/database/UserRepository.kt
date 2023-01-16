@@ -6,7 +6,7 @@ import nl.avans.drivioapp.model.User
 class UserRepository(private val userDao: UserDao) {
 
     val getAllUsers: LiveData<List<User>> = userDao.getAllUsers()
-    val getUsers: List<User> = userDao.getUsers()
+//    val getUsers: List<User> = userDao.getUsers()
     val readUserCredentialData: LiveData<User>? = null
 
     suspend fun addUser(user: User) {
