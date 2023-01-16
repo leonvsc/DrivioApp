@@ -1,13 +1,16 @@
 package nl.avans.drivioapp
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import nl.avans.drivioapp.databinding.FragmentCreateAdvertisementBinding
@@ -20,13 +23,63 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisement) {
+class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisement), AdapterView.OnItemSelectedListener{
     private var _binding: FragmentCreateAdvertisementBinding? = null;
     private val binding get() = _binding!!;
     private val advertisementViewModel: AdvertisementViewModel by viewModels()
     private val myCarsViewModel: MyCarsViewModel by viewModels()
     private lateinit var startDate: String
     private lateinit var endDate: String
+    private val carsList = arrayListOf<String?>()
+    private lateinit var myCars: List<ElectricCar>
+    private var chosenCar: Any? = null
+    private var spinner: Spinner? = null
+    private lateinit var adapter: ArrayAdapter<String>
+
+    private fun getCars() {
+        println("getCars() is accessed")
+
+
+
+        myCarsViewModel.electricCarResponse.observe(viewLifecycleOwner) {
+            // Add car location markers on the map
+            myCars = myCarsViewModel.electricCarResponse.value!!
+            myCars = myCars.filter { it.user?.userId == 23 }
+            for (myCar in myCars) {
+                carsList.add(myCar.model)
+            }
+
+            spinner = binding.spinnerLanguages
+
+            adapter =
+                ArrayAdapter<String>(
+                    this.requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    carsList
+                )
+
+//            ArrayAdapter.createFromResource(
+//                this.requireContext(),
+//                R.array.planets_array,
+//                android.R.layout.simple_spinner_item
+//            ).also { adapter ->
+//                // Specify the layout to use when the list of choices appears
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                // Apply the adapter to the spinner
+//                spinner.adapter = adapter
+//            }
+
+            println("The adapter is: $adapter")
+            println("The carsList is: $carsList")
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+            spinner!!.adapter = adapter;
+
+
+        }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +92,12 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getCars()
+
+
+
+        val testing = spinner?.selectedItem.toString()
+        println("Selected item = $testing")
 
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
@@ -58,29 +117,6 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
             binding.tvStartDate.text = "Startdate: $startDate"
             binding.tvEndDate.text = "Enddate: $endDate"
         }
-
-        val carsList = arrayListOf<String?>()
-
-        myCarsViewModel.electricCarResponse.observe(viewLifecycleOwner) {
-            // Add car location markers on the map
-            var myCars = myCarsViewModel.electricCarResponse.value!!
-            myCars = myCars.filter { it.user?.userId == 47 }
-            for (myCar in myCars) {
-                carsList.add(myCar.carId.toString())
-            }
-
-            val spinner: Spinner = binding.spinnerLanguages
-
-            val adapter: ArrayAdapter<String> =
-                ArrayAdapter<String>(
-                    this.requireContext(),
-                    android.R.layout.simple_spinner_item,
-                    carsList
-                )
-
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-            spinner.adapter = adapter;
 
             binding.btnConfirm.setOnClickListener {
                 val title = binding.etTitle.text.toString()
@@ -114,5 +150,14 @@ class CreateAdvertisementFragment : Fragment(R.layout.fragment_create_advertisem
                 }
             }
         }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Toast.makeText(activity, "Postion is $position", Toast.LENGTH_SHORT).show()
+        chosenCar = myCars[position]
+        println("ChosenCar is: $chosenCar")
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Toast.makeText(activity, "Nothing is selected", Toast.LENGTH_SHORT).show()
     }
 }
